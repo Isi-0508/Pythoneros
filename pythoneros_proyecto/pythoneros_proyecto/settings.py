@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'myapp',
+    'Users',
 ]
 
 MIDDLEWARE = [
@@ -55,7 +56,7 @@ ROOT_URLCONF = 'pythoneros_proyecto.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'myapp' / 'templates', BASE_DIR / 'templates'],
+        'DIRS': [BASE_DIR / 'myapp' / 'templates', BASE_DIR / 'templates', BASE_DIR / 'Users' / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
