@@ -5,11 +5,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=, initial-scale=1.0">
     <title>{% block title %} {% endblock %}</title>
+    <!--TITULO-->
 </head>
 
 <body>
-    <h1>Registrar usuario</h1>
+    <main>
     {% block content %}
+
     {% endblock %}
+    </main>>
+    
+    <main>
+    {% block content %}
+
+    {% endblock %}
+    </main>>
+<!--No se que es esta pinche mamada pero bueno-->
+    <div class="botones">
+        <br><br><br>
+        <a href ="{%url 'home'%}" class="button">Iniciar Sesión</a>
+        <br>
+    </div>
 </body>
 </html>

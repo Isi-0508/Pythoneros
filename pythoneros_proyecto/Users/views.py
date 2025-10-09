@@ -4,6 +4,9 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 
 # Create your views here.
+
+#(!) CORREGIR
+
 #LOGIN/REGISTER
 def register(request):
     if request.method == "POST":
