@@ -1,12 +1,32 @@
-{% extends "index.html" %}
+{% extends "account_page_index.html" %}
 
-{% block title %} Iniciar Sesión {% endblock %}
-
-{% block content %}
-    Nombre de Usuario
-{% endblock %}
+{% block title %}  Sexo!!!{% endblock %}
 
 {% block content %}
-    Contraseña
+    INICIAR SESIÓN
+    <br>
+    <br>
+<form method="POST" action ="{%url 'login' %}">
+    {% csrf_token %}
+<!--Input de usuario-->
+    <input type="text" name="username" placeholder="Usuario" required>
+    <br>
+    <br>
+<!--Input de contraseña-->
+    <input type="password" name="password" placeholder="Contraseña" required>
+    <br>
+    <br>
+<!--Boton para acceder-->
+    <button type="submit">Iniciar Sesión</button>
+    <br>
+    <br>
+    ¿Aún no eres miembro de FOCUSTOM? ¡Unete!
+<!--CAMBIAR NOMBRE PROVISORIO-->
+<!--Boton para ir a la pagina de registro-->
+    <div class="buttons">
+        <br>
+        <a href ="{%url 'register'%}" class="button">REGISTRARSE</a>
+        <br>
+    </div>
+</form>
 {% endblock %}
-

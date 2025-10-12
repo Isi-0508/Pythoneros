@@ -1,0 +1,25 @@
+{% extends "account_page_index.html" %}
+
+{% block title %}  Registrarse {% endblock %}
+
+{% block content %}
+    REGISTRARSE
+    <br>
+    <br>
+<form method="POST" action ="{%url 'register' %}">
+    {% csrf_token %}
+<!--Input de usuario-->
+    <input type="text" name="username" placeholder="Usuario" required>
+    <br>
+    <br>
+<!--Input de contraseña-->
+    <input type="password" name="password" placeholder="Contraseña" required>
+    <br>
+    <br>
+<!--Input de contraseña 2-->
+    <input type="password2" name="password2" placeholder="Confirmar Contraseña" required>
+    <br>
+    <br>
+    <button type="submit">Registrase</button>
+</form>
+{% endblock %}
