@@ -18,12 +18,13 @@ from django.contrib import admin
 from django.urls import path, include
 from myapp import views as myapp_views
 from Users import views as Users_views
+from home import views as home_views
 
 urlpatterns = [
     # path('', views.myapp, name='myapp'),
     path('myapp/', myapp_views.myapp, name='myapp'),
     path('admin/', admin.site.urls),
-    path('home/', myapp_views.home, name='home'),
+    path('home/', home_views.home, name='home'),
     path('login/', Users_views.login, name='login'),
     # path('logout/', views.home, name='logout'),
     path('register/', Users_views.register, name='register'),

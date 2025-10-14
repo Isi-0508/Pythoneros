@@ -7,5 +7,3 @@ def myapp(request):
     return HttpResponse("The Walten Files")
 
 # Create your views here.
-def home(request):
-    return render(request,"home.html")
