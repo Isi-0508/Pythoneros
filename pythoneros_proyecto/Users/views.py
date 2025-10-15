@@ -17,10 +17,12 @@ strangechar = "!@#$%^&*()-_=+[];:,.<>/?"
 # 4 letras, 2 numeros y 2 caracteres raros
 #LOGIN/REGISTER
 
+#Retirar lista de errores
 def passwordcheck(password):
     letters_count = 0
     numbers_count = 0
     strangechar_count = 0
+    not_usable_password = "abcd12%$"
 
     for letter in password:
 
@@ -37,7 +39,8 @@ def passwordcheck(password):
         
     letters_flag = False
     numbers_flag = False
-    strangecharcount = False
+    strangechar_flag = False
+    notusable_password_flag = False
 
     error_list = []
 
@@ -56,13 +59,16 @@ def passwordcheck(password):
     else:
         error_list.append(strangechar_errormessage)
 
-    if letters_flag and numbers_flag and strangechar_flag:
+    if password != not_usable_password:
+        notusable_password_flag = True
+
+    if letters_flag and numbers_flag and strangechar_flag and notusable_password_flag:
         return [True, ""]
 
     else:
         return [False, error_list]
             
-
+# (!) COMPLETADO
 def register(request):
     if request.method == "POST":
         username = request.POST.get('username')
@@ -71,46 +77,46 @@ def register(request):
 
         passflag, passerrors = passwordcheck(password)
 
-        #Exigencias de contraseña (Quizas hacerla mas segura, min 8 caracteres, maximo 15)
         #Verificación
         if username is not None and password is not None and passflag:
             if password == password2:
                 if User.objects.filter(username=username).exists():
-                    messages.error(request, "Este usuario ya existe, intentelo de nuevo")
+                    messages.error(request, "(!) Este usuario ya existe, intentelo de nuevo")
                 else:
                     User.objects.create_user(username=username, password=password)
                     messages.success(request, "Bienvenido a FOCUSTOM")
                     return redirect('login') #Redirige a Login
             else:
-                messages.error(request, "Las contraseñas no coinciden")
+                messages.error(request, "(!) Las contraseñas no coinciden")
+        # elif not passflag:
 
     return render(request, "register_page.html")
 
+'''
+Revisar Errores en el logeado:
+1- Errores:
+    -No hay nada en el usuario ni en la contraseña
+    -Combinacion, contraseña o usuario incorrectos
+'''
+# (!) COMPLETADO
 def login(request):
     if request.method == "POST":
         username = request.POST.get('username')
         password = request.POST.get('password')
+    
+        user = authenticate(request, username=username, password=password)
 
-        flag1 = False
-        flag2 = False
-
-    #Primero revisa las 2 cosas antes de informar un error
-        if username is not None and password is not None:
-            if User.objects.filter(username=username).exists():
-                flag1 = True
-            else:
-                flag1 = False
-
-            if User.objects.filter(password=password).exists():
-                flag2 = True
-            else:
-                flag2 = False
-
-            if flag1 and not flag2:
-                messages.error(request, "(!) Usuario Incorrecto, intentelo de nuevo")
-            if not flag1 and flag2:
-                messages.error(request, "(!) Contraseña Incorrecta, intentelo de nuevo")
-            if not flag1 and not flag2:
-                messages.error(request, "(!) Usuario y Contraseña incorrectos, intentelo de nuevo")
+        if user is not None:
+            #auth_login esta llamada de otra forma
+            auth_login(request, user)
+            messages.success(request, f"¡Bienvenido de nuevo, {username}!")
+            return redirect('home') #redirige a home
+        else:
+            messages.error(request, "(!) Usuario o Contraseña Incorrectos, intentelo nuevamente")
 
     return render(request,"login_page.html")
+
+def profile(request):
+    return HttpResponse("PLACEHOLDER PROFILE")
+#CONTRASEÑA FUNCIONAL 100%
+# efgh34%$
