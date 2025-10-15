@@ -67,7 +67,9 @@ def passwordcheck(password):
 
     else:
         return [False, error_list]
-            
+
+# LOGIN RECQUIRED.
+
 # (!) COMPLETADO
 def register(request):
     if request.method == "POST":
@@ -92,12 +94,6 @@ def register(request):
 
     return render(request, "register_page.html")
 
-'''
-Revisar Errores en el logeado:
-1- Errores:
-    -No hay nada en el usuario ni en la contraseña
-    -Combinacion, contraseña o usuario incorrectos
-'''
 # (!) COMPLETADO
 def login(request):
     if request.method == "POST":
@@ -117,6 +113,10 @@ def login(request):
     return render(request,"login_page.html")
 
 def profile(request):
-    return HttpResponse("PLACEHOLDER PROFILE")
+    return render(request, "profile_page_index.html")
+
+def logout(request):
+    return HttpResponse("LOGOUTPLACEHOLDER")
+
 #CONTRASEÑA FUNCIONAL 100%
 # efgh34%$
