@@ -3,7 +3,8 @@ from django.http import HttpResponse
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login as auth_login
+from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -112,11 +113,25 @@ def login(request):
 
     return render(request,"login_page.html")
 
-def profile(request):
-    return render(request, "profile_page_index.html")
-
 def logout(request):
-    return HttpResponse("LOGOUTPLACEHOLDER")
+    auth_logout(request)
+    return redirect('login')
+
+@login_required(login_url='login')
+def profile(request):
+    '''
+    #Cambio de Nombre de Usuario:
+    if request.method == "POST":
+        new_username = request.POST.get('newusername')
+    #Cambio de Contraseña:
+    if request.method == "POST":
+        password = request.POST.get('password')
+        password2 = request.POST.get('password2') #Confirmar contraseña
+
+        passflag, passerrors = passwordcheck(password)
+    '''
+
+    return render(request, "profile_page_index.html")
 
 #CONTRASEÑA FUNCIONAL 100%
 # efgh34%$

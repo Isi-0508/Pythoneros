@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+{%block title%}
+FOCUSTOM
+{% endblock title%}
+
+{% block content %}
+<!-- Titulo de la página-->
+<h1>Bienvenido a FOCUSTOM</h1>
+
+<html>
+    <head>
+        <link rel="stylesheet" href="{% static 'css/home.css' %}">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <title>Bienvenido a FOCUSTOM</title>
+    </head>
+    <body>
+        <div>
+            <h1><a href="/">LOGO</a></h1>
+        </div>
+<!-- Boton del perfil-->
+        <div>
+            <p>Personaliza a tu manera!</p>
+            <h2><a href="{%url 'profile'%}" class="button">Perfil</a></h2>
+            <p>Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+        </div>
+
+        <div>
+            <p></p>
+            <h2><a href="">Música</a></h2>
+            <p>Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut f.</p>
+        </div>
+    </body>
+</html>
+
+
+
+
+
+
+{% endblock %}

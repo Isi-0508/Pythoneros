@@ -6,16 +6,26 @@
     REGISTRARSE
     <br>
     <br>
+<!--{% if messages %}
+    <div class="messages">
+        {%for message in messages%}
+            <div class="alert {{ message.tags }}">
+                {{ mesage }}
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}
+-->
 <form method="POST" action ="{%url 'register' %}">
     {% csrf_token %}
 <!--Input de usuario-->
     <input type="text" name="username" placeholder="Usuario" required>
     <br>
-    La contraseña debe contener al menos:
-    -8 caracteres
-    -2 números
-    -2 caracteres adicionales
-    EJEMPLO: abcd12%$
+    La contraseña debe contener al menos:<br>
+    -8 caracteres<br>
+    -2 números<br>
+    -2 caracteres adicionales<br>
+    EJEMPLO: abcd12%$<br>
     <br>
 <!--Input de contraseña-->
     <input type="password" name="password" placeholder="Contraseña" required>
