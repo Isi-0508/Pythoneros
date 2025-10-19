@@ -20,17 +20,15 @@ strangechar = "!@#$%^&*()-_=+[];:,.<>/?"
 # 4 letras, 2 numeros y 2 caracteres raros
 #LOGIN/REGISTER
 
-#Retirar lista de errores
+#Retirar lsita de errores
+#Corregir limites
+
+# (!) COMPLETADO
 def passwordcheck(password):
     letters_count = 0
     numbers_count = 0
     strangechar_count = 0
     not_usable_password = "abcd12%$"
-
-    letters_errormessage = "minimo 4 letras"
-    numbers_errormessage = "minimo 2 números"
-    strangechar_errormessage = "minimo 2 caracteres adicionales"
-    len_errormessage = "Debe tener entre 8 a 10 caracteres en total"
 
     for letter in password:
 
@@ -46,39 +44,37 @@ def passwordcheck(password):
     strangechar_flag = False
     notusable_password_flag = False
     len_flag = False
-    error_list = []
 
     if 10 >= len(password) >= 8:
         len_flag = True
-    else:
-        error_list.append(len_errormessage)
     
     if letters_count >= 4:
         letters_flag = True
-    else:
-        error_list.append(letters_errormessage)
 
     if numbers_count >= 2:
         numbers_flag = True
-    else:
-        error_list.append(numbers_errormessage)
 
     if strangechar_count >= 2:
         strangechar_flag = True
-    else:
-        error_list.append(strangechar_errormessage)
 
     if password != not_usable_password:
         notusable_password_flag = True
 
+
+
     if letters_flag and numbers_flag and strangechar_flag and notusable_password_flag:
-        return [True, ""]
+        return True
 
     else:
-        return [False, error_list]
+        return False
+
+
 
 # (!) COMPLETADO
 def register(request):
+    if request.user.is_authenticated:
+        return redirect('home')
+
     if request.method == "POST":
         username = request.POST.get('username')
         password = request.POST.get('password')
@@ -96,13 +92,16 @@ def register(request):
                     messages.success(request, "Bienvenido a FOCUSTOM")
                     return redirect('login') #Redirige a Login
             else:
-                messages.error(request, "(!) Las contraseñas no coinciden")
+                messages.error(request, "(!) Las contraseñas no coinciden, intentelo de nuevo")
         # elif not passflag:
 
     return render(request, "register_page.html")
 
 # (!) COMPLETADO
 def login(request):
+    if request.user.is_authenticated:
+        return redirect('home')
+
     if request.method == "POST":
         username = request.POST.get('username')
         password = request.POST.get('password')
@@ -125,7 +124,8 @@ def logout(request):
     auth_logout(request)
     return redirect('login')
 
-# (!) 75%
+# (!) COMPLETADO
+@login_required(login_url='login')
 def profile(request):
     user = request.user
 
@@ -138,7 +138,7 @@ def profile(request):
 
             if new_username is not None:
                 if User.objects.filter(username=new_username).exists():
-                    messages.error(request, "Ese nombre de usuario ya esta en uso.")
+                    messages.error(request, "(!) Este nombre de usuario ya esta en uso.")
                 else:
                     user.username = new_username
                     user.save()
@@ -146,7 +146,7 @@ def profile(request):
                     messages.success(request, "Nombre de usuario actualizado con exito.")
                     return redirect ('profile')
             else:
-                messages.error(request, "Nombre de usuario no valido, por favor escoga otro nombre de Usuario")
+                messages.error(request, "(!) Nombre de usuario no valido, intentelo de nuevo")
 
 
 
@@ -159,15 +159,28 @@ def profile(request):
 
                 passflag, passerrors = passwordcheck(newpassword)
 
+                oldpasswordflag = authenticate(request, username=request.user.username, password=oldpassword)
+
                 #Verificación
-                if oldpassword is not None and newpassword is not None and newpassword2 is not None and passflag:
-                    if oldpassword == newpassword == password:
-                        user.set_password(newpassword)
-                        user.save()
-                        update_session_auth_hash(request, user)
-                        messages.succes(request, "Contraseña actualizada con exito")
+                if oldpassword is not None and newpassword is not None and newpassword2 is not None:
+                    if oldpasswordflag is not None :
+                        if oldpassword != newpassword:
+                            if passflag:
+                                if newpassword == newpassword2:
+                                    user.set_password(newpassword)
+                                    user.save()
+                                    update_session_auth_hash(request, user)
+                                    messages.success(request, "Contraseña actualizada con exito")
+                                else:
+                                    messages.error(request, "(!) Las contraseñas no coinciden, intentelo de nuevo")
+                            else:
+                                messages.error(request, "(!) Contraseña nueva no valida, intentelo de nuevo")
+                        else:
+                            messages.error(request, "(!) Su contraseña nueva no puede ser la misma que su anterior contraseña, intentelo de nuevo")
                     else:
-                        messages.error(request, "Contraseña nueva no valida, por favor escoga otra contraseña")
+                        messages.error(request, "(!) Contraseña vieja incorrecta")
+                else:
+                    messages.error(request, "(!) Los datos ingresados no son validos, intentelo de nuevo") #Esta linea es inutil
 
     return render(request,"profile_page_index.html")
 

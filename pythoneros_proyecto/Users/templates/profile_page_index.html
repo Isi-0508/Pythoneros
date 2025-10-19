@@ -9,20 +9,23 @@
 </head>
 
 <body>
-    <br>
-    <br>
     <main>
-    {% block content %}
+    {% block messages %}
     {% if messages %}
-    <ul>
-        {% for message in messages %}
-        <li>{{ message }}</li>
-        {% endfor %}
-    </ul>
+        <ul class = "messages">
+            {% for message in messages %}
+                <li {% if message.tags %} class ="{{ message.tags }}"{% endif %}>
+                    {{ message }}
+                </li>
+            {% endfor %}
+        </ul>
     {% endif %}
     {% endblock %}
+
     </main>
-<!--Este codigo de boton funciona a la perfeccion-->
+    <!--NOTA PARA CARLOS: Idealmente, absolutamente todos estos botones deben ser movidos a otro html si es que se quiere usar este html
+    para escribir la base del perfil con todo lo que eso conlleva, de momento estan puestos de esta forma-->
+    <!--Cerrar Sesión-->
     <div class="buttons">
         <br>
         <a href ="{%url 'logout'%}" class="button">Cerrar Sesión</a>
@@ -30,8 +33,6 @@
     </div>
     <br>
     <br>
-
-
 
     <form method="POST" action ="{%url 'profile' %}">
         {% csrf_token %}

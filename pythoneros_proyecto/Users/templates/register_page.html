@@ -6,15 +6,18 @@
     REGISTRARSE
     <br>
     <br>
+
 <form method="POST" action ="{%url 'register' %}">
     {% csrf_token %}
 <!--Input de usuario-->
     <input type="text" name="username" placeholder="Usuario" required>
     <br>
-    La contraseña debe contener al menos:<br>
-    -8 caracteres<br>
-    -2 números<br>
-    -2 caracteres adicionales<br>
+    Requisitos de contraseña:<br>
+    -Su contraseña no puede ser totalmente numerica<br>
+    -Debe contener de 8 a 10 caracteres<br>
+    -Debe contener como minimo 2 números<br>
+    -Debe contener como minimo 2 caracteres adicionales<br>
+    -No puede ser la contraseña otorgada como ejemplo a continuación<br>
     EJEMPLO: abcd12%$<br>
     <br>
 <!--Input de contraseña-->
