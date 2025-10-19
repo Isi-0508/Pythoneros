@@ -3,18 +3,20 @@
 {% block title %}  Iniciar Sesión {% endblock %}
 
 {% block content %}
+
+{% endblock %}
+
+{% block content %}
+    {% if messages %}
+    <ul>
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
     INICIAR SESIÓN
     <br>
     <br>
-<!--{% if messages %}
-    <div class="messages">
-        {%for message in messages%}
-            <div class="alert {{ message.tags }}">
-                {{ mesage }}
-            </div>
-        {% endfor %}
-    </div>
-{% endif %}-->
 <form method="POST" action ="{%url 'login' %}">
     {% csrf_token %}
 <!--Input de usuario-->

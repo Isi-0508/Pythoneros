@@ -11,9 +11,14 @@
 <body>
     <main>
     {% block content %}
-
+    {% if messages %}
+    <ul>
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
     {% endblock %}
-    <!--Contraseña-->
     </main>
 </body>
 </html>

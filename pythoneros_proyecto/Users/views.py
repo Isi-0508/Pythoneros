@@ -5,6 +5,8 @@ from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth.models import User
 
 # Create your views here.
 
@@ -25,11 +27,12 @@ def passwordcheck(password):
     strangechar_count = 0
     not_usable_password = "abcd12%$"
 
-    for letter in password:
+    letters_errormessage = "minimo 4 letras"
+    numbers_errormessage = "minimo 2 números"
+    strangechar_errormessage = "minimo 2 caracteres adicionales"
+    len_errormessage = "Debe tener entre 8 a 10 caracteres en total"
 
-        letters_errormessage = "minimo 4 letras"
-        numbers_errormessage = "minimo 2 números"
-        strangechar_errormessage = "minimo 2 caracteres adicionales"
+    for letter in password:
 
         if letter in letters:
             letters_count += 1
@@ -42,9 +45,14 @@ def passwordcheck(password):
     numbers_flag = False
     strangechar_flag = False
     notusable_password_flag = False
-
+    len_flag = False
     error_list = []
 
+    if 10 >= len(password) >= 8:
+        len_flag = True
+    else:
+        error_list.append(len_errormessage)
+    
     if letters_count >= 4:
         letters_flag = True
     else:
@@ -68,8 +76,6 @@ def passwordcheck(password):
 
     else:
         return [False, error_list]
-
-# LOGIN RECQUIRED.
 
 # (!) COMPLETADO
 def register(request):
@@ -113,25 +119,57 @@ def login(request):
 
     return render(request,"login_page.html")
 
+# (!) COMPLETADO
+@login_required(login_url='login')
 def logout(request):
     auth_logout(request)
     return redirect('login')
 
-@login_required(login_url='login')
+# (!) 75%
 def profile(request):
-    '''
-    #Cambio de Nombre de Usuario:
-    if request.method == "POST":
-        new_username = request.POST.get('newusername')
-    #Cambio de Contraseña:
-    if request.method == "POST":
-        password = request.POST.get('password')
-        password2 = request.POST.get('password2') #Confirmar contraseña
+    user = request.user
 
-        passflag, passerrors = passwordcheck(password)
-    '''
+    if request.method == "POST":
+        action = request.POST.get("action")
 
-    return render(request, "profile_page_index.html")
+        #Cambio de Nombre de Usuario:
+        if action == 'changeusername':
+            new_username = request.POST.get('newusername')
+
+            if new_username is not None:
+                if User.objects.filter(username=new_username).exists():
+                    messages.error(request, "Ese nombre de usuario ya esta en uso.")
+                else:
+                    user.username = new_username
+                    user.save()
+                    update_session_auth_hash(request, user)
+                    messages.success(request, "Nombre de usuario actualizado con exito.")
+                    return redirect ('profile')
+            else:
+                messages.error(request, "Nombre de usuario no valido, por favor escoga otro nombre de Usuario")
+
+
+
+        #Cambio de Contraseña:
+        elif action == 'changepassword':
+            if request.method == "POST":
+                oldpassword = request.POST.get('oldpassword')
+                newpassword = request.POST.get('newpassword')
+                newpassword2 = request.POST.get('newpassword2') #Confirmar contraseña
+
+                passflag, passerrors = passwordcheck(newpassword)
+
+                #Verificación
+                if oldpassword is not None and newpassword is not None and newpassword2 is not None and passflag:
+                    if oldpassword == newpassword == password:
+                        user.set_password(newpassword)
+                        user.save()
+                        update_session_auth_hash(request, user)
+                        messages.succes(request, "Contraseña actualizada con exito")
+                    else:
+                        messages.error(request, "Contraseña nueva no valida, por favor escoga otra contraseña")
+
+    return render(request,"profile_page_index.html")
 
 #CONTRASEÑA FUNCIONAL 100%
 # efgh34%$

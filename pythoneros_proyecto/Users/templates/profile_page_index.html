@@ -9,11 +9,18 @@
 </head>
 
 <body>
+    <br>
+    <br>
     <main>
     {% block content %}
-
+    {% if messages %}
+    <ul>
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
     {% endblock %}
-    <!--Contraseña-->
     </main>
 <!--Este codigo de boton funciona a la perfeccion-->
     <div class="buttons">
@@ -21,5 +28,40 @@
         <a href ="{%url 'logout'%}" class="button">Cerrar Sesión</a>
         <br>
     </div>
+    <br>
+    <br>
+
+
+
+    <form method="POST" action ="{%url 'profile' %}">
+        {% csrf_token %}
+    <!--Cambio de nombre de usuario-->
+        <input type="hidden" name="action" value="changeusername">
+        <input type="text" name="newusername" placeholder="Usuario">
+        <br>
+        <br>
+        <button type="submit">CAMBIAR NOMBRE DE USUARIO</button>
+        <br>
+        <br>
+    </form>
+
+    <!--Cambio de contraseña-->
+    <form method="POST" action ="{%url 'profile' %}">
+        {% csrf_token %}
+        <input type="hidden" name="action" value="changepassword">
+    <!--Input de vieja contraseña-->
+        <input type="password" name="oldpassword" placeholder="Vieja Contraseña">
+        <br>
+        <br>
+    <!--Input de nueva contraseña-->
+        <input type="password" name="newpassword" placeholder="Nueva Contraseña">
+        <br>
+        <br>
+    <!--Input de nueva contraseña (Confirmar)-->
+        <input type="password" name="newpassword2" placeholder="Confirmar Nueva Contraseña">
+        <br>
+        <br>
+        <button type="submit">CAMBIAR CONTRASEÑA</button>
+    </form>
 </body>
 </html>
