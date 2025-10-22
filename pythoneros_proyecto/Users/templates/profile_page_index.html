@@ -37,8 +37,8 @@
     <form method="POST" action ="{%url 'profile' %}">
         {% csrf_token %}
     <!--Cambio de nombre de usuario-->
-        <input type="hidden" name="action" value="changeusername">
-        <input type="text" name="newusername" placeholder="Usuario">
+        <input type="hidden" name="action" value="changeusername" required>
+        <input type="text" name="newusername" placeholder="Usuario" required>
         <br>
         <br>
         <button type="submit">CAMBIAR NOMBRE DE USUARIO</button>
@@ -51,15 +51,15 @@
         {% csrf_token %}
         <input type="hidden" name="action" value="changepassword">
     <!--Input de vieja contraseña-->
-        <input type="password" name="oldpassword" placeholder="Vieja Contraseña">
+        <input type="password" name="oldpassword" placeholder="Vieja Contraseña" required>
         <br>
         <br>
     <!--Input de nueva contraseña-->
-        <input type="password" name="newpassword" placeholder="Nueva Contraseña">
+        <input type="password" name="newpassword" placeholder="Nueva Contraseña" required>
         <br>
         <br>
     <!--Input de nueva contraseña (Confirmar)-->
-        <input type="password" name="newpassword2" placeholder="Confirmar Nueva Contraseña">
+        <input type="password" name="newpassword2" placeholder="Confirmar Nueva Contraseña" required>
         <br>
         <br>
         <button type="submit">CAMBIAR CONTRASEÑA</button>

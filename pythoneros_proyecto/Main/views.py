@@ -6,7 +6,7 @@ from django.contrib.auth.decorators import login_required
 from .pomodoro import temporizador_pomodoro
 
 def iniciar_pomodoro(request):
-    temporizador_pomodoro(25)  # 25 minutos
+    temporizador_pomodoro(1)  # 1 minuto
     return HttpResponse("Pomodoro iniciado en segundo plano.")
 
 

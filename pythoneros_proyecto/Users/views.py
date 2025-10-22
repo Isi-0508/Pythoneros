@@ -68,8 +68,6 @@ def passwordcheck(password):
     else:
         return False
 
-
-
 # (!) COMPLETADO
 def register(request):
     if request.user.is_authenticated:
@@ -89,7 +87,7 @@ def register(request):
                     messages.error(request, "(!) Este usuario ya existe, intentelo de nuevo")
                 else:
                     User.objects.create_user(username=username, password=password)
-                    messages.success(request, "Bienvenido a FOCUSTOM")
+                    messages.success(request, "Bienvenido a Piwit")
                     return redirect('login') #Redirige a Login
             else:
                 messages.error(request, "(!) Las contraseñas no coinciden, intentelo de nuevo")
