@@ -25,3 +25,9 @@ SUPERUSUARIOS:
 Nombre: Marzie
 Email: marzie@bonsburgers.com
 Password: themarz27
+
+CONTRASEÑA EFECTIVA 1:
+efgh34%$
+
+CONTRASEÑA EFECTIVA 2:
+ijkl56%$

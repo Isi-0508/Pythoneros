@@ -80,7 +80,7 @@ def register(request):
         password = request.POST.get('password')
         password2 = request.POST.get('password2') #Confirmar contraseña
 
-        passflag, passerrors = passwordcheck(password)
+        passflag = passwordcheck(password)
 
         #Verificación
         if username is not None and password is not None and passflag:
@@ -156,8 +156,8 @@ def profile(request):
                 oldpassword = request.POST.get('oldpassword')
                 newpassword = request.POST.get('newpassword')
                 newpassword2 = request.POST.get('newpassword2') #Confirmar contraseña
-
-                passflag, passerrors = passwordcheck(newpassword)
+                
+                passflag = passwordcheck(newpassword)
 
                 oldpasswordflag = authenticate(request, username=request.user.username, password=oldpassword)
 
