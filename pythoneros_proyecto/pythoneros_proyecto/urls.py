@@ -18,7 +18,6 @@ from django.contrib import admin
 from django.urls import path, include
 from django.shortcuts import redirect
 
-
 from Users import views as Users_views
 from Main import views as Main_views
 
@@ -29,5 +28,6 @@ urlpatterns = [
     path('login/', Users_views.login, name='login'),
     path('logout/', Users_views.logout, name='logout'),
     path('register/', Users_views.register, name='register'),
-    path('profile/', Users_views.profile, name='profile')
+    path('profile/', Users_views.profile, name='profile'),
+    path('pomodoro/', Main_views.iniciar_pomodoro, name='iniciar_pomodoro'),
 ]
