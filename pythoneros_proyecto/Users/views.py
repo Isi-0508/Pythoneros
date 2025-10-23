@@ -75,7 +75,7 @@ def register(request):
 
     if request.method == "POST":
         username = request.POST.get('username')
-        mail = request.POST.get('mail')
+        email = request.POST.get('mail')
         password = request.POST.get('password')
         password2 = request.POST.get('password2') #Confirmar contraseña
 
@@ -87,7 +87,7 @@ def register(request):
                 if User.objects.filter(username=username).exists():
                     messages.error(request, "(!) Este usuario ya existe, intentelo de nuevo")
                 else:
-                    User.objects.create_user(username=username, password=password)
+                    User.objects.create_user(username=username, password=password, email=email)
                     messages.success(request, "Bienvenido a Piwit")
                     return redirect('login') #Redirige a Login
             else:
@@ -149,13 +149,13 @@ def profile(request):
 
         #Cambio de Correo de Usuario:
         elif action == 'changemail':
-            new_mail = request.POST.get('newmail')
+            new_email = request.POST.get('newmail')
 
-            if new_mail is not None:
-                if User.objects.filter(mail=new_mail).exists():
+            if new_email is not None:
+                if User.objects.filter(email=new_email).exists():
                     messages.error(request, "(!) Este correo de usuario ya está en uso")
                 else:
-                    user.mail = new_mail
+                    user.email = new_email
                     user.save()
                     update_session_auth_hash(request, user)
                     messages.success(request, "Correo electrónico actualizado con éxtito")

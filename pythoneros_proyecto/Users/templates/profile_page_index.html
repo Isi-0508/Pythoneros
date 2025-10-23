@@ -31,29 +31,39 @@
         <a href ="{%url 'logout'%}" class="button">Cerrar Sesión</a>
         <br>
     </div>
+    <div class="buttons">
+        <br>
+        <a href ="{%url 'home'%}" class="button">Home</a>
+        <br>
+    </div>
     <br>
     <br>
 
     <form method="POST" action ="{%url 'profile' %}">
         {% csrf_token %}
     <!--Cambio de nombre de usuario-->
-        <input type="hidden" name="action" value="changeusername" required>
-        <input type="text" name="newusername" placeholder="Usuario" required>
+        <input type="hidden" name="action" value="changeusername">
+        <input type="text" name="newusername" placeholder="Usuario">
         <br>
         <br>
         <button type="submit">CAMBIAR NOMBRE DE USUARIO</button>
         <br>
         <br>
     </form>
+
     <!--Cambio de mail-->
     <form method="POST" action ="{%url 'profile' %}">
         {% csrf_token %}
+        <input type="hidden" name="action" value="changemail">
+    <!--Input de Correo-->
         <input type="email" name="newmail" placeholder="Cambiar correo" required>
         <br>
         <br>
         <button type="submit" >CAMBIAR CORREO DE USUARIO</button>
         <br>
         <br>
+     </form>
+
     <!--Cambio de contraseña-->
     <form method="POST" action ="{%url 'profile' %}">
         {% csrf_token %}
@@ -72,5 +82,6 @@
         <br>
         <button type="submit">CAMBIAR CONTRASEÑA</button>
     </form>
+
 </body>
 </html>
