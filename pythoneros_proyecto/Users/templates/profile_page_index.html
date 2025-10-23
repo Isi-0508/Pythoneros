@@ -45,7 +45,15 @@
         <br>
         <br>
     </form>
-
+    <!--Cambio de mail-->
+    <form method="POST" action ="{%url 'profile' %}">
+        {% csrf_token %}
+        <input type="email" name="newmail" placeholder="Cambiar correo" required>
+        <br>
+        <br>
+        <button type="submit" >CAMBIAR CORREO DE USUARIO</button>
+        <br>
+        <br>
     <!--Cambio de contraseña-->
     <form method="POST" action ="{%url 'profile' %}">
         {% csrf_token %}

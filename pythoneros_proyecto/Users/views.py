@@ -75,6 +75,7 @@ def register(request):
 
     if request.method == "POST":
         username = request.POST.get('username')
+        mail = request.POST.get('mail')
         password = request.POST.get('password')
         password2 = request.POST.get('password2') #Confirmar contraseña
 
@@ -146,7 +147,21 @@ def profile(request):
             else:
                 messages.error(request, "(!) Nombre de usuario no valido, intentelo de nuevo")
 
+        #Cambio de Correo de Usuario:
+        elif action == 'changemail':
+            new_mail = request.POST.get('newmail')
 
+            if new_mail is not None:
+                if User.objects.filter(mail=new_mail).exists():
+                    messages.error(request, "(!) Este correo de usuario ya está en uso")
+                else:
+                    user.mail = new_mail
+                    user.save()
+                    update_session_auth_hash(request, user)
+                    messages.success(request, "Correo electrónico actualizado con éxtito")
+                    return redirect ('profile')
+            else:
+                messages.error(request, "(!) Correo electrónico no válido, intentelo de nuevo")
 
         #Cambio de Contraseña:
         elif action == 'changepassword':
@@ -179,6 +194,9 @@ def profile(request):
                         messages.error(request, "(!) Contraseña vieja incorrecta")
                 else:
                     messages.error(request, "(!) Los datos ingresados no son validos, intentelo de nuevo") #Esta linea es inutil
+        
+        
+        
 
     return render(request,"profile_page_index.html")
 
