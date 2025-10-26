@@ -1,0 +1,62 @@
+{% extends 'home_index.html' %}
+{% load static %}
+
+<!-- Titulo de la página-->
+{% block title %}
+Piwit - Acerca de Nosotros
+{% endblock title %}
+
+{% block content %}
+<body>
+    <main>
+    <h1>
+    {% block aboutheader %}
+    ¿Que es Piwit?
+    {% endblock %}<br>
+    </h1>
+    {% block content1 %}
+    Piwit es una herramienta de estudio web diseñada especialmente para universitarios y liceanos que padezcan de neurodivergencia. Visualmente<br>
+    atractiva y minimalista.
+    {% endblock %}<br>
+    
+
+    <!-- Creditos-->
+    <h1>
+    {% block creditsheader %}
+    ¿Quienes trabajaron en este proyecto?
+    {% endblock %}<br>
+    </h1>
+    {% block content2 %}
+    Diseñadora Principal:<br>
+    ISIDORA MONTALVA<br>
+    <br>
+    Programadores:<br>
+    ISIDORA MONTALVA<br>
+    CARLOS MUNDACA<br>
+    MARCELO ÓRDENES<br>
+    LAURA ORELLANA<br>
+    MARTÍN OÑATE<br>
+    <br>
+    Asistencia Tecnica:<br>
+    MAXIMILIANO OSORIO<br>
+    <br>
+    Supervisores:<br>
+    IGNACIA 'NACHA' NEATTLE<br>
+    NICOLAS CHEHADE<br>
+    KARINA ALIAGA<br>
+    <br>
+    Ejecutivo a cargo de la producción:<br>
+    VICTOR GUTIERREZ<br>
+    <br>
+    Universidad Tecnica Federico Santa Maria (C) MMXXV - Todos los derechos reservados.<br>
+    Pythoneros LLC
+    {% endblock %}<br>
+    </main>
+    <div class="buttons">
+        <br>
+        <a href ="{%url 'home'%}" class="button">Regresar</a>
+        <br>
+    </div>
+</body>
+{% endblock %}
+</html>

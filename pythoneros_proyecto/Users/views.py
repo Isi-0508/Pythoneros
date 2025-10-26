@@ -200,5 +200,27 @@ def profile(request):
 
     return render(request,"profile_page_index.html")
 
+@login_required(login_url='login')
+def deleteacc(request):
+    user = request.user
+
+    if request.method == "POST":
+        password = request.POST.get('password')
+        password2 = request.POST.get('password2')
+
+        if user.check_password(password):
+            if password == password2:
+                user.delete()
+                auth_logout(request)
+                messages.success(request, "¡Cuenta eliminada con exito, gracias por ser parte de Piwit!")
+                return redirect('login')
+            else:
+                messages.error(request, "(!) Las contraseñas no coinciden, intentelo de nuevo")
+
+        else:
+            messages.error(request, "(!) Contraseña incorrecta, intentelo de nuevoA")
+
+    return render(request, "deleteacc_page.html")
+
 #CONTRASEÑA FUNCIONAL 100%
 # efgh34%$

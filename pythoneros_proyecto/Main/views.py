@@ -10,7 +10,15 @@ def iniciar_pomodoro(request):
     return HttpResponse("Pomodoro iniciado en segundo plano.")
 
 
-# Create your views here.
 @login_required(login_url='login')
 def home(request):
     return render(request,"home.html")
+
+# PENDIENTE
+def about(request):
+    return render(request, "about.html")
+
+# PENDIENTE
+@login_required(login_url='login')
+def schedule(request):
+    return HttpResponse("JOURNAL PLACEHOLDER")

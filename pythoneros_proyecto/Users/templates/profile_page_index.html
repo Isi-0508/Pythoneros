@@ -1,13 +1,12 @@
-<!DOCTYPE html>
-<html Lang="en">
-    <!-- Esto originalmente estaba en en, por si acaso-->
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=, initial-scale=1.0">
-    <title>{% block title %} Perfil {% endblock %}</title>
-    <!--TITULO-->
-</head>
+{% extends 'home_index.html' %}
+{% load static %}
 
+<!-- Titulo de la página-->
+{% block title %}
+Piwit - Perfil
+{% endblock title %}
+
+{% block content %}
 <body>
     <main>
     {% block messages %}
@@ -21,29 +20,32 @@
         </ul>
     {% endif %}
     {% endblock %}
-
     </main>
+
+    <!--COLOCAR DATOS DINAMICOS-->
+    {% block userdata %}
+    <h1>Datos del Usuario:</h1>
+    <br>
+    NOMBRE DE USUARIO: {{ user.username }}<br>
+    CORREO ELECTRONICO: {{ user.email }}<br>
+    FOTO DE PERFIL:<br>
+    <img src="{% static 'images/GjnZn9eWAAAdeTG.jpg' %}" alt="Bon">
+    {% endblock %}
+
     <!--NOTA PARA CARLOS: Idealmente, absolutamente todos estos botones deben ser movidos a otro html si es que se quiere usar este html
     para escribir la base del perfil con todo lo que eso conlleva, de momento estan puestos de esta forma-->
     <!--Cerrar Sesión-->
-    <div class="buttons">
-        <br>
-        <a href ="{%url 'logout'%}" class="button">Cerrar Sesión</a>
-        <br>
-    </div>
-    <div class="buttons">
-        <br>
-        <a href ="{%url 'home'%}" class="button">Home</a>
-        <br>
-    </div>
-    <br>
-    <br>
+    {% block changeheader %}
+    <h1>CAMBIAR DATOS</h1>
+    {% endblock %}
 
+
+
+    <!--Cambio de nombre de usuario-->
     <form method="POST" action ="{%url 'profile' %}">
         {% csrf_token %}
-    <!--Cambio de nombre de usuario-->
         <input type="hidden" name="action" value="changeusername">
-        <input type="text" name="newusername" placeholder="Usuario">
+        <input type="text" name="newusername" placeholder="Usuario" required>
         <br>
         <br>
         <button type="submit">CAMBIAR NOMBRE DE USUARIO</button>
@@ -51,7 +53,13 @@
         <br>
     </form>
 
+
     <!--Cambio de mail-->
+    {% block emailheader %}
+    <h1>Correo Electronico</h1>
+    {% endblock %}
+    <br>
+    <br>
     <form method="POST" action ="{%url 'profile' %}">
         {% csrf_token %}
         <input type="hidden" name="action" value="changemail">
@@ -60,11 +68,17 @@
         <br>
         <br>
         <button type="submit" >CAMBIAR CORREO DE USUARIO</button>
-        <br>
-        <br>
      </form>
+    <br>
+    <br>
+
 
     <!--Cambio de contraseña-->
+    {% block passwordheader %}
+    <h1>Contraseña</h1>
+    {% endblock %}
+    <br>
+    <br>
     <form method="POST" action ="{%url 'profile' %}">
         {% csrf_token %}
         <input type="hidden" name="action" value="changepassword">
@@ -83,5 +97,22 @@
         <button type="submit">CAMBIAR CONTRASEÑA</button>
     </form>
 
+    <div class="buttons">
+        <br>
+        <a href ="{%url 'deleteacc'%}" class="button">Eliminar Usuario</a>
+        <br>
+    </div>
+    <div class="buttons">
+        <br>
+        <a href ="{%url 'logout'%}" class="button">Cerrar Sesión</a>
+        <br>
+    </div>
+    <div class="buttons">
+        <br>
+        <a href ="{%url 'home'%}" class="button">Volver</a>
+        <br>
+    </div>
+    </div>
 </body>
+{% endblock %}
 </html>

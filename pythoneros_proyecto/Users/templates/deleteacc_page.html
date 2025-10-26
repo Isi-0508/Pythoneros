@@ -1,0 +1,54 @@
+{% extends 'home_index.html' %}
+{% load static %}
+
+<!-- Titulo de la página-->
+{% block title %}
+Piwit - Eliminación de Usuario
+{% endblock title %}
+
+{% block content %}
+<body>
+    <!-- MOVER AL INDEX-->
+    <main>
+    {% if messages %}
+        <ul class = "messages">
+            {% for message in messages %}
+                <li {% if messages.tags %} class ="{{ message.tags }}"{% endif %}>
+                    {{ message }}
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    </main>
+
+    <div class="d-flex flex-column justify-content-center align-items-center">
+    Usted esta a punto de eliminar su cuenta de forma permanente y defintiva, todos sus datos se perderan.<br> 
+    ¿Esta seguro que desea continuar?<br>
+    </div>
+
+    <br> 
+
+    <div class="d-flex flex-column justify-content-center align-items-center">
+    <form method="POST" action ="{%url 'deleteacc' %}">
+        {% csrf_token %}
+     <!--Input de contraseña-->
+        <input type="password" name="password" placeholder="Contraseña" required>
+        <br>
+        <br>
+    <!--Input de contraseña (Confirmar)-->
+        <input type="password" name="password2" placeholder="Confirmar Contraseña" required>
+        <br>
+        <br>
+        <br>
+        <br>
+        <button type="submit">Si, eliminar mi cuenta</button>
+        <div class="buttons">
+            <br>
+            <a href ="{%url 'profile'%}" class="button">No, regresar a Perfil</a>
+            <br>
+        </div>
+    </form>
+    </div>
+</body>
+{% endblock %}
+</html>

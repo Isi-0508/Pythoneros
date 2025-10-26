@@ -24,10 +24,19 @@ from Main import views as Main_views
 urlpatterns = [
     path('', lambda request: redirect('login')),
     path('admin/', admin.site.urls),
+
+    #MAIN
     path('home/', Main_views.home, name='home'),
+    path('schedule/', Main_views.schedule, name='schedule'), #PROVISORIO
+    path('pomodoro/', Main_views.iniciar_pomodoro, name='iniciar_pomodoro'), #PROVISORIO
+
+    #USERS
     path('login/', Users_views.login, name='login'),
     path('logout/', Users_views.logout, name='logout'),
     path('register/', Users_views.register, name='register'),
+    path('deleteacc/', Users_views.deleteacc, name='deleteacc'),
     path('profile/', Users_views.profile, name='profile'),
-    path('pomodoro/', Main_views.iniciar_pomodoro, name='iniciar_pomodoro'),
+
+    #MISCELLEANOUS
+    path('about/', Main_views.about, name='about'),
 ]
