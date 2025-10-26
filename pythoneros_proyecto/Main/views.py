@@ -3,10 +3,10 @@ from django.http import HttpResponse
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .pomodoro import temporizador_pomodoro
+from .pomodoro import siguiente_sesion
 
 def iniciar_pomodoro(request):
-    temporizador_pomodoro(5)  # 5 minuto
+    siguiente_sesion()  # 1 minuto
     return HttpResponse("Pomodoro iniciado en segundo plano.")
 
 
