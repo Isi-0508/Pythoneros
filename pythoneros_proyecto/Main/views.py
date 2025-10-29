@@ -10,7 +10,7 @@ from django.shortcuts import redirect
 
 def iniciar_pomodoro(request):
     siguiente_sesion()  # 1 minuto
-    return HttpResponse("Pomodoro iniciado en segundo plano.")
+    return render(request, 'home.html')
 
 
 @login_required(login_url='login')

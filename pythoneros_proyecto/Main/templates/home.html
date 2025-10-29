@@ -76,7 +76,9 @@ Piwit - Home
     <div class="d-flex flex-column justify-content-center align-items-center">
         <h4>POMODORO</h4>
         Pausar:
-        <button class="botton" onclick="iniciarPomodoro()">▶ / ⏹</button>
+        <form action="{% url 'iniciar_pomodoro' %}" method="post">
+         {% csrf_token %}
+        <button type="submit">▶ / ⏹iniciar Pomodoro()</button>
     </div>
     </body>
     <script src="{% static 'js/audioplayer.js' %}"></script> <!--SCRIPT PARA REPRODUCTOR DE AUDIO-->
