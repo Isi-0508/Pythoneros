@@ -7,6 +7,69 @@ Piwit - Perfil
 {% endblock title %}
 
 {% block content %}
+    <div class="container my 3-">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card border rounded-10 shadow p-8 mb-3">
+                    <img class="img-thumbnail rounded-circle mb-3 mx-auto" src="{{user.profile.image.url}}" alt="Imagen de Perfil" style="width: 100px;">
+                    <h2>{{user.username}}</h2>
+                    <p><strong>Nombre de usuario: </strong>{{ user.username }}</p>
+                    <p><strong>Correo Electrónico: </strong>{{ user.email }}</p>
+                    <hr>
+                    <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#editProfileModal">
+                        Editar Perfil
+                    </button>
+
+                    <a class="btn btn-daner" href="{%url 'logout'%}">Cerrar Sesión</a>
+                </div>
+            </div>
+        </div>
+
+                    
+
+  <!-- Modal -->
+<div class="modal-dialog modal-dialog-centered modal fade" id="editProfileModal" tabindex="-1" aria-labelledby="editProfileModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editProfileModalLabel">Modificar perfil</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="modal-body">
+            <div class="d-flex">
+                <img class="img-thumbnail rounded-circle mb-3 mx-auto" src="{{user.profile.image.url}}" alt="Imagen de Perfil" style="width: 100px;">
+        </div>
+            <div class="mb-3">
+                <label for="image">Imagen de Perfil</label>
+                <input class="form-control"   type="file" name="image" id="image">
+            <div class="d-flex">
+            </div>
+                <div class="mb-3 "></div>
+                    <label for="username">Usuario</label>
+                    <input type="text" class="form-control" name="username" value="{{ user.username }}">
+                </div>
+                <div class="mb-3"></div>
+                    <label for="email">Correo Electrónico</label>
+                    <input type="text" class="form-control" name="email" value="{{ user.email }}">
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+        </div>
+
+
+        </form>
+    </div>
+
+
+
+
+
+
+
 <body>
     <main>
     {% block messages %}
@@ -21,6 +84,10 @@ Piwit - Perfil
     {% endif %}
     {% endblock %}
     </main>
+<!--Imagen-->
+
+
+
 
     <!--COLOCAR DATOS DINAMICOS-->
     {% block userdata %}

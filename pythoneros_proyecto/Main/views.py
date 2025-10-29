@@ -4,6 +4,9 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .pomodoro import siguiente_sesion
+from django.contrib.auth.models import User
+from django import forms
+from django.shortcuts import redirect
 
 def iniciar_pomodoro(request):
     siguiente_sesion()  # 1 minuto
@@ -22,3 +25,5 @@ def about(request):
 @login_required(login_url='login')
 def schedule(request):
     return HttpResponse("JOURNAL PLACEHOLDER")
+
+
