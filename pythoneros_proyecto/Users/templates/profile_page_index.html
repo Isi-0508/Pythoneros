@@ -7,178 +7,92 @@ Piwit - Perfil
 {% endblock title %}
 
 {% block content %}
-    <div class="container my 3-">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card border rounded-10 shadow p-8 mb-3">
-                    <img class="img-thumbnail rounded-circle mb-3 mx-auto" src="{{user.profile.image.url}}" alt="Imagen de Perfil" style="width: 100px;">
-                    <h2>{{user.username}}</h2>
-                    <p><strong>Nombre de usuario: </strong>{{ user.username }}</p>
-                    <p><strong>Correo Electrónico: </strong>{{ user.email }}</p>
-                    <hr>
-                    <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#editProfileModal">
-                        Editar Perfil
-                    </button>
+<div class="container my-3">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card border rounded-10 shadow p-8 mb-3 text-center">
+        <img class="img-thumbnail rounded-circle mb-3 mx-auto" src="{{ user.profile.image.url }}" alt="Imagen de Perfil" style="width: 100px;">
+        <h2>{{ user.username }}</h2>
+        <p><strong>Nombre de usuario:</strong> {{ user.username }}</p>
+        <p><strong>Correo Electrónico:</strong> {{ user.email }}</p>
+        <hr>
 
-                    <a class="btn btn-daner" href="{%url 'logout'%}">Cerrar Sesión</a>
-                </div>
-            </div>
-        </div>
+        <!-- BOTÓN PARA ABRIR EL MODAL -->
+        <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#editProfileModal">
+          Editar Perfil
+        </button>
 
-                    
-
-  <!-- Modal -->
-<div class="modal-dialog modal-dialog-centered modal fade" id="editProfileModal" tabindex="-1" aria-labelledby="editProfileModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="editProfileModalLabel">Modificar perfil</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <form action="" method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        <div class="modal-body">
-            <div class="d-flex">
-                <img class="img-thumbnail rounded-circle mb-3 mx-auto" src="{{user.profile.image.url}}" alt="Imagen de Perfil" style="width: 100px;">
-        </div>
-            <div class="mb-3">
-                <label for="image">Imagen de Perfil</label>
-                <input class="form-control"   type="file" name="image" id="image">
-            <div class="d-flex">
-            </div>
-                <div class="mb-3 "></div>
-                    <label for="username">Usuario</label>
-                    <input type="text" class="form-control" name="username" value="{{ user.username }}">
-                </div>
-                <div class="mb-3"></div>
-                    <label for="email">Correo Electrónico</label>
-                    <input type="text" class="form-control" name="email" value="{{ user.email }}">
-            </div>
-        </div>
-        <div class="modal-footer">
-            <button type="submit" class="btn btn-primary">Guardar Cambios</button>
-        </div>
-
-
-        </form>
-    </div>
-
-
-
-
-
-
-
-<body>
-    <main>
-    {% block messages %}
-    {% if messages %}
-        <ul class = "messages">
+        {% if messages %}
+          <ul class="mt-3">
             {% for message in messages %}
-                <li {% if message.tags %} class ="{{ message.tags }}"{% endif %}>
-                    {{ message }}
-                </li>
+              <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
             {% endfor %}
-        </ul>
-    {% endif %}
-    {% endblock %}
-    </main>
-<!--Imagen-->
+          </ul>
+        {% endif %}
 
-
-
-
-    <!--COLOCAR DATOS DINAMICOS-->
-    {% block userdata %}
-    <h1>Datos del Usuario:</h1>
-    <br>
-    NOMBRE DE USUARIO: {{ user.username }}<br>
-    CORREO ELECTRONICO: {{ user.email }}<br>
-    FOTO DE PERFIL:<br>
-    <img src="{% static 'images/GjnZn9eWAAAdeTG.jpg' %}" alt="Bon">
-    {% endblock %}
-
-    <!--NOTA PARA CARLOS: Idealmente, absolutamente todos estos botones deben ser movidos a otro html si es que se quiere usar este html
-    para escribir la base del perfil con todo lo que eso conlleva, de momento estan puestos de esta forma-->
-    <!--Cerrar Sesión-->
-    {% block changeheader %}
-    <h1>CAMBIAR DATOS</h1>
-    {% endblock %}
-
-
-
-    <!--Cambio de nombre de usuario-->
-    <form method="POST" action ="{%url 'profile' %}">
-        {% csrf_token %}
-        <input type="hidden" name="action" value="changeusername">
-        <input type="text" name="newusername" placeholder="Usuario" required>
-        <br>
-        <br>
-        <button type="submit">CAMBIAR NOMBRE DE USUARIO</button>
-        <br>
-        <br>
-    </form>
-
-
-    <!--Cambio de mail-->
-    {% block emailheader %}
-    <h1>Correo Electronico</h1>
-    {% endblock %}
-    <br>
-    <br>
-    <form method="POST" action ="{%url 'profile' %}">
-        {% csrf_token %}
-        <input type="hidden" name="action" value="changemail">
-    <!--Input de Correo-->
-        <input type="email" name="newmail" placeholder="Cambiar correo" required>
-        <br>
-        <br>
-        <button type="submit" >CAMBIAR CORREO DE USUARIO</button>
-     </form>
-    <br>
-    <br>
-
-
-    <!--Cambio de contraseña-->
-    {% block passwordheader %}
-    <h1>Contraseña</h1>
-    {% endblock %}
-    <br>
-    <br>
-    <form method="POST" action ="{%url 'profile' %}">
-        {% csrf_token %}
-        <input type="hidden" name="action" value="changepassword">
-    <!--Input de vieja contraseña-->
-        <input type="password" name="oldpassword" placeholder="Vieja Contraseña" required>
-        <br>
-        <br>
-    <!--Input de nueva contraseña-->
-        <input type="password" name="newpassword" placeholder="Nueva Contraseña" required>
-        <br>
-        <br>
-    <!--Input de nueva contraseña (Confirmar)-->
-        <input type="password" name="newpassword2" placeholder="Confirmar Nueva Contraseña" required>
-        <br>
-        <br>
-        <button type="submit">CAMBIAR CONTRASEÑA</button>
-    </form>
-
-    <div class="buttons">
-        <br>
-        <a href ="{%url 'deleteacc'%}" class="button">Eliminar Usuario</a>
-        <br>
+        <div class="buttons mt-4">
+          <a href="{% url 'deleteacc' %}" class="btn btn-outline-danger">Eliminar Usuario</a>
+          <a href="{% url 'logout' %}" class="btn btn-outline-secondary">Cerrar Sesión</a>
+          <a href="{% url 'home' %}" class="btn btn-outline-dark">Volver</a>
+        </div>
+      </div>
     </div>
-    <div class="buttons">
-        <br>
-        <a href ="{%url 'logout'%}" class="button">Cerrar Sesión</a>
-        <br>
+  </div>
+</div>
+<!-- MODAL -->
+<div class="modal fade" id="editProfileModal" tabindex="-1" aria-labelledby="editProfileModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title" id="editProfileModalLabel">Editar Perfil</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+      </div>
+
+      <div class="modal-body">
+        <form method="POST" action="{% url 'profile' %}">
+          {% csrf_token %}
+
+          <!-- Username -->
+          <div class="mb-3 text-start">
+            <label class="form-label">Usuario</label>
+            <input type="text" name="username" value="{{ request.user.username }}" class="form-control" placeholder="Usuario">
+          </div>
+
+          <!-- Email -->
+          <div class="mb-3 text-start">
+            <label class="form-label">Correo</label>
+            <input type="email" name="email" value="{{ request.user.email }}" class="form-control" placeholder="Correo">
+          </div>
+
+          <hr>
+
+          <h5 class="text-start mt-3">Cambiar contraseña (opcional)</h5>
+
+          <!-- Contraseña actual -->
+          <div class="mb-3 text-start">
+            <label class="form-label">Contraseña actual</label>
+            <input type="password" name="old_password" class="form-control" placeholder="Actual">
+          </div>
+
+          <!-- Nueva contraseña -->
+          <div class="mb-3 text-start">
+            <label class="form-label">Nueva contraseña</label>
+            <input type="password" name="new_password" class="form-control" placeholder="Nueva">
+          </div>
+
+          <!-- Confirmar nueva contraseña -->
+          <div class="mb-3 text-start">
+            <label class="form-label">Confirmar nueva contraseña</label>
+            <input type="password" name="new_password2" class="form-control" placeholder="Confirmar nueva">
+          </div>
+
+          <button type="submit" class="btn btn-primary w-100">Guardar cambios</button>
+        </form>
+      </div>
+
     </div>
-    <div class="buttons">
-        <br>
-        <a href ="{%url 'home'%}" class="button">Volver</a>
-        <br>
-    </div>
-    </div>
-</body>
+  </div>
+</div>
 {% endblock %}
 </html>

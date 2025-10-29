@@ -7,7 +7,10 @@ from django.contrib.auth import authenticate, login as auth_login, logout as aut
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.models import User 
-
+from django.contrib.auth import get_user_model
+from django.core.validators import validate_email
+from django.core.exceptions import ValidationError
+from django.contrib.auth.password_validation import validate_password
 
 # Create your views here.
 
@@ -124,82 +127,85 @@ def logout(request):
     auth_logout(request)
     return redirect('login')
 
+
+
+
+User = get_user_model()
 # (!) COMPLETADO
+
 @login_required(login_url='login')
 def profile(request):
     user = request.user
 
     if request.method == "POST":
-        action = request.POST.get("action")
+        new_username = (request.POST.get("username") or "").strip()
+        new_email    = (request.POST.get("email") or "").strip()
+        old_pwd      = request.POST.get("old_password") or ""
+        new_pwd      = request.POST.get("new_password") or ""
+        new_pwd2     = request.POST.get("new_password2") or ""
 
-        #Cambio de Nombre de Usuario:
-        if action == 'changeusername':
-            new_username = request.POST.get('newusername')
+        changed_any = False
 
-            if new_username is not None:
-                if User.objects.filter(username=new_username).exists():
-                    messages.error(request, "(!) Este nombre de usuario ya esta en uso.")
-                else:
-                    user.username = new_username
-                    user.save()
-                    update_session_auth_hash(request, user)
-                    messages.success(request, "Nombre de usuario actualizado con exito.")
-                    return redirect ('profile')
+        # --- Cambio de username ---
+        if new_username and new_username != user.username:
+            if User.objects.filter(username=new_username).exclude(pk=user.pk).exists():
+                messages.error(request, "(!) Ese nombre de usuario ya está en uso.")
             else:
-                messages.error(request, "(!) Nombre de usuario no valido, intentelo de nuevo")
+                user.username = new_username
+                changed_any = True
+                messages.success(request, "Nombre de usuario actualizado con éxito.")
 
-        #Cambio de Correo de Usuario:
-        elif action == 'changemail':
-            new_email = request.POST.get('newmail')
-
-            if new_email is not None:
-                if User.objects.filter(email=new_email).exists():
-                    messages.error(request, "(!) Este correo de usuario ya está en uso")
+        # --- Cambio de email ---
+        if new_email and new_email != user.email:
+            try:
+                validate_email(new_email)
+            except ValidationError:
+                messages.error(request, "(!) Correo electrónico inválido.")
+            else:
+                if User.objects.filter(email=new_email).exclude(pk=user.pk).exists():
+                    messages.error(request, "(!) Ese correo ya está en uso.")
                 else:
                     user.email = new_email
-                    user.save()
-                    update_session_auth_hash(request, user)
-                    messages.success(request, "Correo electrónico actualizado con éxtito")
-                    return redirect ('profile')
+                    changed_any = True
+                    messages.success(request, "Correo electrónico actualizado con éxito.")
+
+        # --- Cambio de contraseña ---
+        if new_pwd or new_pwd2:
+            if not old_pwd:
+                messages.error(request, "(!) Debes ingresar tu contraseña actual para cambiarla.")
+            elif not authenticate(username=user.username, password=old_pwd):
+                messages.error(request, "(!) La contraseña actual es incorrecta.")
+            elif not new_pwd or not new_pwd2:
+                messages.error(request, "(!) Ingresa y confirma la nueva contraseña.")
+            elif new_pwd != new_pwd2:
+                messages.error(request, "(!) Las contraseñas no coinciden.")
+            elif new_pwd == old_pwd:
+                messages.error(request, "(!) La nueva no puede ser igual a la actual.")
             else:
-                messages.error(request, "(!) Correo electrónico no válido, intentelo de nuevo")
-
-        #Cambio de Contraseña:
-        elif action == 'changepassword':
-            if request.method == "POST":
-                oldpassword = request.POST.get('oldpassword')
-                newpassword = request.POST.get('newpassword')
-                newpassword2 = request.POST.get('newpassword2') #Confirmar contraseña
-                
-                passflag = passwordcheck(newpassword)
-
-                oldpasswordflag = authenticate(request, username=request.user.username, password=oldpassword)
-
-                #Verificación
-                if oldpassword is not None and newpassword is not None and newpassword2 is not None:
-                    if oldpasswordflag is not None :
-                        if oldpassword != newpassword:
-                            if passflag:
-                                if newpassword == newpassword2:
-                                    user.set_password(newpassword)
-                                    user.save()
-                                    update_session_auth_hash(request, user)
-                                    messages.success(request, "Contraseña actualizada con exito")
-                                else:
-                                    messages.error(request, "(!) Las contraseñas no coinciden, intentelo de nuevo")
-                            else:
-                                messages.error(request, "(!) Contraseña nueva no valida, intentelo de nuevo")
-                        else:
-                            messages.error(request, "(!) Su contraseña nueva no puede ser la misma que su anterior contraseña, intentelo de nuevo")
-                    else:
-                        messages.error(request, "(!) Contraseña vieja incorrecta")
+                if passwordcheck(new_pwd):
+                    user.set_password(new_pwd)
+                    changed_any = True
+                    messages.success(request, "Contraseña actualizada con éxito.")
+                    update_session_auth_hash(request, user)
                 else:
-                    messages.error(request, "(!) Los datos ingresados no son validos, intentelo de nuevo") #Esta linea es inutil
-        
-        
-        
+                    messages.error(
+                        request,
+                        "(!) La nueva contraseña no cumple los requisitos mínimos (La contraseña debe contener al menos: 8 caracteres, de ellos: 4 letras, 2 numeros y 2 caracteres raros)"
+                    )
 
-    return render(request,"profile_page_index.html")
+        # --- Guardar si hubo cambios válidos ---
+        if changed_any:
+            user.save()
+            return redirect("profile")
+
+        # Si no hubo cambios ni errores
+        if not any(m.level_tag == "error" for m in messages.get_messages(request)):
+            messages.info(request, "No hiciste cambios. Todo quedó igual.")
+            return redirect("profile")
+
+    return render(request, "profile_page_index.html")
+
+
 
 @login_required(login_url='login')
 def deleteacc(request):
