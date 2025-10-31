@@ -14,63 +14,12 @@ Piwit - Home
 <html>
     <body>
     <!-- Boton del perfil-->
-        <div class="d-flex flex-column justify-content-center align-items-center">
-            <br>
-            <h4><a href="{%url 'profile'%}" class="button">Perfil</a></h4>
-            [Insertar Descripción]
-            <br>
+        <div>
+            <a href="{%url 'profile'%}" class="button">CUADRANTE 1</a>
+            <a href="{%url 'about'%}" class="button">CUADRANTE 2</a><br>
+            <a href="{%url 'schedule'%}" class="button">CUADRANTE 3</a>
+            <a href="{%url 'iniciar_pomodoro'%}" class="button">CUADRANTE 4</a>
         </div>
-
-        <div class="d-flex flex-column justify-content-center align-items-center">
-            <br>
-            <h4><a href="{%url 'about'%}" class="button">Acerca de</a></h4>
-            [Insertar Descripción]
-            <br>
-        </div>
-
-        <div class="d-flex flex-column justify-content-center align-items-center">
-            <br>
-            <h4><a href="{%url 'schedule'%}" class="button">Horario</a></h4>
-            [Insertar Descripción]
-            <br>
-        </div>
-
-        <div class="d-flex flex-column justify-content-center align-items-center">
-            <br>
-            <h4><a href="{%url 'iniciar_pomodoro'%}" class="button">Pomodoro</a></h4>
-            [Insertar Descripción]
-            <br>
-        </div>
-
-    <br>
-    <br>
-    <br>
-
-    <!-- (!!!) AUDIO CONTINUO)-->
-    <!-- Reproductor de audio / ruido blanco-->
-    <audio id="audioplayer">
-        <source src="{% static 'sfx/Pigstep.ogg' %}" loop type="audio/ogg">
-        Tu navegador no soporta audio.
-    </audio>
-
-    <!-- Reproductor de audio / CONTROLES-->
-    <div class="d-flex flex-column justify-content-center align-items-center">
-        <h4>RUIDO BLANCO</h4>
-        Reproducir/Pausar:
-        <button onclick="audio_toggle_play_button()" id="audio_toggle_play_button">▶ / ⏹</button>
-
-        Cambiar Audio:
-        <button onclick="audio_change_track_button()" id="audio_change_track_button">🔄</button><br>
-
-        Volumen:
-        <br>
-        <input type="range" id="audio_volume_slider" min="0" max="1" step="0.05" value="1">
-    </div>
-    <br>
-    <br>
-
-
-
 
     <!-- Pomodoro/Test, NOTA PARA MARTIN: Este boton podrias usar para poder testear el pomodoro-->
     <div class="d-flex flex-column justify-content-center align-items-center">
@@ -81,7 +30,6 @@ Piwit - Home
         <button type="submit">▶ / ⏹iniciar Pomodoro()</button>
     </div>
     </body>
-    <script src="{% static 'js/audioplayer.js' %}"></script> <!--SCRIPT PARA REPRODUCTOR DE AUDIO-->
 </html>
 <br>
 <br>
