@@ -7,56 +7,63 @@ Piwit - Acerca de Nosotros
 {% endblock title %}
 
 {% block content %}
-<body>
-    <main>
-    <h1>
-    {% block aboutheader %}
-    ¿Que es Piwit?
-    {% endblock %}<br>
-    </h1>
-    {% block content1 %}
-    Piwit es una herramienta de estudio web diseñada especialmente para universitarios y liceanos que padezcan de neurodivergencia. Visualmente<br>
-    atractiva y minimalista.
-    {% endblock %}<br>
-    
+    <div id="page-content">
+        <main>
+        <h1>
+        {% block aboutheader %}
+        ¿Que es Piwit?
+        {% endblock %}<br>
+        </h1>
+        {% block content1 %}
+        Piwit es una herramienta de estudio web diseñada especialmente para universitarios y liceanos que padezcan de neurodivergencia. Visualmente<br>
+        atractiva y minimalista.
+        {% endblock %}<br>
+        
 
-    <!-- Creditos-->
-    <h1>
-    {% block creditsheader %}
-    ¿Quienes trabajaron en este proyecto?
-    {% endblock %}<br>
-    </h1>
-    {% block content2 %}
-    Diseñadora Principal:<br>
-    ISIDORA MONTALVA<br>
-    <br>
-    Programadores:<br>
-    ISIDORA MONTALVA<br>
-    CARLOS MUNDACA<br>
-    MARCELO ÓRDENES<br>
-    LAURA ORELLANA<br>
-    MARTÍN OÑATE<br>
-    <br>
-    Asistencia Tecnica:<br>
-    MAXIMILIANO OSORIO<br>
-    <br>
-    Supervisores:<br>
-    IGNACIA 'NACHA' NEATTLE<br>
-    NICOLAS CHEHADE<br>
-    KARINA ALIAGA<br>
-    <br>
-    Ejecutivo a cargo de la producción:<br>
-    VICTOR GUTIERREZ<br>
-    <br>
-    Universidad Tecnica Federico Santa Maria (C) MMXXV - Todos los derechos reservados.<br>
-    Pythoneros LLC
-    {% endblock %}<br>
-    </main>
-    <div class="buttons">
+        <!-- Creditos-->
+        <h1>
+        {% block creditsheader %}
+        ¿Quienes trabajaron en este proyecto?
+        {% endblock %}<br>
+        </h1>
+        {% block content2 %}
+        Diseñadora Principal:<br>
+        ISIDORA MONTALVA<br>
         <br>
-        <a href ="{%url 'home'%}" class="button">Regresar</a>
+        Programadores:<br>
+        ISIDORA MONTALVA<br>
+        CARLOS MUNDACA<br>
+        MARCELO ÓRDENES<br>
+        LAURA ORELLANA<br>
+        MARTÍN OÑATE<br>
         <br>
+        Asistencia Tecnica:<br>
+        MAXIMILIANO OSORIO<br>
+        <br>
+        Supervisores:<br>
+        IGNACIA 'NACHA' NEATTLE<br>
+        NICOLAS CHEHADE<br>
+        KARINA ALIAGA<br>
+        <br>
+        Ejecutivo a cargo de la producción:<br>
+        VICTOR GUTIERREZ<br>
+        <br>
+        Universidad Tecnica Federico Santa Maria (C) MMXXV - Todos los derechos reservados.<br>
+        Pythoneros LLC
+        {% endblock %}<br>
+        </main>
+
+        <div class="buttons">
+            <br>
+            <a class="nav-link active"
+            aria-current="page"
+            hx-get="{%url 'home'%}"
+            hx-target="#main-content"
+            hx-select="#page-content"
+            hx-swap="innerHTML"
+            hx-push-url="true">
+            Regresar</a>
+            <br>
+        </div>
     </div>
-</body>
 {% endblock %}
-</html>

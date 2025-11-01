@@ -7,36 +7,33 @@ Piwit - Home
 {% endblock title %}
 
 {% block content %}
-<div class="d-flex flex-column justify-content-center align-items-center">
-<h1 class="mt-4 mb-4">¡Bienvenido a PIWIT!</h1>
-</div>
-
-<html>
-    <body>
-    <!-- Boton del perfil-->
-        <div>
-            <a href="{%url 'profile'%}" class="button">CUADRANTE 1</a>
-            <a href="{%url 'about'%}" class="button">CUADRANTE 2</a><br>
-            <a href="{%url 'schedule'%}" class="button">CUADRANTE 3</a>
-            <a href="{%url 'iniciar_pomodoro'%}" class="button">CUADRANTE 4</a>
-        </div>
-
-    <!-- Pomodoro/Test, NOTA PARA MARTIN: Este boton podrias usar para poder testear el pomodoro-->
+<div id="page-content">
     <div class="d-flex flex-column justify-content-center align-items-center">
-        <h4>POMODORO</h4>
-        Pausar:
-        <form action="{% url 'iniciar_pomodoro' %}" method="post">
-         {% csrf_token %}
-        <button type="submit">▶ / ⏹iniciar Pomodoro()</button>
+    <h1 class="mt-4 mb-4">¡Bienvenido a PIWIT!</h1>
     </div>
-    </body>
-</html>
+
+        <!-- Boton del perfil-->
+            <div>
+                <a href="{%url 'profile'%}" class="button">CUADRANTE 1</a>
+                <a href="{%url 'about'%}" class="button">CUADRANTE 2</a><br>
+                <a href="{%url 'schedule'%}" class="button">CUADRANTE 3</a>
+                <a href="{%url 'iniciar_pomodoro'%}" class="button">CUADRANTE 4</a>
+            </div>
+
+        <!-- Pomodoro/Test, NOTA PARA MARTIN: Este boton podrias usar para poder testear el pomodoro-->
+        <div class="d-flex flex-column justify-content-center align-items-center">
+            <h4>POMODORO</h4>
+            Pausar:
+            <form action="{% url 'iniciar_pomodoro' %}" method="post">
+            {% csrf_token %}
+            <button type="submit">▶ / ⏹iniciar Pomodoro()</button>
+        </div>
 <br>
 <br>
 <br>
 <br>
 <br>
-PIWIT Alpha v.1.0.5 25-10-2025 - (C) MMXXV Todos los derechos reservados, PYTHONEROS LLC. // U.T.F.S.M Departamento de Informatica<br>
+PIWIT Alpha v.1.0.6   1-11-2025 - (C) MMXXV Todos los derechos reservados, PYTHONEROS LLC. // U.T.F.S.M Departamento de Informatica<br>
 REDISTRIBUTION FORBIDDEN<br>
+</div>
 {% endblock %}
-</html>

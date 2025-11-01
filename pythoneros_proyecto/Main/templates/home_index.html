@@ -23,83 +23,172 @@ body {font-family: "Montserrat", sans-serif !important;
 </style>
 
 <body>
-<nav class="navbar navbar-expand-lg bg-black" data-bs-theme="dark">
-  <div class="container-fluid">
-    <!-- LOGO?-->
-    <a class="navbar-brand" href="{%url 'home'%}">[LOGO]</a>
+  <!-- BARRA NEGRA-->
+  <nav class="navbar navbar-expand-lg bg-black" data-bs-theme="dark">
+    <div class="container-fluid">
+      <!-- LOGO?-->
+      <a class="navbar-brand"
+      hx-get="{%url 'home'%}"
+      hx-target="#main-content"
+      hx-select="#page-content"
+      hx-swap="innerHTML"
+      hx-push-url="true">
+      [LOGO]</a>
 
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <!-- BUTTON 1 - PERFIL -->
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="{%url 'profile'%}">Perfil</a>
-          <!--<a href="{%url 'profile'%}" class="button">Perfil</a>-->
-        </li>
-        <!-- BUTTON 2 - AJUSTES-->
-        <li class="nav-item">
-          <a class="nav-link active" href="{% url 'about' %}">Acerca de</a>
-        </li>
-        
-        <!-- DROPDOWN - SELECCIONAR AUDIO-->
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Ruido Blanco
-          </a>
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <!-- BUTTON 1 - PERFIL -->
+          <li class="nav-item">
+            <a class="nav-link active"
+            aria-current="page"
+            hx-get="{%url 'profile'%}"
+            hx-target="#main-content"
+            hx-select="#page-content"
+            hx-swap="innerHTML"
+            hx-push-url="true">
+            Perfil</a>
+          </li>
 
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#" id=whitenoise1 >Ruido Blanco 1</a></li>
-            <li><a class="dropdown-item" href="#" id=whitenoise2 >Ruido Blanco 2</a></li>
-            <li><hr class="dropdown-divider"></li><!-- Divisor-->
-            <li><a class="dropdown-item" href="#" id=whitenoise3 >Ruido Blanco 3</a></li>
-          </ul>
-        </li>
+          <!-- BUTTON 2 - AJUSTES-->
+          <li class="nav-item">
+            <a class="nav-link active"
+            aria-current="page"
+            hx-get="{%url 'about'%}"
+            hx-target="#main-content"
+            hx-select="#page-content"
+            hx-swap="innerHTML"
+            hx-push-url="true">
+            Acerca de</a>
+          </li>
+          
 
-        <!-- Reproductor de audio / CONTROLES-->
-        <audio id="audioplayer">
-            <source src="{% static 'sfx/Pigstep.ogg' %}" loop type="audio/ogg">
-            Tu navegador no soporta audio.
-        </audio>
+          
+                    <!-- DROPDOWN - SELECCIONAR TEMA-->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Tema
+            </a>
 
-        <li class="nav-item">
-            <div>
-                <button class="nav-link active" onclick="audio_toggle_play_button()" id="audio_toggle_play_button">▶ / ⏹</button>
-            </div>
-        </li>
-        <li class="nav-item">
-            <div>
-                <input class="nav-link active" type="range" id="audio_volume_slider" min="0" max="1" step="0.05" value="1">
-            </div>
-        </li>
+            <ul class="dropdown-menu" id="theme-dropdown">
+              <li>
+                <a class="dropdown-item"
+                href="#">
+                PLACEHOLDER THEME 1</a>
+              </li>
+              <li>
+                <a class="dropdown-item"
+                href="#">
+                PLACEHOLDER THEME 2</a>
+              </li>
+              <!--<li>
+                <hr class="dropdown-divider">
+              </li>--><!-- Divisor-->
+              <li>
+                <a class="dropdown-item"
+                href="#">
+                PLACEHOLDER THEME 3</a>
+              </li>
+              <li>
+                <a class="dropdown-item"
+                href="#">
+                PLACEHOLDER THEME 4</a>
+              </li>
+            </ul>
+          </li>
 
-        <!-- DISABLED-->
-        <!--<li class="nav-item">
-          <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-        </li>-->
 
-      </ul>
-      <!-- Barra de busqueda-->
-      <!--<form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-        <button class="btn btn-outline-success" type="submit">BUSCAR</button>-->
-      </form>
 
+          <!-- DROPDOWN - SELECCIONAR AUDIO-->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Sonido
+            </a>
+
+            <ul class="dropdown-menu" id="whitenoise-dropdown">
+              <li>
+                <a class="dropdown-item"
+                href="#"
+                id="whitenoise1"
+                data-track="{% static 'sfx/Pigstep.ogg' %}"
+                data-type="audio/ogg">
+                Pigstep</a>
+              </li>
+              <li>
+                <a class="dropdown-item"
+                href="#"
+                id="whitenoise2"
+                data-track="{% static 'sfx/bensound-jazzcomedy.mp3' %}"
+                data-type="audio/mpeg">
+                Jazz Comedy</a>
+              </li>
+              <!--<li>
+                <hr class="dropdown-divider">
+              </li>--><!-- Divisor-->
+              <li>
+                <a class="dropdown-item"
+                href="#"
+                id="whitenoise3"
+                data-track="{% static 'sfx/bensound-thejazzpiano.mp3' %}"
+                data-type="audio/mpeg">
+                Jazz Piano 3</a>
+              </li>
+            </ul>
+          </li>
+
+
+          
+          <!-- Reproductor de audio / CONTROLES-->
+          <audio id="audioplayer" loop src="{% static 'sfx/Pigstep.ogg' %}" type="audio/ogg">
+              Tu navegador no soporta audio.
+          </audio>
+
+
+
+          <li class="nav-item">
+              <div>
+                  <button class="nav-link active" id="audio_toggle_play_button">▶ / ⏹</button>
+              </div>
+          </li>
+          <li class="nav-item">
+              <div>
+                  <input class="nav-link active" type="range" id="audio_volume_slider" min="0" max="1" step="0.05" value="1">
+              </div>
+          </li>
+
+
+
+          <!-- DISABLED-->
+          <!--<li class="nav-item">
+            <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+          </li>-->
+
+        </ul>
+        <!-- Barra de busqueda-->
+        <!--<form class="d-flex" role="search">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
+          <button class="btn btn-outline-success" type="submit">BUSCAR</button>
+        </form>-->
+
+      </div>
     </div>
-  </div>
-</nav>
-  <main>
+  </nav>
+
+  <main id="main-content">
       {% block content %}
       {% endblock %}
   </main>
+  <script src="https://unpkg.com/htmx.org@1.9.10"></script> <!-- SCRIPT PARA AUDIO CONTINUO-->
 </body>
 
-
+<!--SCRIPTS-->
 <script src="{% static 'js/audioplayer.js' %}"></script> <!--SCRIPT PARA REPRODUCTOR DE AUDIO-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script><!-- IMPORTANTE-->
+
 </html>
 <!--
         <div class="d-flex flex-column justify-content-center align-items-center">
