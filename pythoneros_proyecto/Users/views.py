@@ -202,7 +202,6 @@ def profile(request):
         if not any(m.level_tag == "error" for m in messages.get_messages(request)):
             messages.info(request, "No hiciste cambios. Todo quedó igual.")
             return redirect("profile")
-
     return render(request, "profile_page_index.html")
 
 

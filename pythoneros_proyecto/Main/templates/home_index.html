@@ -211,7 +211,68 @@ body {font-family: "Montserrat", sans-serif !important;
       {% block content %}
       {% endblock %}
   </main>
-  <script src="https://unpkg.com/htmx.org@1.9.10"></script> <!-- SCRIPT PARA AUDIO CONTINUO-->
+
+
+
+    <!-- MODAL -->
+    <div class="modal fade" id="editProfileModal" tabindex="-1" aria-labelledby="editProfileModalLabel" hx-preserve>
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <h5 class="modal-title" id="editProfileModalLabel">Editar Perfil</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+
+        <div class="modal-body">
+          <form method="POST" action="{% url 'profile' %}">
+            {% csrf_token %}
+
+            <!-- Username -->
+            <div class="mb-3 text-start">
+              <label class="form-label">Usuario</label>
+              <input type="text" name="username" value="{{ request.user.username }}" class="form-control" placeholder="Usuario">
+            </div>
+
+            <!-- Email -->
+            <div class="mb-3 text-start">
+              <label class="form-label">Correo</label>
+              <input type="email" name="email" value="{{ request.user.email }}" class="form-control" placeholder="Correo">
+            </div>
+
+            <hr>
+
+            <h5 class="text-start mt-3">Cambiar contraseña (opcional)</h5>
+
+            <!-- Contraseña actual -->
+            <div class="mb-3 text-start">
+              <label class="form-label">Contraseña actual</label>
+              <input type="password" name="old_password" class="form-control" placeholder="Actual">
+            </div>
+
+            <!-- Nueva contraseña -->
+            <div class="mb-3 text-start">
+              <label class="form-label">Nueva contraseña</label>
+              <input type="password" name="new_password" class="form-control" placeholder="Nueva">
+            </div>
+
+            <!-- Confirmar nueva contraseña -->
+            <div class="mb-3 text-start">
+              <label class="form-label">Confirmar nueva contraseña</label>
+              <input type="password" name="new_password2" class="form-control" placeholder="Confirmar nueva">
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100">Guardar cambios</button>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+
+  <script src="https://unpkg.com/htmx.org@1.9.10"></script> <!-- SCRIPT PARA HTMX-->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script><!-- IMPORTANTE-->
   <script src="{% static 'js/audioplayer.js' %}"></script> <!--SCRIPT PARA REPRODUCTOR DE AUDIO-->
 </body>
