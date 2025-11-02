@@ -31,23 +31,47 @@ Piwit - Perfil
             </ul>
           {% endif %}
 
-          <div class="buttons mt-4">
-            <a href="{% url 'deleteacc' %}" class="btn btn-outline-danger">Eliminar Usuario</a>
-            <a href="{% url 'logout' %}" class="btn btn-outline-secondary">Cerrar Sesión</a>
-            <a href="{% url 'home' %}" class="btn btn-outline-dark">Volver</a>
+
+
+        <div class="buttons mt-4">
+            <button class="btn btn-outline-danger"
+            aria-current="page"
+            hx-get="{%url 'deleteacc'%}"
+            hx-target="#main-content"
+            hx-select="#page-content"
+            hx-swap="morphdom"
+            hx-push-url="true">
+            Eliminar Usuario</button>
+<!-- DE MOMENTO ESTE ES EL UNICO BOTON QUE DEBE VERSE DE ESTA FORMA -->
+            <a class="btn btn-outline-secondary"
+            href="{%url 'logout'%}">
+            Cerrar Sesión</a>
+
+            <button class="btn btn-outline-dark"
+            aria-current="page"
+            hx-get="{%url 'home'%}"
+            hx-target="#main-content"
+            hx-select="#page-content"
+            hx-swap="morphdom"
+            hx-push-url="true">
+            Regresar</button>
+        </div>
+
+
           </div>
         </div>
       </div>
     </div>
   </div>
+  <!-- CORREGIR HTMX -->
   <!-- MODAL -->
-  <div class="modal fade" id="editProfileModal" tabindex="-1" aria-labelledby="editProfileModalLabel" aria-hidden="true">
+  <div class="modal fade" id="editProfileModal" tabindex="-1" aria-labelledby="editProfileModalLabel" hx-preserve>
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
 
         <div class="modal-header">
           <h5 class="modal-title" id="editProfileModalLabel">Editar Perfil</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar" onclick="$('#editProfileModal').modal('hide')"></button>
         </div>
 
         <div class="modal-body">

@@ -55,14 +55,14 @@ Piwit - Acerca de Nosotros
 
         <div class="buttons">
             <br>
-            <a class="nav-link active"
+            <button class="nav-link active"
             aria-current="page"
             hx-get="{%url 'home'%}"
             hx-target="#main-content"
             hx-select="#page-content"
-            hx-swap="innerHTML"
+            hx-swap="morphdom"
             hx-push-url="true">
-            Regresar</a>
+            Regresar</button>
             <br>
         </div>
     </div>
