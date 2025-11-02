@@ -5,16 +5,9 @@
 <head>
   <meta charset="UTF-8">
   <title>Prueba</title>
-  <link rel="stylesheet" href="{% static 'Main/css/home.css' %}">
+  <link rel="stylesheet" href="{% static 'css/home.css' %}">
 </head>
-<body>
-  <ul>
-    <li><a class="boton" href="{% url 'profile' %}">CUADRANTE 1</a></li>
-    <li><a class="boton" href="{% url 'about' %}">CUADRANTE 2</a></li>
-    <li><a class="boton" href="{% url 'schedule' %}">CUADRANTE 3</a></li>
-    <li><a class="boton" href="{% url 'iniciar_pomodoro' %}">CUADRANTE 4</a></li>
-  </ul>
-</body>
+
 </html>
 
 <!-- Titulo de la página-->
@@ -37,13 +30,39 @@ Piwit - Home
             </div>
         -->
 
-        <!-- CUADRANTES OPCION 2 -->
-        <ul>
-            <li><a class="boton" href="{%url 'profile'%}">CUADRANTE 1</a></li>
-            <li><a class="boton" href="{%url 'about'%}">CUADRANTE 2</a></li>
-            <li><a class="boton" href="{%url 'schedule'%}">CUADRANTE 3</a></li>
-            <li><a class="boton" href="{%url 'iniciar_pomodoro'%}" >CUADRANTE 4</a></li>
-        </ul>
+        <!-- CUADRANTES OPCION 2 
+        <body>
+          <a href="{%url 'profile'%}">
+            <button> SELECCIONAR 1</button>
+          </a>
+          <a href="{%url 'about'%}">
+            <button> SELECCIONAR 2</button>
+          </a>
+          <a href="{%url 'schedule'%}">
+            <button> SELECCIONAR 3</button>
+          </a>
+          <a href="{%url 'iniciar_pomodoro'%}">
+            <button> SELECCIONAR </button>
+          </a>
+        </body> -->
+
+        <!-- CUADRANTES OPCION 3 FUNCIONAL-->
+        <div class="cuadrantes">
+          <div class="cuadro cuadro1"><button> SELECCIONAR 1 </button></div>
+          <div class="cuadro cuadro2"><button> SELECCIONAR 2 </button></div>
+          <div class="cuadro cuadro3"><button> SELECCIONAR 3 </button></div>
+          <div class="cuadro cuadro4"><button> SELECCIONAR 4 </button></div> 
+        </div>
+
+        <div class="SELECCIONAR">
+          <p>SELECCIONAR<span>></span></p>
+          <ul>
+            <li><a href="{%url 'profile'%}"></a></li>
+            <li><a href="{%url 'about'%}"></a></li>
+          </ul>
+        </div>
+
+    
 
 
         <!-- Pomodoro/Test, NOTA PARA MARTIN: Este boton podrias usar para poder testear el pomodoro-->
