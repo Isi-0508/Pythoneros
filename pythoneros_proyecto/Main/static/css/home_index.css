@@ -1,0 +1,22 @@
+/* TIPO DE LETRA */
+@font-face {
+	font-family: 'Sansita';
+	src: url('fonts/Sansita/Sansita-Light.eot');
+	src: url('fonts/Sansita/Sansita-Light.eot?#iefix') format('embedded-opentype'),
+		 url('fonts/Sansita/Sansita-Light.woff2') format('woff2'),
+		 url('fonts/Sansita/Sansita-Light.woff') format('woff'),
+		 url('fonts/Sansita/Sansita-Light.ttf') format('truetype');
+	font-style: normal;
+	font-weight: 300;
+}
+
+html{
+    scroll-behavior: smooth;
+}
+
+
+
+
+
+
+        
