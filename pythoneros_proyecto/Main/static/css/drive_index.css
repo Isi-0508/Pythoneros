@@ -1,0 +1,15 @@
+/* botón dirve tema 1 */
+.btn-tema1 {
+    /* color fondo */
+    background-color: #FCFECF;
+    /* color texto */
+    color: #412964; 
+    /* al pasar el mouse (hover) */
+    border-color: #412964;
+}
+
+/* al pasar el mouse (opcional) */
+.btn-tema1:hover {
+    background-color: #7B1FA2;
+    border-color: #7B1FA2;
+}
