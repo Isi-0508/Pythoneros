@@ -65,12 +65,38 @@
               Temas
             </button>
             <ul class="dropdown-menu dropdown-menu-dark" id="theme-dropdown">
-              <li><a class="dropdown-item" href="#" data-tema="tema-azul">Tema 1</a></li>
-              <li><a class="dropdown-item" href="#" data-tema="tema-rosa">Tema 2</a></li>
-              <li><a class="dropdown-item" href="#" data-tema="tema-verde">Tema 3</a></li>
-              <li><a class="dropdown-item" href="#" data-tema="tema-retro">Tema 4</a></li>
+              <li>
+                <a class="dropdown-item"
+                href="#"
+                id="theme1"
+                data-tema="tema-azul">
+                Tema 1</a>
+              </li>
+              <li>
+                <a class="dropdown-item"
+                href="#"
+                id="theme2"
+                data-tema="tema-rosa">
+                Tema 2</a>
+              </li>
+              <li>
+                <a class="dropdown-item"
+                href="#"
+                id="theme3"
+                data-tema="tema-verde">
+                Tema 3</a>
+              </li>
+              <li>
+                <a class="dropdown-item"
+                href="#"
+                id="theme4"
+                data-tema="tema-retro">
+                Tema 4</a></li>
             </ul>
           </div>
+
+
+
           <!-- DROPDOWN - SELECCIONAR AUDIO-->
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -212,10 +238,12 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script><!-- IMPORTANTE-->
   <script src="{% static 'js/audioplayer.js' %}"></script> <!--SCRIPT PARA REPRODUCTOR DE AUDIO-->
 
+
+
 <script>
 document.addEventListener("DOMContentLoaded", () => {
   const body = document.body;
-  const botonesTema = document.querySelectorAll(".dropdown-menu .dropdown-item");
+  const botonesTema = document.querySelectorAll("#theme-dropdown .dropdown-item");
 
   const temaGuardado = localStorage.getItem("tema-activo");
   if (temaGuardado) {
@@ -242,6 +270,9 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 </script>
+
+
+
 <script>
 document.body.addEventListener('htmx:afterSwap', () => {
   const temaGuardado = localStorage.getItem("tema-activo");
@@ -251,6 +282,9 @@ document.body.addEventListener('htmx:afterSwap', () => {
   }
 });
 </script>
+
+
+
 </body>
 <!--SCRIPTS-->
 {% block extra_js %}{% endblock %}
