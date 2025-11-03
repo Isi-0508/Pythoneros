@@ -13,120 +13,103 @@
 html{
     scroll-behavior: smooth;
 }
-/* BACKGROUNDS 
-body {
-  background-color: #d5cefa; 
-  background-color: #b5d9fd;
-  background-color: #fcfecf;
-  background-color: #412964; 
-      } */
-
-
-
-
 
 /* CUADRANTES */
-.cuadrantes {
-  display: grid; /* activa grid */
-  grid-template-columns: 1fr 1fr; /* 2 columnas iguales */
-  grid-template-rows: 1fr 1fr;   /* 2 filas iguales */
-  height: 70vh; /* ESPACIO EN PANTALLA*/
+body {
+  margin: 0;
+  height: 100vh;
+  transition: background 0.3s, color 0.3s;
 }
 
-/* Estilo general de cada cuadrante */
-.cuadro {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 1.5rem;
-  color: white;
-  font-weight: bold;
-}
-/*
-Violeta: #d5cefa
-Azul: #b5d9fd
-Amarillo: #fcfecf
-Morado: #412964
-Morado adaptado: #beb6e8
-Naranja adaptado: #ffce8d
-*/
-
-/* Colores TEMA 1 */
-body {
-  background-color: #d5cefa;}
-.cuadro1 { background: #fcfecf; color: black;}
-.cuadro2 { background: #b5d9fd; color: black; }
-.cuadro3 { background: #b5d9fd; color: black; }
-.cuadro4 { background: #fcfecf; color: black; } 
-
-/* Colores TEMA 2 
-body {
-  background-color: #d5cefa;}
-.cuadro1 { background: #fcfecf; color: black;}
-.cuadro2 { background: #d5cefa; color: black; }
-.cuadro3 { background: #d5cefa; color: black; }
-.cuadro4 { background: #fcfecf; color: black; } */
-
-/* Colores TEMA 3 
-body {
-  background-color: #b5d9fd;}
-.cuadro1 { background: #fcfecf; color: black;}
-.cuadro2 { background: #b5d9fd; color: black; }
-.cuadro3 { background: #b5d9fd; color: black; }
-.cuadro4 { background: #fcfecf; color: black; } */
-
-/* Colores TEMA DALTONISMO  
-body {
-  background-color: white;}
-.cuadro1 { background: #ffce8d; color: black;}
-.cuadro2 { background: #ffce8d; color: black; }
-.cuadro3 { background: #ffce8d; color: black; }
-.cuadro4 { background: #ffce8d; color: black; } */
-
-.cuadrantes {
+.contenedor {
   position: relative;
-}
-
-.cuadrantes::before,
-.cuadrantes::after {
-  content: "";
-  position: absolute;
-  background: black;
-}
-
-/* Línea vertical */
-.cuadrantes::before {
-  top: 0;
-  left: 50%;
-  width: 2px;
-  height: 100%;
-}
-
-/* Línea horizontal */
-.cuadrantes::after {
-  top: 50%;
-  left: 0;
   width: 100%;
-  height: 2px;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
 }
 
-/* INTENTO DE DROPDOWN */
-.SELECCIONAR {
-	width: max-content;
+.cuadrante {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: white;
+  transition: background 0.3s;
 }
-.SELECCIONAR p {
-	background-color: white;
-	display: flex;
-	width: 100px;
-	padding: 10px;
-	font-size: 25px;
-	gap: 10px;
-	box-sizing: border-box;
+
+/* TEMA 1  */
+.tema-1 body, 
+.tema-1 {
+  background-color: #0d6efd;
+  color: white;
 }
-.SELECCIONAR p span {
-	transform: rotate(90deg);
-	font-family: monospace;
+
+.tema-1 .navbar {
+  background-color: #0d6efd !important;
 }
+
+.tema-1 .cuadrante1 { background-color: #0d6efd; }
+.tema-1 .cuadrante2 { background-color: #6610f2; }
+.tema-1 .cuadrante3 { background-color: #20c997; }
+.tema-1 .cuadrante4 { background-color: #0dcaf0; }
+
+/* TEMA 2  */
+.tema-2 body,
+.tema-2 {
+  background-color: #e83e8c;
+  color: white;
+}
+
+.tema-2 .navbar {
+  background-color: #d63384 !important;
+}
+
+.tema-2 .cuadrante1 { background-color: #e83e8c; }
+.tema-2 .cuadrante2 { background-color: #d63384; }
+.tema-2 .cuadrante3 { background-color: #ffb6c1; color: #6c0a35; }
+.tema-2 .cuadrante4 { background-color: #f06292; }
+
+/* TEMA 3  */
+.tema-3 body,
+.tema-3 {
+  background-color: #198754;
+  color: white;
+}
+
+.tema-3 .navbar {
+  background-color: #198754 !important;
+}
+
+.tema-3 .cuadrante1 { background-color: #198754; }
+.tema-3 .cuadrante2 { background-color: #28a745; }
+.tema-3 .cuadrante3 { background-color: #20c997; }
+.tema-3 .cuadrante4 { background-color: #d4edda; }
+
+/* TEMA 4  */
+.tema-4 body,
+.tema-4 {
+  background-color: #ffcc00;
+  color: #2f2f2f;
+}
+
+.tema-4 .navbar {
+  background-color: #993300 !important;
+}
+
+.tema-4 .cuadrante1 { background-color: #ffcc00; color: #2f2f2f; }
+.tema-4 .cuadrante2 { background-color: #ff6600; }
+.tema-4 .cuadrante3 { background-color: #cc3300; }
+.tema-4 .cuadrante4 { background-color: #993300; }
+
+
+
+
+
+
+
 
 
 

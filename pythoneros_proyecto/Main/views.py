@@ -26,4 +26,8 @@ def about(request):
 def schedule(request):
     return HttpResponse("JOURNAL PLACEHOLDER")
 
+def cuadrantes_view(request):
+    return render(request, 'home.html')
+
+
 

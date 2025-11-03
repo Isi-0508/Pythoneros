@@ -29,6 +29,8 @@ urlpatterns = [
     path('home/', Main_views.home, name='home'),
     path('schedule/', Main_views.schedule, name='schedule'), #PROVISORIO
     path('pomodoro/', Main_views.iniciar_pomodoro, name='iniciar_pomodoro'), #PROVISORIO
+    path('cuadrantes/', Main_views.cuadrantes_view, name='cuadrantes'),
+
 
     #USERS
     path('login/', Users_views.login, name='login'),
