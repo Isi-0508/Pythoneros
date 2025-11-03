@@ -46,14 +46,16 @@
   <nav class="navbar navbar-expand-lg bg-black" data-bs-theme="dark">
     <div class="container-fluid">
       <!-- LOGO?-->
-      <a class="navbar-brand"
+      <img src="{% static 'images/logos/piwit_logo_v1_50px.png'%}"
+      aria-current="page"
       hx-get="{%url 'home'%}"
       hx-target="#main-content"
       hx-select="#page-content"
       hx-swap="morphdom"
       hx-push-url="true">
-      [LOGO]</a>
+      </img>
 
+      <!--ICONO PARA EXPANDIR RESPONSIVO-->
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -132,17 +134,17 @@
                 <a class="dropdown-item"
                 href="#"
                 id="whitenoise1"
-                data-track="{% static 'sfx/Pigstep.ogg' %}"
-                data-type="audio/ogg">
-                Pigstep</a>
+                data-track="{% static 'sfx/audioplayer_audio001_space.mp3' %}"
+                data-type="audio/mpeg">
+                Espacio</a>
               </li>
               <li>
                 <a class="dropdown-item"
                 href="#"
                 id="whitenoise2"
-                data-track="{% static 'sfx/bensound-jazzcomedy.mp3' %}"
+                data-track="{% static 'sfx/audioplayer_audio002_rain.mp3' %}"
                 data-type="audio/mpeg">
-                Jazz Comedy</a>
+                Lluvia</a>
               </li>
               <!--<li>
                 <hr class="dropdown-divider">
@@ -151,9 +153,9 @@
                 <a class="dropdown-item"
                 href="#"
                 id="whitenoise3"
-                data-track="{% static 'sfx/bensound-thejazzpiano.mp3' %}"
+                data-track="{% static 'sfx/audioplayer_audio003_sea.mp3' %}"
                 data-type="audio/mpeg">
-                Jazz Piano 3</a>
+                Oceano</a>
               </li>
             </ul>
           </li>
@@ -161,7 +163,7 @@
 
           
           <!-- Reproductor de audio -->
-          <audio id="audioplayer" loop src="{% static 'sfx/Pigstep.ogg' %}" type="audio/ogg">
+          <audio id="audioplayer" loop src="{% static 'sfx/audioplayer_audio001_space.mp3' %}" type="audio/mpeg">
               Tu navegador no soporta audio.
           </audio>
 
