@@ -9,9 +9,22 @@
 	font-style: normal;
 	font-weight: 300;
 }
+/* Se supone que anima para irse de pagina en pagina */
 html{
     scroll-behavior: smooth;
 }
+/* BACKGROUNDS 
+body {
+  background-color: #d5cefa; 
+  background-color: #b5d9fd;
+  background-color: #fcfecf;
+  background-color: #412964; 
+      } */
+
+
+
+
+
 /* CUADRANTES */
 .cuadrantes {
   display: grid; /* activa grid */
@@ -29,12 +42,46 @@ html{
   color: white;
   font-weight: bold;
 }
+/*
+Violeta: #d5cefa
+Azul: #b5d9fd
+Amarillo: #fcfecf
+Morado: #412964
+Morado adaptado: #beb6e8
+Naranja adaptado: #ffce8d
+*/
 
-/* Colores distintos */
-.cuadro1 { background: #fcfecf; color: black; }
+/* Colores TEMA 1 */
+body {
+  background-color: #d5cefa;}
+.cuadro1 { background: #fcfecf; color: black;}
 .cuadro2 { background: #b5d9fd; color: black; }
 .cuadro3 { background: #b5d9fd; color: black; }
-.cuadro4 { background: #fcfecf; color: black; }
+.cuadro4 { background: #fcfecf; color: black; } 
+
+/* Colores TEMA 2 
+body {
+  background-color: #d5cefa;}
+.cuadro1 { background: #fcfecf; color: black;}
+.cuadro2 { background: #d5cefa; color: black; }
+.cuadro3 { background: #d5cefa; color: black; }
+.cuadro4 { background: #fcfecf; color: black; } */
+
+/* Colores TEMA 3 
+body {
+  background-color: #b5d9fd;}
+.cuadro1 { background: #fcfecf; color: black;}
+.cuadro2 { background: #b5d9fd; color: black; }
+.cuadro3 { background: #b5d9fd; color: black; }
+.cuadro4 { background: #fcfecf; color: black; } */
+
+/* Colores TEMA DALTONISMO  
+body {
+  background-color: white;}
+.cuadro1 { background: #ffce8d; color: black;}
+.cuadro2 { background: #ffce8d; color: black; }
+.cuadro3 { background: #ffce8d; color: black; }
+.cuadro4 { background: #ffce8d; color: black; } */
 
 .cuadrantes {
   position: relative;
@@ -85,12 +132,7 @@ html{
 
 
 
-/*
-Violeta: #d5cefa
-Azul: #b5d9fd
-Amarillo: #fcfecf
-Morado: #412964
-*/
+
 
 
 
