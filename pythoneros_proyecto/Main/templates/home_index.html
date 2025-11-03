@@ -242,6 +242,15 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 </script>
+<script>
+document.body.addEventListener('htmx:afterSwap', () => {
+  const temaGuardado = localStorage.getItem("tema-activo");
+  if (temaGuardado) {
+    document.body.classList.remove("tema-1", "tema-2", "tema-3", "tema-4");
+    document.body.classList.add(temaGuardado);
+  }
+});
+</script>
 </body>
 <!--SCRIPTS-->
 {% block extra_js %}{% endblock %}

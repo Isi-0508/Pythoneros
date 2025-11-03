@@ -1,5 +1,3 @@
-
-
 body {
   margin: 0;
   height: 100vh;
@@ -62,3 +60,13 @@ body[class^="tema-"] .cuadrante {
   100% { transform: scale(1); opacity: 1; }
 }
 
+.dropdown .btn-outline-light,
+.dropdown .btn-outline-light:hover,
+.dropdown .btn-outline-light:focus,
+.dropdown .btn-outline-light:active,
+.dropdown.show .btn-outline-light {
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  color: white !important;
+}
