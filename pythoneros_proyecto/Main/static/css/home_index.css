@@ -157,7 +157,13 @@ body {
   font-style: 'normal';
 }
 
-
+.pomodoro-btn {
+    background-color: #fcfecf; /* color de fondo */
+ 	color: #412964;               /* color del texto, negro para contraste */
+	border: 1px solid #ccc;    /* opcional: borde suave */
+	padding: 0.25rem 0.5rem;   /* ajusta tamaño */
+	font-size: 0.8rem;         /* tamaño del texto */
+}
 
 /* TEMA 1  */
 .tema-1 body, 
@@ -293,6 +299,7 @@ body {
   box-shadow: none !important;
   color: white !important;
 }
+
 
 
 

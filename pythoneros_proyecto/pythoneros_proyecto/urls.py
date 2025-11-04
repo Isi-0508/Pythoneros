@@ -30,6 +30,8 @@ urlpatterns = [
     path('schedule/', Main_views.schedule, name='schedule'), #PROVISORIO
     path('pomodoro/', Main_views.iniciar_pomodoro, name='iniciar_pomodoro'), #PROVISORIO
     path('cuadrantes/', Main_views.cuadrantes_view, name='cuadrantes'),
+    path('pomodoro/aumentar/', Main_views.aumentar_sesiones, name='aumentar_sesiones'),
+    path('pomodoro/disminuir/', Main_views.disminuir_sesiones, name='disminuir_sesiones'),
 
 
     #USERS

@@ -36,12 +36,41 @@ Piwit - Home
     
         <!-- Pomodoro/Test, NOTA PARA MARTIN: Este boton podrias usar para poder testear el pomodoro-->
         <div class="d-flex flex-column justify-content-center align-items-center">
-            <h4>POMODORO</h4>
-            Pausar:
-            <form action="{% url 'iniciar_pomodoro' %}" method="post">
-            {% csrf_token %}
-            <button type="submit">▶ / ⏹iniciar Pomodoro()</button>
+            <h5>POMODORO</h5>
+            <button 
+              hx-post="{% url 'iniciar_pomodoro' %}"
+              hx-target="#main-content"
+              hx-swap="outerHTML"
+              class = "btn btn-sm pomodoro-btn">
+              ▶ Iniciar Pomodoro
+            </button>
         </div>
+        <div class="d-flex flex-column justify-content-center align-items-center" style="font-size: 0.85rem;">
+          <h8 class="mb-2">Sesiones</h8>
+
+          <div class="d-flex align-items-center gap-1">
+            <button 
+            hx-post="{% url 'disminuir_sesiones' %}" 
+            hx-target="#pomodoroControl" 
+            hx-swap="outerHTML" 
+            class="btn btn-sm btn-outline-primary p-1">▼
+          </button>
+
+            <span id="sessionCount" class="mx-1">{{ sesiones_restantes|length }}</span>
+
+            <button 
+            hx-post="{% url 'aumentar_sesiones' %}" 
+            hx-target="#pomodoroControl" 
+            hx-swap="outerHTML"  
+            class="btn btn-sm btn-outline-primary p-1">▲</button>
+          </div>
+
+          <div id="sessionList" class="mt-1 d-flex gap-1 flex-wrap">
+            {% for s in sesiones_restantes %}
+              <span class="badge bg-secondary py-1 px-2">{{ s }}m</span>
+            {% endfor %}
+        </div>
+</div>
 <br>
 <br>
 PIWIT Alpha v.1.0.8   1-11-2025 - (C) MMXXV Todos los derechos reservados, PYTHONEROS DEVELOPING TEAM LLC. // U.T.F.S.M Departamento de Informatica<br>

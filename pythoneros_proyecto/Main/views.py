@@ -7,11 +7,20 @@ from .pomodoro import siguiente_sesion
 from django.contrib.auth.models import User
 from django import forms
 from django.shortcuts import redirect
+from .pomodoro import disminuir_sesiones_1, aumentar_sesiones_1
+from Main.pomodoro import sesiones_restantes 
 
 def iniciar_pomodoro(request):
-    siguiente_sesion()  # 1 minuto
+    siguiente_sesion() 
     return render(request, 'home.html')
 
+def aumentar_sesiones(request):
+    aumentar_sesiones_1(True)
+    return render(request, "sesion_list_partial.html",  {"sesiones_restantes": sesiones_restantes})
+
+def disminuir_sesiones(request):
+    disminuir_sesiones_1(True)
+    return render(request, "sesion_list_partial.html", {"sesiones_restantes": sesiones_restantes})
 
 @login_required(login_url='login')
 def home(request):
