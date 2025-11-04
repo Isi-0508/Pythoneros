@@ -17,22 +17,17 @@
 Piwit - Home
 {% endblock title %}
 
+{% block content %}
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/home.css' %}">
 {% endblock %}
-
-{% block content %}
 <div id="page-content">
-    <div class="d-flex flex-column justify-content-center align-items-center">
-    <h1 class="mt-4 mb-4"></h1>
-    </div>
-
-<div class="contenedor">
-  <div class="cuadrante cuadrante1">+</div>
-  <div class="cuadrante cuadrante2">+</div>
-  <div class="cuadrante cuadrante3">+</div>
-  <div class="cuadrante cuadrante4">+</div>
-</div>
+      <div class="st-home-contenedor st-home-body">
+        <div class="st-home-cuadrante cuadrante1">+</div>
+        <div class="st-home-cuadrante cuadrante2">+</div>
+        <div class="st-home-cuadrante cuadrante3">+</div>
+        <div class="st-home-cuadrante cuadrante4">+</div>
+      </div>
     
         <!-- Pomodoro/Test, NOTA PARA MARTIN: Este boton podrias usar para poder testear el pomodoro-->
         <div class="d-flex flex-column justify-content-center align-items-center">

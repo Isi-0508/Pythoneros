@@ -9,12 +9,12 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="{% static 'css/home_index.css' %}">
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
     <!--TITULO-->
     <title>{% block title %} {% endblock title %}</title>
-    {% block extra_css %}{% endblock %}
 </head>
 
-<body>       
+<body class="st-homeidx-body">       
   <!-- BARRA NEGRA-->
   <nav class="navbar navbar-expand-lg bg-black" data-bs-theme="dark">
     <div class="container-fluid">
@@ -179,6 +179,7 @@
 
   <main id="main-content">
       {% block content %}
+      {% block extra_css %}{% endblock %}
       {% endblock %}
   </main>
 
