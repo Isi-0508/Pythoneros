@@ -3,6 +3,8 @@
 una nomenclatura para las clases que se programan: "st-(nombre de html que se aplicara, en caso de ser un index, colocar al final idx)-parte del html"
 Ejemplo: "st-homeidx-body", "st-about-body", "st-about-title"*/
 
+/*TODAVIA ESTA PENDIENTE TENER DISTINTO ESTILO DE LETRA PARA CADA COSA*/
+
 /* TIPO DE LETRA */
 @font-face {
 	font-family: 'Sansita';
