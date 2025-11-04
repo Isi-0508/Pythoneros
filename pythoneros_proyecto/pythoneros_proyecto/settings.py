@@ -42,6 +42,11 @@ INSTALLED_APPS = [
     'django_htmx',
     'Users',
     'Main',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
 ]
 
 MIDDLEWARE = [
@@ -50,6 +55,7 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'allauth.account.middleware.AccountMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django_htmx.middleware.HtmxMiddleware',
@@ -132,3 +138,32 @@ MEDIA_ROOT = BASE_DIR / 'media'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# API drive
+SITE_ID = 1 # Necesario para django-allauth
+
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        # 'SCOPE' es donde defines los permisos de Drive.
+        'SCOPE': [
+            'profile',  # Información básica del usuario
+            'email',    # Correo del usuario
+            # PERMISOS DE DRIVE: Usamos 'drive.file' para acceder a archivos
+            # que tu app crea o abre. 'drive.appdata' es para datos de la app.
+            'https://www.googleapis.com/auth/drive.file', 
+        ],
+        # 'AUTH_PARAMS' es crucial para obtener el Refresh Token.
+        'AUTH_PARAMS': {
+            'access_type': 'offline', # Solicita el Refresh Token
+            'prompt': 'select_account', # Fuerza a que Google muestre la selección de cuenta
+        },
+        # Asegúrate de almacenar los tokens en la base de datos
+        'APP': {
+            'client_id': 'TU_CLIENT_ID_DE_GOOGLE',
+            'secret': 'TU_CLIENT_SECRET_DE_GOOGLE',
+            # 'key' no es necesaria para Google
+        }
+    }
+}
+
+SOCIALACCOUNT_STORE_TOKENS = True # OBLIGATORIO: Almacena el access_token y refresh_token

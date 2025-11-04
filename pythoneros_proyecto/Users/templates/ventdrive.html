@@ -26,7 +26,7 @@
 
       <div id="preview" class="mb-3"></div>
 
-      <button type="button" class="btn btn-tema1" id="btn-submit">Subir</button>
+      <button type="button" class="btn btn-primary" id="btn-submit">Subir</button>
 
     </div>
 
@@ -77,8 +77,17 @@
       function FileUpload(img, file){
         var reader = new FileReader();
         reader.onload = function(event) {
-          //El texto del archivo se mostrará por consola aquí
-          console.log(event.target.result);
+          // El texto del archivo se mostrará por consola aquí
+          // console.log(event.target.result);
+          const obj ={
+            filename: file.name,
+            mimeType:file.type,
+            bytes: [...new Int8Array(event.target.result)]
+          };
+          // console.log(obj.bytes);
+          google.script.run
+          .withSuccessHandler((e) => console.log(e))
+          .uploadfiles(obj);
         };
 
         reader.readAsArrayBuffer(file);
