@@ -17,7 +17,7 @@ def aumentar_sesiones_1(botón_arriba):
 def temporizador_pomodoro(duracion_minutos, callback=None):
     def run():
         print("⏳ Empecemos a estudiar 🤓")
-        time.sleep(duracion_minutos * 25)
+        time.sleep(duracion_minutos * 60)
         print("⏰ ¡Buena sesión, descansemos un poco!")
         if callback:
             time.sleep(0.6 * 60) #10 segundos de espera antes de la siguiente sesion

@@ -19,6 +19,8 @@ Piwit - Home
 
 {% block content %}
 {% block extra_css %}
+{% csrf_token %}
+<meta name="csrf-token" content="{{ csrf_token }}">
 <link rel="stylesheet" href="{% static 'css/home.css' %}">
 {% endblock %}
 <div id="page-content">
@@ -30,42 +32,156 @@ Piwit - Home
       </div>
     
         <!-- Pomodoro/Test, NOTA PARA MARTIN: Este boton podrias usar para poder testear el pomodoro-->
-        <div class="d-flex flex-column justify-content-center align-items-center">
-            <h5>POMODORO</h5>
-            <button 
-              hx-post="{% url 'iniciar_pomodoro' %}"
-              hx-target="#main-content"
-              hx-swap="outerHTML"
-              class = "btn btn-sm pomodoro-btn">
-              ▶ Iniciar Pomodoro
-            </button>
-        </div>
-        <div class="d-flex flex-column justify-content-center align-items-center" style="font-size: 0.85rem;">
-          <h8 class="mb-2">Sesiones</h8>
+      <div id="pomodoroControl" class="d-flex flex-column justify-content-center align-items-center">
 
-          <div class="d-flex align-items-center gap-1">
-            <button 
-            hx-post="{% url 'disminuir_sesiones' %}" 
-            hx-target="#pomodoroControl" 
-            hx-swap="outerHTML" 
-            class="btn btn-sm btn-outline-primary p-1">▼
-          </button>
 
-            <span id="sessionCount" class="mx-1">{{ sesiones_restantes|length }}</span>
+      <div class="d-flex flex-column justify-content-center align-items-center" style="font-size: 0.85rem;">
+        <h8 class="mb-2">Sesiones</h8>
 
-            <button 
-            hx-post="{% url 'aumentar_sesiones' %}" 
-            hx-target="#pomodoroControl" 
-            hx-swap="outerHTML"  
+        <div class="d-flex align-items-center gap-1">
+          <button 
+            id="btnDown"
+            class="btn btn-sm btn-outline-primary p-1">▼</button>
+
+          <span id="sessionCount" class="mx-1">{{ sesiones_restantes|length }}</span>
+
+          <button 
+            id="btnUp"
             class="btn btn-sm btn-outline-primary p-1">▲</button>
-          </div>
-
-          <div id="sessionList" class="mt-1 d-flex gap-1 flex-wrap">
-            {% for s in sesiones_restantes %}
-              <span class="badge bg-secondary py-1 px-2">{{ s }}m</span>
-            {% endfor %}
         </div>
+
+        <div id="sessionList" class="mt-1 d-flex gap-1 flex-wrap">
+          {% for s in sesiones_restantes %}
+            <span class="badge bg-secondary py-1 px-2">{{ s }}m</span>
+          {% endfor %}
+        </div>
+    </div>
+        <script>
+          
+          document.addEventListener("DOMContentLoaded", () => {
+         // Estado inicial (igual que tu lista en Python)
+          let sesionesRestantes = [1, 1];
+
+          const btnUp = document.getElementById("btnUp");
+          const btnDown = document.getElementById("btnDown");
+          const sessionCount = document.getElementById("sessionCount");
+
+          // --- Función para actualizar la vista ---
+          function actualizarVista() {
+            sessionCount.textContent = sesionesRestantes.length;
+            }
+
+          // --- Obtener CSRF token de Django ---
+          function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== "") {
+              const cookies = document.cookie.split(";");
+              for (let cookie of cookies) {
+                cookie = cookie.trim();
+                if (cookie.startsWith(name + "=")) {
+                  cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                  break;
+              }
+            }
+          }
+          return cookieValue;
+        }
+
+        // --- Enviar cambios al servidor ---
+        async function actualizarServidor(url) {
+          try {
+            const response = await fetch(url, {
+              method: "POST",
+              headers: {
+                "X-Requested-With": "XMLHttpRequest",
+                "X-CSRFToken": getCookie("csrftoken"),
+              },
+        });
+        const data = await response.json();
+        sesionesRestantes = data.sesiones;
+        actualizarVista();
+      } catch (error) {
+        console.error("Error al actualizar:", error);
+        }
+      }
+
+      // --- Aumentar sesiones ---
+      btnUp.addEventListener("click", () => {
+        if (sesionesRestantes.length < 4) {
+          sesionesRestantes.push(1); // Añade una sesión (1 min o unidad)
+          actualizarVista();
+          actualizarServidor("{% url 'aumentar_sesiones' %}");
+      } else {
+          alert("⚠️ No es recomendable hacer más de 4 sesiones");
+      }
+    });
+
+      // --- Disminuir sesiones ---
+      btnDown.addEventListener("click", () => {
+        if (sesionesRestantes.length > 1) {
+          sesionesRestantes.pop();
+          actualizarVista();
+          actualizarServidor("{% url 'disminuir_sesiones' %}");
+      } else {
+        alert("Debes tener al menos una sesión.");
+      }
+    });
+    document.body.addEventListener('htmx:configRequest', (event) => {
+      const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
+      event.detail.headers['X-CSRFToken'] = csrfToken;
+  });
+
+  // --- Inicializar ---
+          actualizarVista();
+      });
+
+
+      </script>
 </div>
+<div id="pomodoroContainer" class="text-center">
+  <div id="timerDisplay">00:00</div>
+<button onclick="iniciarPomodoro()"
+class="btn btn-sm pomodoro-btn">
+          ▶ Iniciar Pomodoro
+        </button>
+
+</div>
+<script>
+let sesiones = [1, 1]; // minutos
+let descanso = 1; // minutos
+let indice = 0;
+
+function iniciarPomodoro() {
+  if (indice < sesiones.length) {
+    let duracion = sesiones[indice] * 60; // convertir a segundos
+    temporizador(duracion, "Estudio", () => {
+      temporizador(descanso * 60, "Descanso", () => {
+        indice++;
+        iniciarPomodoro();
+      });
+    });
+  } else {
+    alert("🎉 ¡Ciclo completado!");
+  }
+}
+
+function temporizador(segundos, tipo, callback) {
+  let remaining = segundos;
+  const display = document.getElementById("timerDisplay");
+
+  const interval = setInterval(() => {
+    let min = Math.floor(remaining / 60);
+    let sec = remaining % 60;
+    display.textContent = `${tipo}: ${min}:${sec.toString().padStart(2, "0")}`;
+    remaining--;
+
+    if (remaining < 0) {
+      clearInterval(interval);
+      if (callback) callback();
+    }
+  }, 1000);
+}
+</script>
 <br>
 <br>
 PIWIT Alpha v.1.0.8   1-11-2025 - (C) MMXXV Todos los derechos reservados, PYTHONEROS DEVELOPING TEAM LLC. // U.T.F.S.M Departamento de Informatica<br>

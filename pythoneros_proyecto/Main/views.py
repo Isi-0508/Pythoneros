@@ -9,18 +9,36 @@ from django import forms
 from django.shortcuts import redirect
 from .pomodoro import disminuir_sesiones_1, aumentar_sesiones_1
 from Main.pomodoro import sesiones_restantes 
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
 
+@login_required(login_url='login')
+@csrf_exempt
 def iniciar_pomodoro(request):
-    siguiente_sesion() 
-    return render(request, 'home.html')
+    if request.method == "POST":
+        siguiente_sesion()
+        return JsonResponse({"status": "ok", "mensaje": "Pomodoro iniciado"})
+    return JsonResponse({"error": "Método no permitido"}, status=405)
 
+@login_required(login_url='login')
 def aumentar_sesiones(request):
-    aumentar_sesiones_1(True)
-    return render(request, "sesion_list_partial.html",  {"sesiones_restantes": sesiones_restantes})
+    global sesiones_restantes
+    if len(sesiones_restantes) < 4:
+        sesiones_restantes.append(25)
+    return JsonResponse({
+        "count": len(sesiones_restantes),
+        "sesiones": sesiones_restantes
+    })
 
+@login_required(login_url='login')
 def disminuir_sesiones(request):
-    disminuir_sesiones_1(True)
-    return render(request, "sesion_list_partial.html", {"sesiones_restantes": sesiones_restantes})
+    global sesiones_restantes
+    if len(sesiones_restantes) > 1:
+        sesiones_restantes.pop()
+    return JsonResponse({
+        "count": len(sesiones_restantes),
+        "sesiones": sesiones_restantes
+    })
 
 @login_required(login_url='login')
 def home(request):
