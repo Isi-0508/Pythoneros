@@ -10,11 +10,15 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function f_change_track_audio(link) {
-        console.log("Cambiando a:", link.dataset.track);
-        Audio.src = link.dataset.track;
-        Audio.type = link.dataset.type;
+        const AudioTrack = link.dataset.track;
+
+        Audio.innerHTML = `
+            <source src="/static/sfx/${AudioTrack}.mp3" type="audio/mpeg">
+            <source src="/static/sfx/${AudioTrack}.ogg" type="audio/ogg">
+            <source src="/static/sfx/${AudioTrack}.wav" type="audio/wav">
+            Tu navegador no soporta audio
+        `;
         Audio.load();
-        Audio.play();
     }
 
     function f_volume_slider_audio() {

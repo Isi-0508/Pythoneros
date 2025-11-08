@@ -25,13 +25,36 @@ Piwit - Home
 {% endblock %}
 <div id="page-content">
       <div class="st-home-contenedor st-home-body">
-        <div class="st-home-cuadrante cuadrante1">+</div>
-        <div class="st-home-cuadrante cuadrante2">+</div>
-        <div class="st-home-cuadrante cuadrante3">+</div>
-        <div class="st-home-cuadrante cuadrante4">+</div>
+        <div id="cuadrante1" class="st-home-cuadrante cuadrante1">+
+        </div>
+        <div id="cuadrante2" class="st-home-cuadrante cuadrante2">+
+        </div>
+        <div id="cuadrante3" class="st-home-cuadrante cuadrante3">+
+        </div>
+        <div id="cuadrante4" class="st-home-cuadrante cuadrante4">+
+        </div>
       </div>
-    
-        <!-- Pomodoro/Test, NOTA PARA MARTIN: Este boton podrias usar para poder testear el pomodoro-->
+
+      <!-- Dropdown-->
+      <div id="app-dropdown" class="dropdown-menu">
+        <div
+          class="dropdown-item"
+          data-url="{% url 'pomodoro' %}">Pomodoro
+        </div>
+
+        <div
+          class="dropdown-item"
+          data-url="{% url 'schedule' %}">Horario
+        </div>
+        
+        <div
+          class="dropdown-item"
+          data-url="#">Drive
+        </div> 
+      </div>
+
+
+      <!-- Pomodoro/Test, NOTA PARA MARTIN: Este boton podrias usar para poder testear el pomodoro-->
       <div id="pomodoroControl" class="d-flex flex-column justify-content-center align-items-center">
 
 
@@ -55,23 +78,25 @@ Piwit - Home
             <span class="badge bg-secondary py-1 px-2">{{ s }}m</span>
           {% endfor %}
         </div>
-    </div>
+      </div>
+
+
+
         <script>
-          
           document.addEventListener("DOMContentLoaded", () => {
-         // Estado inicial (igual que tu lista en Python)
+         //Estado inicial
           let sesionesRestantes = [1, 1];
 
           const btnUp = document.getElementById("btnUp");
           const btnDown = document.getElementById("btnDown");
           const sessionCount = document.getElementById("sessionCount");
 
-          // --- Función para actualizar la vista ---
+          //Función para actualizar la vista
           function actualizarVista() {
             sessionCount.textContent = sesionesRestantes.length;
             }
 
-          // --- Obtener CSRF token de Django ---
+          //Obtener CSRF token de Django
           function getCookie(name) {
             let cookieValue = null;
             if (document.cookie && document.cookie !== "") {
@@ -87,7 +112,7 @@ Piwit - Home
           return cookieValue;
         }
 
-        // --- Enviar cambios al servidor ---
+        //Enviar cambios al servidor
         async function actualizarServidor(url) {
           try {
             const response = await fetch(url, {
@@ -105,7 +130,7 @@ Piwit - Home
         }
       }
 
-      // --- Aumentar sesiones ---
+      //Aumentar sesiones
       btnUp.addEventListener("click", () => {
         if (sesionesRestantes.length < 4) {
           sesionesRestantes.push(1); // Añade una sesión (1 min o unidad)
@@ -116,7 +141,7 @@ Piwit - Home
       }
     });
 
-      // --- Disminuir sesiones ---
+      //Disminuir sesiones
       btnDown.addEventListener("click", () => {
         if (sesionesRestantes.length > 1) {
           sesionesRestantes.pop();
@@ -131,12 +156,13 @@ Piwit - Home
       event.detail.headers['X-CSRFToken'] = csrfToken;
   });
 
-  // --- Inicializar ---
+  //Inicializar
           actualizarVista();
       });
-
-
       </script>
+
+
+
 </div>
 <div id="pomodoroContainer" class="text-center">
   <div id="timerDisplay">00:00</div>
@@ -146,6 +172,9 @@ class="btn btn-sm pomodoro-btn">
         </button>
 
 </div>
+
+
+
 <script>
 let sesiones = [1, 1]; // minutos
 let descanso = 1; // minutos
@@ -182,9 +211,13 @@ function temporizador(segundos, tipo, callback) {
   }, 1000);
 }
 </script>
+
+<script src="{% static 'js/dropdowniframe.js' %}"></script> <!--SCRIPT PARA IFRAMES-->
+
+
 <br>
 <br>
-PIWIT Alpha v.1.0.8   1-11-2025 - (C) MMXXV Todos los derechos reservados, PYTHONEROS DEVELOPING TEAM LLC. // U.T.F.S.M Departamento de Informatica<br>
+PIWIT Alpha v.1.1.0   7-11-2025 - (C) MMXXV Todos los derechos reservados, PYTHONEROS DEVELOPING TEAM LLC. // U.T.F.S.M Departamento de Informatica<br>
 REDISTRIBUTION FORBIDDEN<br>
 </div>
 {% endblock %}
