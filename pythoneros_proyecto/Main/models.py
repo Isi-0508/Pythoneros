@@ -10,7 +10,7 @@ class schedule(models.Model):
     task_name = models.CharField(max_length=100) #Texto corto
     task_desc = models.TextField(blank=True, null=True)
     completed = models.BooleanField(default=False)#Bool V/F
-    colorpreference = models.TextField(default=AAAAAA)
+    colorpreference = models.TextField(default="tema-a", max_length=6)
     
     #Time
     day = models.CharField(
