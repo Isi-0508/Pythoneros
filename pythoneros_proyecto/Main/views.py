@@ -50,27 +50,65 @@ def home(request):
 def about(request):
     return render(request, "about.html")
 
-# PENDIENTE
-@xframe_options_exempt
 @login_required(login_url='login')
-def schedule(request):
-    '''
+@xframe_options_exempt
+def journal(request):
     user = request.user
-    blocks = schedule.objects.filter(user=user).order_by('day', 'hour', 'half')
 
-    schedule_table ={}
+    #RECIBE DATOS
+    if request.method == "POST":
+        for key, value in request.POST.items():
+            if "-" not in key:
+                continue
+            day, time = key.split("-")
+            hour = time[:5]
+            half = (time.endswith("30"))
 
-    for block in blocks:
-        segment = "b" if block.half else "a"
-        hour_key = f"{block.hour}_{segment}"
+            value = value.strip()
+            if value == "":
+                schedule.objects.filter(user=user, day=day, hour=hour, half=half).delete()
 
-        if block.day not in schedule_table:
-            schedule_table[block.day] = {}
+            else:
+                schedule.objects.update_or_create(
+                    user=user,
+                    day=day,
+                    hour=hour,
+                    half=half,
+                    defaults={"task_name": value}
+                )
+        return redirect ("journal")
 
-        schedule_table[block.day][hour_key] = block
-    '''
-    return render(request, "schedule.html")
+    #MUESTRA EL HORARIO
+    blocks = schedule.objects.filter(user=user)
+    schedule_table = []
+    days = ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"]
 
+    for hour in range(24):
+        for half in [False, True]:
+            # Se elige la hora, --:00 para false y --:30 para true
+            display_time = f"{hour:02d}:00" if not half else f"{hour:02d}:30"
+
+            # El primer elemento de la fila sera la hora
+            row = {"time": display_time}
+
+            for day in days:
+                block = blocks.filter(
+                    day=day,
+                    hour=f"{hour:02d}:00",  # <-- FIJO ASÍ
+                    half=half
+                ).first()
+
+                row[day] = block.task_name if block else ""
+
+            schedule_table.append(row)
+
+    return render(request, "schedule.html", {"schedule_table": schedule_table})
+
+@login_required(login_url='login')
+@xframe_options_exempt
+def timer(request):
+    return render(request, 'timer.html')
+    
 def cuadrantes_view(request):
     return render(request, 'home.html')
 

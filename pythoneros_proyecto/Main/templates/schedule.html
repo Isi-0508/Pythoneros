@@ -1,23 +1,44 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/journal.css' %}">
     <!--TITULO-->
-    <title>{% block title %} {% endblock title %}</title>
+    <title>{% block title %} Horario {% endblock title %}</title>
 </head>
 
 <body>
-    <table width="100%">
-        <tr>
-            <th>HORA</th>
-            <th>Lunes</th>
-            <th>Martes</th>
-            <th>Miercoles</th>
-            <th>Jueves</th>
-            <th>Viernes</th>
-        </tr>
-        <tr>
-    </table>
+    <form method="POST">
+        {% csrf_token %}
+        <table width="100%">
+            <tr>
+                <th class="st-journal-header">HORA</th>
+                <th class="st-journal-header">Lunes</th>
+                <th class="st-journal-header">Martes</th>
+                <th class="st-journal-header">Miércoles</th>
+                <th class="st-journal-header">Jueves</th>
+                <th class="st-journal-header">Viernes</th>
+                <th class="st-journal-header">Sabado</th>
+                <th class="st-journal-header">Domingo</th>
+            </tr>
+
+            {% for row in schedule_table %}
+            <tr>
+                <th>{{ row.time }}</th>
+                <th><input type="text" name="MON-{{ row.time }}" value="{{ row.MON }}" class="st-journal-input"></th>
+                <th><input type="text" name="TUE-{{ row.time }}" value="{{ row.TUE }}" class="st-journal-input"></th>
+                <th><input type="text" name="WED-{{ row.time }}" value="{{ row.WED }}" class="st-journal-input"></th>
+                <th><input type="text" name="THU-{{ row.time }}" value="{{ row.THU }}" class="st-journal-input"></th>
+                <th><input type="text" name="FRI-{{ row.time }}" value="{{ row.FRI }}" class="st-journal-input"></th>
+                <th><input type="text" name="SAT-{{ row.time }}" value="{{ row.SAT }}" class="st-journal-input"></th>
+                <th><input type="text" name="SUN-{{ row.time }}" value="{{ row.SUN }}" class="st-journal-input"></th>
+            </tr>
+            {% endfor %}
+
+        </table>
+        <button type="submit" class="btn btn-primary w-100">Guardar cambios</button>
+    </form>
 </body>
 </html>

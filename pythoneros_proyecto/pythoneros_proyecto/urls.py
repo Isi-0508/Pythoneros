@@ -27,11 +27,12 @@ urlpatterns = [
 
     #MAIN
     path('home/', Main_views.home, name='home'),
-    path('schedule/', Main_views.schedule, name='schedule'), #PROVISORIO
+    path('journal/', Main_views.journal, name='journal'),
+    path('timer/', Main_views.timer, name='timer'),
     path('pomodoro/', Main_views.iniciar_pomodoro, name='pomodoro'), #PROVISORIO
-    path('cuadrantes/', Main_views.cuadrantes_view, name='cuadrantes'),
-    path('pomodoro/aumentar/', Main_views.aumentar_sesiones, name='aumentar_sesiones'),
-    path('pomodoro/disminuir/', Main_views.disminuir_sesiones, name='disminuir_sesiones'),
+    path('cuadrantes/', Main_views.cuadrantes_view, name='cuadrantes'),#PROVISORIO
+    path('pomodoro/aumentar/', Main_views.aumentar_sesiones, name='aumentar_sesiones'),#PROVISORIO
+    path('pomodoro/disminuir/', Main_views.disminuir_sesiones, name='disminuir_sesiones'),#PROVISORIO
 
 
     #USERS
