@@ -170,12 +170,12 @@ body {
 /* TEMA 1  */
 .tema-1 body, 
 .tema-1 {
-  background-color: #d5cefa;
+  background-color: #fcfecf;
   color: black;
 }
   /*BARRA DE NAVEGACION*/
 .tema-1 .navbar {
-  background-color: #beb6e8!important; 
+  background-color: #d5cefa!important; 
 }
 .tema-1 .navbar .nav-link,
 .tema-1 .navbar .dropdown-toggle,

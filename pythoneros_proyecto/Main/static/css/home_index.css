@@ -153,12 +153,12 @@ Ejemplo: "st-homeidx-body", "st-about-body", "st-about-title"*/
 /* TEMA 1  */
 .tema-1 body, 
 .tema-1 {
-  background-color: #d5cefa;
+  background-color: #fcfecf;
   color: black;
 }
   /*BARRA DE NAVEGACION*/
 .tema-1 .navbar {
-  background-color: #beb6e8!important; 
+  background-color: #d5cefa!important; 
 }
 .tema-1 .navbar .nav-link,
 .tema-1 .navbar .dropdown-toggle,
@@ -174,17 +174,17 @@ Ejemplo: "st-homeidx-body", "st-about-body", "st-about-title"*/
 }
 
   /*CUADRANTES*/
-.tema-1 .cuadrante1 { background-color: #fcfecf; color: black}
+.tema-1 .cuadrante1 { background-color: #d5cefa; color: black}
 .tema-1 .cuadrante2 { background-color: #b5d9fd; color: black}
 .tema-1 .cuadrante3 { background-color: #b5d9fd; color: black}
-.tema-1 .cuadrante4 { background-color: #fcfecf; color: black}
+.tema-1 .cuadrante4 { background-color: #d5cefa; color: black}
 
 
 
 /* TEMA 2  */
 .tema-2 body,
 .tema-2 {
-  background-color: #beb6e8;
+  background-color: #e5e0ff;
   color: black;
 }
 
@@ -216,7 +216,7 @@ Ejemplo: "st-homeidx-body", "st-about-body", "st-about-title"*/
 /* TEMA 3  */
 .tema-3 body,
 .tema-3 {
-  background-color: #b5d9fd;
+  background-color: #fcfecf;
   color: black;
 }
 
@@ -224,7 +224,7 @@ Ejemplo: "st-homeidx-body", "st-about-body", "st-about-title"*/
   /*AJUSTAR MAS TARDE, SE RETIRARAN LA REESCRITURA DE BOOTSTRAPS*/
   /*BARRA DE NAVEGACION*/
 .tema-3 .navbar {
-  background-color: #b5d9fd !important;
+  background-color: #d5cefa !important;
 }
 .tema-3 .navbar .nav-link,
 .tema-3 .navbar .dropdown-toggle,
@@ -240,17 +240,17 @@ Ejemplo: "st-homeidx-body", "st-about-body", "st-about-title"*/
 }
 
 
-.tema-3 .cuadrante1 { background-color: #fcfecf; color: black}
-.tema-3 .cuadrante2 { background-color: #beb6e8; color: black}
-.tema-3 .cuadrante3 { background-color: #beb6e8; color: black}
-.tema-3 .cuadrante4 { background-color: #fcfecf; color: black}
+.tema-3 .cuadrante1 { background-color: #beb6e8; color: black}
+.tema-3 .cuadrante2 { background-color: #e5e0ff; color: black}
+.tema-3 .cuadrante3 { background-color: #e5e0ff; color: black}
+.tema-3 .cuadrante4 { background-color: #beb6e8; color: black}
 
 
 
 /* TEMA 4  */
 .tema-4 body,
 .tema-4 {
-  background-color: white;
+  background-color: #fcfecf;
   color: black;
 }
 
@@ -271,10 +271,10 @@ Ejemplo: "st-homeidx-body", "st-about-body", "st-about-title"*/
   color: #000 !important;
 }
 
-.tema-4 .cuadrante1 { background-color: #fcfecf; color: black}
+.tema-4 .cuadrante1 { background-color: #aac9e8; color: black}
 .tema-4 .cuadrante2 { background-color: #b5d9fd; color: black}
 .tema-4 .cuadrante3 { background-color: #b5d9fd; color: black}
-.tema-4 .cuadrante4 { background-color: #fcfecf; color: black}
+.tema-4 .cuadrante4 { background-color: #aac9e8; color: black}
 
 .dropdown .btn-outline-light,
 .dropdown .btn-outline-light:hover,
