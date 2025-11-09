@@ -1,3 +1,11 @@
+/*Voy a poner este mensaje aqui, en caso de usar los css, NO REESCRIBIR CLASES HECHAS POR CSS POR QUE GENERAN BUGS*/
+/*Preocuparse de no escribir 2 clases con el mismo nombre, siempre tener un nombre distinto para cada cosa. Por eso, aca va una
+una nomenclatura para las clases que se programan: "st-(nombre de html que se aplicara, en caso de ser un index, colocar al final idx)-parte del html"
+Ejemplo: "st-homeidx-body", "st-about-body", "st-about-title"*/
+
+/*TODAVIA ESTA PENDIENTE TENER DISTINTO ESTILO DE LETRA PARA CADA COSA*/
+
+/* TIPO DE LETRA */
 @font-face {
 	font-family: 'Sansita';
 	src: url('fonts/Sansita/Sansita-Light.eot');
@@ -119,24 +127,64 @@
 	font-weight: 900;
 }
 
-
-
-.st-journal-header{
-    font-size: 12px;
-    font-family: 'Sansita';
-    font-style: 'normal';
-    font-weight: 900;
+.st-about-title{
+	font-family: 'Sansita';
+	font-style: 'normal';
+	font-size: 50px;
+	font-weight: 900;
 }
 
-.st-journal-input{
-    font-size: 12px;
-    font-family: 'Sansita';
-    font-style: 'normal';
-    font-weight: 300;
-    outline: none;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    padding: 8px 12px;
-    transition: border 0.2s ease, box-shadow 0.2s ease;
+.st-about-creditsheader{
+	font-family: 'Sansita';
+	font-style: 'normal';
+	font-size: 25px;
+	font-weight: 500;
+}
+
+.st-about-creditstext{
+	font-family: 'Sansita';
+	font-style: 'normal';
+	font-size: 25px;
+	font-weight: 300;
+}
+
+.st-about-bgdelete{
+    border: none;
     background-color: transparent !important;
+    box-shadow: none;
+    outline: none;
+}
+
+.st-about-cuadrante1 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 500px;
+    height: 400px;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    overflow: hidden;
+    position: relative;
+    background-color: white;
+    margin: 0 auto;
+}
+
+.st-about-cuadrante2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 800px;
+    height: 2500px; 
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    overflow: hidden;
+    position: relative;
+    background-color: white;
+    margin: 0 auto;
 }

@@ -52,9 +52,9 @@ Ejemplo: "st-homeidx-body", "st-about-body", "st-about-title"*/
 
 /* menú global colocado en <body> */
 .st-app-dropdown {
-  position: absolute;      /* posicionado en la página */
-  display: none;           /* oculto por defecto */
-  z-index: 3000;           /* encima de todo */
+  position: absolute;      
+  display: none;           
+  z-index: 3000;           
   min-width: 200px;
   background: #fff;
   border: 1px solid rgba(0,0,0,.12);

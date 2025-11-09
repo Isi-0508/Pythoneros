@@ -8,7 +8,11 @@
     <!--TITULO-->
     <title>{% block title %} Horario {% endblock title %}</title>
 </head>
-
+<style>
+    body {
+        background-color: transparent !important;
+    }
+</style>
 <body>
     <form method="POST">
         {% csrf_token %}
@@ -26,7 +30,7 @@
 
             {% for row in schedule_table %}
             <tr>
-                <th>{{ row.time }}</th>
+                <th><a class="st-journal-input">{{ row.time }}</a></th>
                 <th><input type="text" name="MON-{{ row.time }}" value="{{ row.MON }}" class="st-journal-input"></th>
                 <th><input type="text" name="TUE-{{ row.time }}" value="{{ row.TUE }}" class="st-journal-input"></th>
                 <th><input type="text" name="WED-{{ row.time }}" value="{{ row.WED }}" class="st-journal-input"></th>
@@ -38,7 +42,7 @@
             {% endfor %}
 
         </table>
-        <button type="submit" class="btn btn-primary w-100">Guardar cambios</button>
+        <button type="submit">Guardar cambios</button>
     </form>
 </body>
 </html>
