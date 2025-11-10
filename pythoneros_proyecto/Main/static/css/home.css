@@ -91,6 +91,7 @@ Ejemplo: "st-homeidx-body", "st-about-body", "st-about-title"*/
   100% { transform: scale(1); opacity: 1; }
 }
 /* Animación al cargar la página */
+
 @keyframes fadeIn {
   to {
     opacity: 1;

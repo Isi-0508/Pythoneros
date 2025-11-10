@@ -16,6 +16,7 @@
 <body>
     <form method="POST">
         {% csrf_token %}
+        <div class="st-journal-animation">
         <table width="100%">
             <tr>
                 <th class="st-journal-header">HORA</th>
@@ -40,8 +41,8 @@
                 <th><input type="text" name="SUN-{{ row.time }}" value="{{ row.SUN }}" class="st-journal-input"></th>
             </tr>
             {% endfor %}
-
         </table>
+        </div>
         <button type="submit">Guardar cambios</button>
     </form>
 </body>

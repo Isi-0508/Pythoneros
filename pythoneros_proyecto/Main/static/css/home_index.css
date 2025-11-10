@@ -8,121 +8,121 @@ Ejemplo: "st-homeidx-body", "st-about-body", "st-about-title"*/
 /* TIPO DE LETRA */
 @font-face {
 	font-family: 'Sansita';
-	src: url('fonts/Sansita/Sansita-Light.eot');
-	src: url('fonts/Sansita/Sansita-Light.eot?#iefix') format('embedded-opentype'),
-		 url('fonts/Sansita/Sansita-Light.woff2') format('woff2'),
-		 url('fonts/Sansita/Sansita-Light.woff') format('woff'),
-		 url('fonts/Sansita/Sansita-Light.ttf') format('truetype');
+	src: url('static/fonts/Sansita/Sansita-Light.eot');
+	src: url('static/fonts/Sansita/Sansita-Light.eot?#iefix') format('embedded-opentype'),
+		 url('static/fonts/Sansita/Sansita-Light.woff2') format('woff2'),
+		 url('static/fonts/Sansita/Sansita-Light.woff') format('woff'),
+		 url('static/fonts/Sansita/Sansita-Light.ttf') format('truetype');
 	font-style: normal;
 	font-weight: 300;
 }
 @font-face {
 	font-family: 'Sansita';
-	src: url('fonts/Sansita/Sansita-LightItalic.eot');
-	src: url('fonts/Sansita/Sansita-LightItalic.eot?#iefix') format('embedded-opentype'),
-		 url('fonts/Sansita/Sansita-LightItalic.woff2') format('woff2'),
-		 url('fonts/Sansita/Sansita-LightItalic.woff') format('woff'),
-		 url('fonts/Sansita/Sansita-LightItalic.ttf') format('truetype');
+	src: url('static/fonts/Sansita/Sansita-LightItalic.eot');
+	src: url('static/fonts/Sansita/Sansita-LightItalic.eot?#iefix') format('embedded-opentype'),
+		 url('static/fonts/Sansita/Sansita-LightItalic.woff2') format('woff2'),
+		 url('static/fonts/Sansita/Sansita-LightItalic.woff') format('woff'),
+		 url('static/fonts/Sansita/Sansita-LightItalic.ttf') format('truetype');
 	font-style: italic;
 	font-weight: 300;
 }
 @font-face {
 	font-family: 'Sansita';
-	src: url('fonts/Sansita/Sansita-Regular.eot');
-	src: url('fonts/Sansita/Sansita-Regular.eot?#iefix') format('embedded-opentype'),
-		 url('fonts/Sansita/Sansita-Regular.woff2') format('woff2'),
-		 url('fonts/Sansita/Sansita-Regular.woff') format('woff'),
-		 url('fonts/Sansita/Sansita-Regular.ttf') format('truetype');
+	src: url('static/fonts/Sansita/Sansita-Regular.eot');
+	src: url('static/fonts/Sansita/Sansita-Regular.eot?#iefix') format('embedded-opentype'),
+		 url('static/fonts/Sansita/Sansita-Regular.woff2') format('woff2'),
+		 url('static/fonts/Sansita/Sansita-Regular.woff') format('woff'),
+		 url('static/fonts/Sansita/Sansita-Regular.ttf') format('truetype');
 	font-style: normal;
 	font-weight: 400;
 }
 @font-face {
 	font-family: 'Sansita';
-	src: url('fonts/Sansita/Sansita-Italic.eot');
-	src: url('fonts/Sansita/Sansita-Italic.eot?#iefix') format('embedded-opentype'),
-		 url('fonts/Sansita/Sansita-Italic.woff2') format('woff2'),
-		 url('fonts/Sansita/Sansita-Italic.woff') format('woff'),
-		 url('fonts/Sansita/Sansita-Italic.ttf') format('truetype');
+	src: url('static/fonts/Sansita/Sansita-Italic.eot');
+	src: url('static/fonts/Sansita/Sansita-Italic.eot?#iefix') format('embedded-opentype'),
+		 url('static/fonts/Sansita/Sansita-Italic.woff2') format('woff2'),
+		 url('static/fonts/Sansita/Sansita-Italic.woff') format('woff'),
+		 url('static/fonts/Sansita/Sansita-Italic.ttf') format('truetype');
 	font-style: italic;
 	font-weight: 400;
 }
 @font-face {
 	font-family: 'Sansita';
-	src: url('fonts/Sansita/Sansita-Medium.eot');
-	src: url('fonts/Sansita/Sansita-Medium.eot?#iefix') format('embedded-opentype'),
-		 url('fonts/Sansita/Sansita-Medium.woff2') format('woff2'),
-		 url('fonts/Sansita/Sansita-Medium.woff') format('woff'),
-		 url('fonts/Sansita/Sansita-Medium.ttf') format('truetype');
+	src: url('static/fonts/Sansita/Sansita-Medium.eot');
+	src: url('static/fonts/Sansita/Sansita-Medium.eot?#iefix') format('embedded-opentype'),
+		 url('static/fonts/Sansita/Sansita-Medium.woff2') format('woff2'),
+		 url('static/fonts/Sansita/Sansita-Medium.woff') format('woff'),
+		 url('static/fonts/Sansita/Sansita-Medium.ttf') format('truetype');
 	font-style: normal;
 	font-weight: 500;
 }
 @font-face {
 	font-family: 'Sansita';
-	src: url('fonts/Sansita/Sansita-MediumItalic.eot');
-	src: url('fonts/Sansita/Sansita-MediumItalic.eot?#iefix') format('embedded-opentype'),
-		 url('fonts/Sansita/Sansita-MediumItalic.woff2') format('woff2'),
-		 url('fonts/Sansita/Sansita-MediumItalic.woff') format('woff'),
-		 url('fonts/Sansita/Sansita-MediumItalic.ttf') format('truetype');
+	src: url('static/fonts/Sansita/Sansita-MediumItalic.eot');
+	src: url('static/fonts/Sansita/Sansita-MediumItalic.eot?#iefix') format('embedded-opentype'),
+		 url('static/fonts/Sansita/Sansita-MediumItalic.woff2') format('woff2'),
+		 url('static/fonts/Sansita/Sansita-MediumItalic.woff') format('woff'),
+		 url('static/fonts/Sansita/Sansita-MediumItalic.ttf') format('truetype');
 	font-style: italic;
 	font-weight: 500;
 }
 @font-face {
 	font-family: 'Sansita';
-	src: url('fonts/Sansita/Sansita-Bold.eot');
-	src: url('fonts/Sansita/Sansita-Bold.eot?#iefix') format('embedded-opentype'),
-		 url('fonts/Sansita/Sansita-Bold.woff2') format('woff2'),
-		 url('fonts/Sansita/Sansita-Bold.woff') format('woff'),
-		 url('fonts/Sansita/Sansita-Bold.ttf') format('truetype');
+	src: url('static/fonts/Sansita/Sansita-Bold.eot');
+	src: url('static/fonts/Sansita/Sansita-Bold.eot?#iefix') format('embedded-opentype'),
+		 url('static/fonts/Sansita/Sansita-Bold.woff2') format('woff2'),
+		 url('static/fonts/Sansita/Sansita-Bold.woff') format('woff'),
+		 url('static/fonts/Sansita/Sansita-Bold.ttf') format('truetype');
 	font-style: normal;
 	font-weight: 700;
 }
 @font-face {
 	font-family: 'Sansita';
-	src: url('fonts/Sansita/Sansita-BoldItalic.eot');
-	src: url('fonts/Sansita/Sansita-BoldItalic.eot?#iefix') format('embedded-opentype'),
-		 url('fonts/Sansita/Sansita-BoldItalic.woff2') format('woff2'),
-		 url('fonts/Sansita/Sansita-BoldItalic.woff') format('woff'),
-		 url('fonts/Sansita/Sansita-BoldItalic.ttf') format('truetype');
+	src: url('static/fonts/Sansita/Sansita-BoldItalic.eot');
+	src: url('static/fonts/Sansita/Sansita-BoldItalic.eot?#iefix') format('embedded-opentype'),
+		 url('static/fonts/Sansita/Sansita-BoldItalic.woff2') format('woff2'),
+		 url('static/fonts/Sansita/Sansita-BoldItalic.woff') format('woff'),
+		 url('static/fonts/Sansita/Sansita-BoldItalic.ttf') format('truetype');
 	font-style: italic;
 	font-weight: 700;
 }
 @font-face {
 	font-family: 'Sansita';
-	src: url('fonts/Sansita/Sansita-ExtraBold.eot');
-	src: url('fonts/Sansita/Sansita-ExtraBold.eot?#iefix') format('embedded-opentype'),
-		 url('fonts/Sansita/Sansita-ExtraBold.woff2') format('woff2'),
-		 url('fonts/Sansita/Sansita-ExtraBold.woff') format('woff'),
-		 url('fonts/Sansita/Sansita-ExtraBold.ttf') format('truetype');
+	src: url('static/fonts/Sansita/Sansita-ExtraBold.eot');
+	src: url('static/fonts/Sansita/Sansita-ExtraBold.eot?#iefix') format('embedded-opentype'),
+		 url('static/fonts/Sansita/Sansita-ExtraBold.woff2') format('woff2'),
+		 url('static/fonts/Sansita/Sansita-ExtraBold.woff') format('woff'),
+		 url('static/fonts/Sansita/Sansita-ExtraBold.ttf') format('truetype');
 	font-style: normal;
 	font-weight: 800;
 }
 @font-face {
 	font-family: 'Sansita';
-	src: url('fonts/Sansita/Sansita-ExtraBoldItalic.eot');
-	src: url('fonts/Sansita/Sansita-ExtraBoldItalic.eot?#iefix') format('embedded-opentype'),
-		 url('fonts/Sansita/Sansita-ExtraBoldItalic.woff2') format('woff2'),
-		 url('fonts/Sansita/Sansita-ExtraBoldItalic.woff') format('woff'),
-		 url('fonts/Sansita/Sansita-ExtraBoldItalic.ttf') format('truetype');
+	src: url('static/fonts/Sansita/Sansita-ExtraBoldItalic.eot');
+	src: url('static/fonts/Sansita/Sansita-ExtraBoldItalic.eot?#iefix') format('embedded-opentype'),
+		 url('static/fonts/Sansita/Sansita-ExtraBoldItalic.woff2') format('woff2'),
+		 url('static/fonts/Sansita/Sansita-ExtraBoldItalic.woff') format('woff'),
+		 url('static/fonts/Sansita/Sansita-ExtraBoldItalic.ttf') format('truetype');
 	font-style: italic;
 	font-weight: 800;
 }
 @font-face {
 	font-family: 'Sansita';
-	src: url('fonts/Sansita/Sansita-Black.eot');
-	src: url('fonts/Sansita/Sansita-Black.eot?#iefix') format('embedded-opentype'),
-		 url('fonts/Sansita/Sansita-Black.woff2') format('woff2'),
-		 url('fonts/Sansita/Sansita-Black.woff') format('woff'),
-		 url('fonts/Sansita/Sansita-Black.ttf') format('truetype');
+	src: url('static/fonts/Sansita/Sansita-Black.eot');
+	src: url('static/fonts/Sansita/Sansita-Black.eot?#iefix') format('embedded-opentype'),
+		 url('static/fonts/Sansita/Sansita-Black.woff2') format('woff2'),
+		 url('static/fonts/Sansita/Sansita-Black.woff') format('woff'),
+		 url('static/fonts/Sansita/Sansita-Black.ttf') format('truetype');
 	font-style: normal;
 	font-weight: 900;
 }
 @font-face {
 	font-family: 'Sansita';
-	src: url('fonts/Sansita/Sansita-BlackItalic.eot');
-	src: url('fonts/Sansita/Sansita-BlackItalic.eot?#iefix') format('embedded-opentype'),
-		 url('fonts/Sansita/Sansita-BlackItalic.woff2') format('woff2'),
-		 url('fonts/Sansita/Sansita-BlackItalic.woff') format('woff'),
-		 url('fonts/Sansita/Sansita-BlackItalic.ttf') format('truetype');
+	src: url('static/fonts/Sansita/Sansita-BlackItalic.eot');
+	src: url('static/fonts/Sansita/Sansita-BlackItalic.eot?#iefix') format('embedded-opentype'),
+		 url('static/fonts/Sansita/Sansita-BlackItalic.woff2') format('woff2'),
+		 url('static/fonts/Sansita/Sansita-BlackItalic.woff') format('woff'),
+		 url('static/fonts/Sansita/Sansita-BlackItalic.ttf') format('truetype');
 	font-style: italic;
 	font-weight: 900;
 }
@@ -286,6 +286,12 @@ Ejemplo: "st-homeidx-body", "st-about-body", "st-about-title"*/
   box-shadow: none !important;
   color: white !important;
 }
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
 
 
 

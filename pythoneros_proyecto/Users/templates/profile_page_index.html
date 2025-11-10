@@ -8,7 +8,18 @@ Piwit - Perfil
 
 {% block content %}
 <div id="page-content">
-  <div class="container my-3">
+  <style>
+  .st-about-bodyanimation{
+  	animation: fadeIn 0.8s ease forwards;
+  	transition: background-color 0.6s ease, color 0.6s ease;
+  }
+
+  @keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+  }
+  </style>
+  <div class="container my-3 st-about-bodyanimation">
     <div class="row">
       <div class="col-md-12">
         <div class="card border rounded-10 shadow p-8 mb-3 text-center">

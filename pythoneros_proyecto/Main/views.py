@@ -94,9 +94,10 @@ def journal(request):
             for day in days:
                 block = blocks.filter(
                     day=day,
-                    hour=f"{hour:02d}:00",  # <-- FIJO ASÍ
+                    hour=display_time,
                     half=half
                 ).first()
+
 
                 row[day] = block.task_name if block else ""
 

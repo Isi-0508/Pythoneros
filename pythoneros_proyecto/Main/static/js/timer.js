@@ -164,18 +164,24 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 1000);
   }
 
-  // Botón iniciar/pausar
   const btnStart = document.querySelector(".pomodoro-btn");
   btnStart.addEventListener("click", () => {
-    if (pausado) {
-      pausado = false;
-      iniciarTemporizador(remaining, enDescanso ? "Descanso" : "Estudio");
-    } else if (interval) {
-      clearInterval(interval);
-      pausado = true;
-      guardarEstado();
-    } else {
-      iniciarPomodoro();
-    }
+    iniciarPomodoro();
   });
 });
+
+  // Botón iniciar/pausar
+  //const btnStart = document.querySelector(".pomodoro-btn");
+  //btnStart.addEventListener("click", () => {
+  //  if (pausado) {
+  //    pausado = false;
+  //    iniciarTemporizador(remaining, enDescanso ? "Descanso" : "Estudio");
+  //  } else if (interval) {
+  //    clearInterval(interval);
+  //    pausado = true;
+  //    guardarEstado();
+  //  } else {
+  //    iniciarPomodoro();
+  //  }
+  //});
+  //});

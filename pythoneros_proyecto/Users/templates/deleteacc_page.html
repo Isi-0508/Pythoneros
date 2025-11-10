@@ -17,15 +17,25 @@ Piwit - Eliminación de Usuario
             {% endfor %}
         </ul>
     {% endif %}
+    <style>
+        .st-deleteacc-bodyanimation{
+            animation: fadeIn 0.8s ease forwards;
+            transition: background-color 0.6s ease, color 0.6s ease;
+        }
 
-    <div class="d-flex flex-column justify-content-center align-items-center">
+        @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+        }
+    </style>
+    <div class="d-flex flex-column justify-content-center align-items-center st-deleteacc-bodyanimation">
     Usted esta a punto de eliminar su cuenta de forma permanente y defintiva, todos sus datos se perderan.<br> 
     ¿Esta seguro que desea continuar?<br>
     </div>
 
     <br> 
 
-    <div class="d-flex flex-column justify-content-center align-items-center">
+    <div class="d-flex flex-column justify-content-center align-items-center st-deleteacc-bodyanimation">
         <form method="POST" action ="{%url 'deleteacc' %}">
             {% csrf_token %}
         <!--Input de contraseña-->
