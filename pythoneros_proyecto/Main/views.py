@@ -109,7 +109,11 @@ def journal(request):
 @xframe_options_exempt
 def timer(request):
     return render(request, 'timer.html')
-    
+
+@login_required(login_url='login')
+@xframe_options_exempt
+def drive(request):
+    return render(request, 'ventdrive.html')
 def cuadrantes_view(request):
     return render(request, 'home.html')
 

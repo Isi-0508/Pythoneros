@@ -33,6 +33,7 @@ urlpatterns = [
     path('cuadrantes/', Main_views.cuadrantes_view, name='cuadrantes'),#PROVISORIO
     path('pomodoro/aumentar/', Main_views.aumentar_sesiones, name='aumentar_sesiones'),#PROVISORIO
     path('pomodoro/disminuir/', Main_views.disminuir_sesiones, name='disminuir_sesiones'),#PROVISORIO
+    path('drive', Main_views.drive, name='drive'),
 
 
     #USERS
