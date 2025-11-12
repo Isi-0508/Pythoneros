@@ -52,6 +52,11 @@ def about(request):
 
 @login_required(login_url='login')
 @xframe_options_exempt
+def notes(request):
+    return render(request, 'notes.html')
+
+@login_required(login_url='login')
+@xframe_options_exempt
 def journal(request):
     user = request.user
 
@@ -114,6 +119,7 @@ def timer(request):
 @xframe_options_exempt
 def drive(request):
     return render(request, 'ventdrive.html')
+
 def cuadrantes_view(request):
     return render(request, 'home.html')
 

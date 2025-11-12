@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/notes.css' %}">
+    <!--TITULO-->
+    <title>{% block title %} Horario {% endblock title %}</title>
+</head>
+<style>
+    body {
+        background-color: transparent !important;
+    }
+</style>
+<body>
+    <form method="POST">
+        {% csrf_token %}
+        <div>
+            <input type="text" name="SUN-{{ row.time }}" value="{{ row.SUN }}" class="st-journal-input"></th>
+        </div>
+        <button type="submit">Guardar cambios</button>
+    </form>
+</body>
+</html>

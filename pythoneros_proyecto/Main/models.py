@@ -33,3 +33,14 @@ class schedule(models.Model):
         #segment = "a" if not self.half else "b"
         #return f"{self.user.username} - {self.day} {self.hour}{segment}: {self.trask_name[:15]}"
         return self.task_name
+
+'''
+class notes(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="user_notes") #Asociar a un usuario
+    notes = models.CharField(max_length=500) #Texto corto
+
+    def __str__(self):
+        #segment = "a" if not self.half else "b"
+        #return f"{self.user.username} - {self.day} {self.hour}{segment}: {self.trask_name[:15]}"
+        return self.notes
+'''
