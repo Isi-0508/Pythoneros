@@ -23,7 +23,7 @@ Piwit - Perfil
     <div class="row">
       <div class="col-md-12">
         <div class="card border rounded-10 shadow p-8 mb-3 text-center">
-          <img class="img-thumbnail rounded-circle mb-3 mx-auto" src="{{ user.profile.image.url }}" alt="Imagen de Perfil" style="width: 100px;">
+          <img class="img-thumbnail rounded-circle mb-3 mx-auto" src="{% static 'images/Pythoneros_pfp2_proj_final.png' %}" alt="Imagen de Perfil" style="width: 100px;">
           <h2>{{ user.username }}</h2>
           <p><strong>Nombre de usuario:</strong> {{ user.username }}</p>
           <p><strong>Correo Electrónico:</strong> {{ user.email }}</p>
