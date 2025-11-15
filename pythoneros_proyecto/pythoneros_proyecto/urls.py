@@ -34,8 +34,7 @@ urlpatterns = [
     path('pomodoro/aumentar/', Main_views.aumentar_sesiones, name='aumentar_sesiones'),#PROVISORIO
     path('pomodoro/disminuir/', Main_views.disminuir_sesiones, name='disminuir_sesiones'),#PROVISORIO
     path('drive', Main_views.drive, name='drive'),
-    path('notes', Main_views.notes, name='notes'),
-
+    path('notes/', Main_views.user_notes_view, name='notes'),
 
     #USERS
     path('login/', Users_views.login, name='login'),

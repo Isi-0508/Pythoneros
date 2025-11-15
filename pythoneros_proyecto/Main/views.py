@@ -12,6 +12,8 @@ from Main.pomodoro import sesiones_restantes
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from .models import schedule
+from .models import user_notes
+from django.http import JsonResponse
 from django.views.decorators.clickjacking import xframe_options_exempt
 
 @login_required(login_url='login')
@@ -44,16 +46,24 @@ def disminuir_sesiones(request):
 
 @login_required(login_url='login')
 def home(request):
-    return render(request,"home.html")
+    return render(request, "home.html")
 
-# PENDIENTE
 def about(request):
     return render(request, "about.html")
 
 @login_required(login_url='login')
 @xframe_options_exempt
-def notes(request):
-    return render(request, 'notes.html')
+def user_notes_view(request):
+    user = request.user
+    note_obj, created = user_notes.objects.get_or_create(user=user)
+
+    if request.method == "POST":
+        content = request.POST.get("user_note", "")
+        note_obj.user_notes = content
+        note_obj.save()
+        return redirect('notes')
+
+    return render(request, "notes.html", {"note": note_obj})
 
 @login_required(login_url='login')
 @xframe_options_exempt

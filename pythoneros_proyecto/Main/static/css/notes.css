@@ -118,3 +118,18 @@
 	font-style: italic;
 	font-weight: 900;
 }
+
+.st-notes-input{
+    font-size: 12px;
+    font-family: 'Sansita';
+    font-style: 'normal';
+    font-weight: 300;
+    outline: none;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 8px 12px;
+    transition: border 0.2s ease, box-shadow 0.2s ease;
+    background-color: transparent !important;
+	width: 755px;
+    height: 300px; 
+}
