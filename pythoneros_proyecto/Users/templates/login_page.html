@@ -12,22 +12,22 @@
 {% block content %}
 <div class="login_pagina">
     <div class="login_cuadrante">
-
         <img src="{%static 'images/logos/piwit_logo_v1_50px.png' %}" class="login_logo">
-        <h2 class="login_title"> Iniciar Sesión: </h2>
-
+        <h2 class="login_title"> INICIAR SESIÓN </h2>
         <form method="POST" action ="{%url 'login' %}">
             {% csrf_token %}
-            <input type="text" name="username" placeholder="Usuario" required class="login_input">
-            <input type="text" name="password" placeholder="Contraseña" required class="login_input">
+            <input type="text" name="username" placeholder="Nombre de Usuario" required class="login_input">
+            <input type="password" name="password" placeholder="Contraseña" required class="login_input">
             <button type="submit" class="login_acceder_button"> Acceder </button>
             <p class="login_register_text"> ¿Aún no eres miembro de Piwit? ¡Unete! </p>
             <a href="{% url 'register' %}" class="register_button"> Registrarse </a>
             <br>
-
            <!-- <a href="{% url 'about' %}" class="about_link"> Acerca de nosotros </a> -->
-
         </form>
+        <br>
+        <div class="buttons">
+        <a href ="{%url 'about'%}" class="button login_acceder_button">Acerca de nosotros</a>
+        </div>
     </div>
 </div>
 
@@ -36,21 +36,21 @@
 <!-- Codigo sin clases (antiguo) 
 <form method="POST" action ="{%url 'login' %}">
     {% csrf_token %}
-<!--Input de usuario
+Input de usuario
     <input type="text" name="username" placeholder="Usuario" required>
     <br>
     <br>
-<!--Input de contraseña
+Input de contraseña
     <input type="password" name="password" placeholder="Contraseña" required>
     <br>
     <br>
-<!--Boton para acceder
+Boton para acceder
     <button type="submit">Iniciar Sesión</button>
     <br>
     <br>
     ¿Aún no eres miembro de Piwit? ¡Unete!
-<!--CAMBIAR NOMBRE PROVISORIO
-<!--Boton para ir a la pagina de registro
+CAMBIAR NOMBRE PROVISORIO
+Boton para ir a la pagina de registro
     <div class="buttons">
         <br>
         <a href ="{%url 'register'%}" class="button">REGISTRARSE</a>

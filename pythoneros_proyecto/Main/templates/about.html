@@ -1,22 +1,21 @@
-{% extends 'home_index.html' %}
 {% load static %}
+<!DOCTYPE html>
+<html Lang="en">
+    <!-- Esto originalmente estaba en en, por si acaso-->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/about.css' %}">
+    <title>{% block title %} Piwit - Acerca de Nosotros {% endblock %}</title>
+    {% block extra_css %}{% endblock %}
+    <!--TITULO-->
+</head>
 
-<!-- Titulo de la página-->
-{% block title %}
-Piwit - Acerca de Nosotros
-{% endblock title %}
-
-{% block content %}
-{% block extra_css %}
-{% csrf_token %}
-<meta name="csrf-token" content="{{ csrf_token }}">
-<link rel="stylesheet" href="{% static 'css/about.css' %}">
-{% endblock %}
-    <div id="page-content">
-        <br>
+<body>
+    <div class="about_pagina">
         <main class="st-about-bodyanimation">
             <div class="st-about-cuadrante1">
-                <div class="d-flex flex-column justify-content-center align-items-center st-about-title">
+                <div class="st-about-title">
                 ¿Que es Piwit?
                 </div>
                 <br>
@@ -26,7 +25,7 @@ Piwit - Acerca de Nosotros
                     </img>
                 </div>
 
-                <div class="text-center form-control st-about-bgdelete">
+                <div class="st-about-creditstext">
                     Piwit es una herramienta de estudio web diseñada  para universitarios y liceanos que padezcan de neurodivergencia. Visualmente<br>
                     atractiva y minimalista.
                 </div>
@@ -34,11 +33,11 @@ Piwit - Acerca de Nosotros
             <br>
             <!-- Creditos-->
             <div class="st-about-cuadrante2">
-                <div class="d-flex flex-column justify-content-center align-items-center st-about-title">
+                <div class="st-about-title">
                     ¿Quienes trabajaron en este proyecto?<br>
                 </div>
                 <br>
-                <div class="d-flex flex-column justify-content-center align-items-center">
+                <div class="">
                     <img
                         src="{% static 'images/logos/pythoneros_logo_125px.png'%}"><br>
                     </img>
@@ -48,31 +47,39 @@ Piwit - Acerca de Nosotros
                 <div class="st-about-creditsheader">
                     Programadores<br>
                 </div>
+                <div class="st-about-creditstext">
                 ISIDORA MONTALVA<br>
                 CARLOS MUNDACA<br>
                 MARCELO ÓRDENES<br>
                 LAURA ORELLANA<br>
                 MARTÍN OÑATE<br>
+                </div>
                 <br>
                 <div class="st-about-creditsheader">
                     Asistencia Técnica<br>
                 </div>
+                <div class="st-about-creditstext">
                 MAXIMILIANO OSORIO<br>
+                </div>
                 <br>
                 <div class="st-about-creditsheader">
                     Supervisores<br>
                 </div>
+                <div class="st-about-creditstext">
                 IGNACIA 'NACHA' NEATTLE<br>
                 NICOLAS CHEHADE<br>
                 KARINA ALIAGA<br>
                 JAVIER GUZMÁN<br>
                 BALDUIONO DIAZ<br>
                 CRISTOBAL CARREÓN<br>
+                </div>
                 <br>
                 <div class="st-about-creditsheader">
                     Supervisor Lider<br>
                 </div>
+                <div class="st-about-creditstext">
                 VICTOR GUTIERREZ<br>
+                </div>
                 <br>
                 <br>
                 <br>
@@ -82,42 +89,32 @@ Piwit - Acerca de Nosotros
                 <div class="st-about-creditsheader">
                     "Natural Ocean Waves, Water Droplets & Bubbly Sounds"<br>
                 </div>
+                <div class="st-about-creditstext">
                 Cortesía de DudeAwesome<br>
                 https://freesound.org/s/386454/<br>
                 Licensia: Attribution 4.0<br>
                 via freesound.org<br>
+                </div>
                 <br>
                 <div class="st-about-creditsheader">
                     "AMBIENT - Rain - On Pavement (LOOP)"<br>
                 </div>
+                <div class="st-about-creditstext">
                 Cortesía de Arctura<br>
                 https://freesound.org/s/34069/<br>
                 Licensia: Attribution 3.0<br>
                 via. freesound.org<br>
+                </div>
                 <br>
                 <div class="st-about-creditsheader">
                     "Voyager Plasma Wave Data"<br>
                 </div>
+                <div class="st-about-creditstext">
                 Audios de las misiones Voyager (1979-1989)<br>
                 Cortesía de NASA y JPL-Caltech<br>
                 https://voyager.jpl.nasa.gov/<br>
                 Dominio Público<br>
-                <br>
-                <div class="st-about-creditsheader">
-                    Software<br>
                 </div>
-                <div class="st-about-creditsheader">
-                    Edición de audio<br>
-                </div>
-                VEGAS PRO 15.0<br>
-                AUDACITY<br>
-                HANDBRAKE<br>
-                <br>
-                <div class="st-about-creditsheader">
-                    Ilustraciones<br>
-                </div>
-                ADOBE PHOTOSHOP CC 2020<br>
-                PAINT.NET<br>
                 </div>
             </div>
             <br>
@@ -126,28 +123,28 @@ Piwit - Acerca de Nosotros
                     <img
                         src="{% static 'images/about_creditlogos_500px.png'%}"><br>
                     </img>
+                    <div class="st-about-creditstext">
                     <br>
-                    Copyright Disclaimer under section 107 of the Copyright Act 1976, allowance is made for “fair use”<br>
-                    for purposes such as criticism, comment. Fair use is a use permitted by copyright statute that might<br>
-                    otherwise be infringing. Non-profit, educational or personal use tips the balance in favor of fair use.<br>
-                    <br>
+                    <div class="st-about-creditsheader">
+                    Copyright Disclaimer under section 107 of the Copyright Act 1976<br>
+                    </div>
+                    Allowance is made for “fair use” for purposes such as criticism, comment. Fair use is a use permitted<br>
+                    by copyright statute that might otherwise be infringing. Non-profit, educational or personal use tips<br>
+                    the balance in favor of fair use.<br>
+                    <div class="st-about-creditsheader">
                     Universidad Técnica Federico Santa María © MMXXV - Todos los derechos reservados.<br>
-                    Pythoneros LLC
+                    Pythoneros LLC<br>
+                    </div>
+                    <br>
+                    Piwit BETA BUILD v.1.1.2: DO NOT DISTRIBUTE
+                    </div>
                 </div>
             </div>
+            <br>
+            <div>
+            <a href ="{%url 'home'%}" class="st-about-button">Regresar</a>
+            <br>
+            </div>
         </main>
-
-        <div class="buttons d-flex flex-column justify-content-center align-items-center">
-            <br>
-            <button class="btn btn-primary w-10"
-            aria-current="page"
-            hx-get="{%url 'home'%}"
-            hx-target="#main-content"
-            hx-select="#page-content"
-            hx-swap="morphdom"
-            hx-push-url="true">
-            Regresar</button>
-            <br>
-        </div>
     </div>
-{% endblock %}
+</body>

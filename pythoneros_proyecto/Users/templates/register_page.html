@@ -1,37 +1,54 @@
 {% extends "account_page_index.html" %}
 
-{% block title %}  Piwit Registrarse {% endblock %}
+{% load static %}
+
+{% block title %}  Piwit - Registrarse {% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/register_page.css' %}">
+{% endblock %}
+
 
 {% block content %}
-    REGISTRARSE
-    <br>
-    <br>
+<div class="register_pagina">
+    <div class="register_cuadrante">
 
-<form method="POST" action ="{%url 'register' %}">
-    {% csrf_token %}
-<!--Input de usuario-->
-    <input type="text" name="username" placeholder="Usuario" required>
-    <br>
-    Requisitos de contraseña:<br>
-    -Su contraseña no puede ser totalmente numerica<br>
-    -Debe contener de 8 a 10 caracteres<br>
-    -Debe contener como minimo 2 números<br>
-    -Debe contener como minimo 2 caracteres adicionales<br>
-    -No puede ser la contraseña otorgada como ejemplo a continuación<br>
-    EJEMPLO: abcd12%$<br>
-    <br>
-<!--Input de mail-->
-    <input type="email" name="mail" placeholder="correo@electronico.ejemplo" required>
-    <br>
-    <br>
-<!--Input de contraseña-->
-    <input type="password" name="password" placeholder="Contraseña" required>
-    <br>
-    <br>
-<!--Input de contraseña 2-->
-    <input type="password" name="password2" placeholder="Confirmar Contraseña" required>
-    <br>
-    <br>
-    <button type="submit">REGISTRARSE</button>
-</form>
+        <img src="{%static 'images/logos/piwit_logo_v1_50px.png' %}" class="login_logo">
+        <h2 class="register_title"> REGISTRARSE </h2>
+
+        <form method="POST" action ="{%url 'login' %}">
+            {% csrf_token %}
+        <!--Input de usuario-->
+            <div class="register_text">
+                <div class="register_text_header">
+                Requisitos de contraseña:<br>
+                </div>
+            -Su contraseña no puede ser totalmente numerica<br>
+            -Debe contener de 8 a 10 caracteres<br>
+            -Debe contener como minimo 2 números<br>
+            -Debe contener como minimo 2 caracteres adicionales<br>
+            -No puede ser la contraseña otorgada como ejemplo a continuación<br>
+            <br>
+            EJEMPLO: abcd12%$<br>
+            </div>
+            <br>
+        <!--Input de usuario-->
+            <input type="text" name="username" placeholder="Nombre de Usuario" class="register_input" required>
+        <!--Input de mail-->
+            <input type="email" name="mail" placeholder="Correo Electronico" class="register_input" required>
+        <!--Input de contraseña-->
+            <input type="password" name="password" placeholder="Contraseña" class="register_input" required>
+        <!--Input de contraseña 2-->
+            <input type="password" name="password2" placeholder="Confirmar Contraseña" class="register_input" required>
+            <button type="submit" class="register_acceder_button">REGISTRARSE</button>
+
+           <!-- <a href="{% url 'about' %}" class="about_link"> Acerca de nosotros </a> -->
+
+        </form>
+        <br>
+        <div class="buttons">
+        <a href ="{%url 'about'%}" class="button register_acceder_button">Acerca de nosotros</a>
+        </div>
+    </div>
+</div>
 {% endblock %}

@@ -1,11 +1,4 @@
-/*Voy a poner este mensaje aqui, en caso de usar los css, NO REESCRIBIR CLASES HECHAS POR CSS POR QUE GENERAN BUGS*/
-/*Preocuparse de no escribir 2 clases con el mismo nombre, siempre tener un nombre distinto para cada cosa. Por eso, aca va una
-una nomenclatura para las clases que se programan: "st-(nombre de html que se aplicara, en caso de ser un index, colocar al final idx)-parte del html"
-Ejemplo: "st-homeidx-body", "st-about-body", "st-about-title"*/
-
-/*TODAVIA ESTA PENDIENTE TENER DISTINTO ESTILO DE LETRA PARA CADA COSA*/
-
-/* TIPO DE LETRA */
+/* Fondo */
 @font-face {
 	font-family: 'Sansita';
 	src: url('/static/fonts/Sansita/Sansita-Light.eot');
@@ -127,101 +120,8 @@ Ejemplo: "st-homeidx-body", "st-about-body", "st-about-title"*/
 	font-weight: 900;
 }
 
-.st-about-title{
-	font-family: 'Sansita';
-	font-style: 'normal';
-	font-size: 50px;
-	font-weight: 900;
-}
-
-.st-about-creditsheader{
-	font-family: 'Sansita';
-	font-style: 'normal';
-	font-size: 25px;
-	font-weight: 500;
-}
-
-.st-about-creditstext{
-	font-family: 'Sansita';
-	font-style: 'normal';
-	font-size: 20px;
-	font-weight: 300;
-}
-
-.st-about-bgdelete{
-    border: none;
-    background-color: transparent !important;
-    box-shadow: none;
-    outline: none;
-}
-
-.st-about-cuadrante1 {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    width: 500px;
-    height: 400px;
-    padding: 10px;
-    border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    overflow: hidden;
-    position: relative;
-    background-color: #f7f5c9;
-    margin: 0 auto;
-	animation: fadeIn 0.8s ease forwards;
-  	transition: background-color 0.6s ease, color 0.6s ease;
-}
-
-.st-about-cuadrante2 {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    width: 1000px;
-    height: 1400px; 
-    padding: 10px;
-    border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    overflow: hidden;
-    position: relative;
-    background-color: #f7f5c9;
-    margin: 0 auto;
-	animation: fadeIn 0.8s ease forwards;
-  	transition: background-color 0.6s ease, color 0.6s ease;
-}
-
-.st-about-cuadrante3 {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    width: 1000px;
-    height: 800px; 
-    padding: 10px;
-    border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    overflow: hidden;
-    position: relative;
-    background-color: white;
-    margin: 0 auto;
-	animation: fadeIn 0.8s ease forwards;
-  	transition: background-color 0.6s ease, color 0.6s ease;
-}
-
-/* Animación al cargar la página */
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-
-
 /* Fondo */
-.about_pagina {
+.register_pagina {
     background-color: #d8c8f0; /* Lila pastel */
     min-height: 89vh;
     padding: 40px 0;
@@ -232,7 +132,7 @@ Ejemplo: "st-homeidx-body", "st-about-body", "st-about-title"*/
 }
 
 /* Cuadrante amarillo  */
-.about_cuadrante {
+.register_cuadrante {
     background-color: #f7f5c9; /* Amarillo pastel */
     width: 60%;
     max-width: 500px;
@@ -241,18 +141,48 @@ Ejemplo: "st-homeidx-body", "st-about-body", "st-about-title"*/
     box-shadow: 0 5px 10px rgba(0,0,0,0.1);
 }
 
-/* Texto de registro */
-.about_register_text {
-    font-family: 'Sansita';
-    margin-top: 20px;
-    font-weight: bold;
-    font-size: 16px;
+/* Logo */
+.register_logo {
+    width: 180px;
+    margin-bottom: 10px;
 }
 
-/* Botón registrarse */
-.st-about-button {
+/* Título (iniciar sesión) */
+.register_title {
     font-family: 'Sansita';
-    width: 30%;
+    font-weight: 900;
+    font-size: 50px;
+    margin-bottom: 20px;
+}
+.register_text {
+    font-family: 'Sansita';
+    font-size: 20px;
+	text-align: left;
+}
+.register_text_header {
+    font-family: 'Sansita';
+    font-size: 30px;
+	font-weight: 900;
+}
+/* Inputs (Usuario, Contraseña) */
+.register_input {
+    font-family: 'Sansita';
+    width: 80%;
+    padding: 10px 15px;
+    border-radius: 20px;
+    border: none;
+    margin-bottom: 20px;
+    background-color: #c7dcff; /* Azul pastel */
+    font-size: 16px;
+    outline: none;
+    text-align: center;
+    font-weight: bold;
+}
+
+/* Botón Acceder */
+.register_acceder_button {
+    font-family: 'Sansita';
+    width: 60%;
     padding: 10px;
     background-color: #c7a8ff; /* Morado pastel */
     border: none;
@@ -262,6 +192,46 @@ Ejemplo: "st-homeidx-body", "st-about-body", "st-about-title"*/
     font-weight: bold;
 }
 
-.st-about-button:hover {
+.register_acceder_button:hover {
     background-color: #b18aff;
 }
+
+/* Texto de registro */
+.register_register_text {
+    font-family: 'Sansita';
+    margin-top: 20px;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+/* Botón registrarse */
+.register_button {
+    font-family: 'Sansita';
+    display: inline-block;
+    background-color: #c7a8ff;
+    padding: 10px 20px;
+    border-radius: 15px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    text-decoration: none;
+    color: black;
+    font-size: 16px;
+}
+
+.register_button:hover {
+    background-color: #b18aff;
+    color: black;
+}
+
+/* Enlace acerca de nosotros 
+.about_link {
+    font-size: 16px;
+    text-decoration: underline;
+    color: #3a2f52;
+}
+
+.about_link:hover {
+    text-decoration: none;
+    color: #1e1933;
+} */
