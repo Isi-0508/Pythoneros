@@ -16,7 +16,7 @@
         <img src="{%static 'images/logos/piwit_logo_v1_50px.png' %}" class="login_logo">
         <h2 class="register_title"> REGISTRARSE </h2>
 
-        <form method="POST" action ="{%url 'login' %}">
+        <form method="POST" action ="{%url 'register' %}">
             {% csrf_token %}
         <!--Input de usuario-->
             <div class="register_text">
@@ -51,4 +51,5 @@
         </div>
     </div>
 </div>
+
 {% endblock %}

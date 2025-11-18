@@ -1,24 +1,29 @@
+{% load static %}
 <!DOCTYPE html>
 <html Lang="en">
     <!-- Esto originalmente estaba en en, por si acaso-->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/account_page.css' %}">
     <title>{% block title %} {% endblock %}</title>
-    {% block extra_css %}{% endblock %}
+    {% block extra_css %}
+    {% endblock %}
     <!--TITULO-->
 </head>
 
 <body>
     <main>
     {% if messages %}
-        <ul class = "messages">
+    <div class = "st-accountpage-messages">
+        <ul>
             {% for message in messages %}
                 <li {% if messages.tags %} class ="{{ message.tags }}"{% endif %}>
                     {{ message }}
                 </li>
             {% endfor %}
         </ul>
+    </div>
     {% endif %}
 
     {% block content %}
