@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-  // 🚨 Si NO existe el timer → no ejecutar nada
+
   const btnUp = document.getElementById("btnUp");
   const btnDown = document.getElementById("btnDown");
   const sessionCount = document.getElementById("sessionCount");
@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const btnStart = document.querySelector(".pomodoro-btn");
 
   if (!btnUp || !btnDown || !sessionCount || !timerDisplay || !btnStart) {
-    // Página sin Pomodoro → no hacer nada.
+    //ágina sin Pomodoro → no hacer nada.
     return;
   }
 
@@ -162,4 +162,4 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   actualizarVista();
-}); // <-- cierre correcto del DOMContentLoaded listener
+}); 

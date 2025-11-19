@@ -2,7 +2,7 @@ function StartDropdown() {
 
   const menu = document.getElementById("app-dropdown");
 
-  // 🚨 Si NO existe el menú o NO hay cuadrantes, no ejecutar nada
+
   const cuadrantes = document.querySelectorAll(".st-home-cuadrante");
   if (!menu || cuadrantes.length === 0) return;
 
