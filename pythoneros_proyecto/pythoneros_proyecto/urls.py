@@ -17,7 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.shortcuts import redirect
-
+from Users import views
 from Users import views as Users_views
 from Main import views as Main_views
 
@@ -45,4 +45,9 @@ urlpatterns = [
 
     #MISCELLEANOUS
     path('about/', Main_views.about, name='about'),
+
+
+    path("choose-avatar/", views.choose_avatar, name="choose_avatar"),
+    path("set-avatar/", views.set_avatar, name="set_avatar"),
+
 ]

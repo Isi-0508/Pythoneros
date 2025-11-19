@@ -11,6 +11,7 @@ from django.contrib.auth import get_user_model
 from django.core.validators import validate_email
 from django.core.exceptions import ValidationError
 from django.contrib.auth.password_validation import validate_password
+from Users.models import Profile
 
 # Create your views here.
 
@@ -227,6 +228,53 @@ def deleteacc(request):
             messages.error(request, "(!) Contraseña incorrecta, intentelo de nuevoA")
 
     return render(request, "deleteacc_page.html")
+
+@login_required
+def change_profile_image(request):
+    if request.method == "POST":
+        image = request.POST.get("image")
+        
+        if image:
+            request.user.profile.image = f"images/{image}"
+            request.user.profile.save()
+
+            # devolvemos SOLO la nueva imagen con el mismo ID
+            html = f"""
+            <img id='profile-picture'
+                 class='img-thumbnail rounded-circle mb-3 mx-auto'
+                 src='/static/images/{image}'
+                 style='width: 100px;'>
+            """
+
+            return HttpResponse(html)
+    return HttpResponse("Error", status=400)
+
+
+
+@login_required
+def choose_avatar(request):
+    avatars = [
+        "images/Pythoneros_pfp2_proj_final.png",
+        "images/Pythoneros_pfp1_proj_final.png",
+    ]
+    return render(request, "partials/avatar_modal.html", {"avatars": avatars})
+
+
+@login_required
+def set_avatar(request):
+    avatar = request.POST.get("avatar")
+
+    profile, _ = Profile.objects.get_or_create(user=request.user)
+
+    if avatar:
+        profile.image = avatar
+        profile.save()
+
+    return render(request, "partials/avatar_image.html", {
+        "image": profile.image
+    })
+
+
 
 
 #CONTRASEÑA FUNCIONAL 100%

@@ -2,6 +2,9 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
+
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=, initial-scale=1.0">    
@@ -302,8 +305,15 @@ document.body.addEventListener('htmx:afterSwap', () => {
 });
 </script>
 
+<script>
+document.body.addEventListener("htmx:configRequest", (event) => {
+    event.detail.headers["X-CSRFToken"] = "{{ csrf_token }}";
+});
+</script>
 
 
+
+<div id="modal-container"></div>
 </body>
 {% block extra_js %}{% endblock %}
 </html>

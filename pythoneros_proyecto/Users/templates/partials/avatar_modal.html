@@ -1,0 +1,65 @@
+{% load static %}
+
+<div id="chooseAvatarModalBackdrop">
+  <div class="choose-avatar-modal">
+
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h5 class="m-0">Selecciona tu Avatar</h5>
+      <button type="button" class="btn-close" onclick="closeAvatarModal()"></button>
+    </div>
+
+    <div class="row">
+      {% for avatar in avatars %}
+        <div class="col-6 mb-3 text-center">
+        <img src="{% static avatar %}"
+            class="img-thumbnail"
+            style="width:120px; cursor:pointer;"
+            hx-post="{% url 'set_avatar' %}"
+            hx-vals='{"avatar": "{{ avatar|escapejs }}"}'
+            hx-target="#avatar-container"
+            hx-swap="innerHTML">
+        </div>
+
+
+
+
+      </div>
+      {% endfor %}
+    </div>
+
+  </div>
+</div>
+
+<style>
+#chooseAvatarModalBackdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+.choose-avatar-modal {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  width: 380px;
+}
+</style>
+
+<script>
+function closeAvatarModal(){
+  const modal = document.getElementById('chooseAvatarModalBackdrop');
+  if(modal) modal.remove();
+}
+</script>
+
+<script>
+document.body.addEventListener("htmx:afterSwap", function(event) {
+    // Cuando se actualiza el avatar-container → cerrar modal
+    if (event.detail.target.id === "avatar-container") {
+        closeAvatarModal();
+    }
+});
+</script>

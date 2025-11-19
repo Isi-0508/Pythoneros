@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_htmx',
-    'Users',
+    'Users.apps.UsersConfig',
     'Main',
     'django.contrib.sites',
     'allauth',
