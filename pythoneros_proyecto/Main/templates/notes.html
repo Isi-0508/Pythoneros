@@ -16,9 +16,9 @@
 <body>
     <form method="POST">
         {% csrf_token %}
-        <textarea type=text name="user_note" rows="15" cols="80" value="{{ note.user_notes }}" class="st-notes-input"></textarea><br>
+        <textarea type=text name="user_note" rows="15" cols="80" class="st-notes-input">{{ note.user_notes }}</textarea><br>
         <br>
-        <button type="submit">Guardar cambios</button>
+        <button class="st-notes-savebutton" type="submit">Guardar cambios</button>
     </form>
 </body>
 </html>

@@ -15,6 +15,8 @@
     <link rel="stylesheet" href="{% static 'css/home_index.css' %}">
     <link rel="stylesheet" href="{% static 'css/home.css' %}">
     <link rel="stylesheet" href="{% static 'css/about.css' %}">
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+    <link rel="stylesheet" href="{% static 'css/deleteacc.css' %}">
     <!--TITULO-->
     <title>{% block title %} {% endblock title %}</title>
 </head>
@@ -54,14 +56,7 @@
 
           <!-- BUTTON 2 - AJUSTES-->
           <li class="nav-item">
-            <button class="nav-link active"
-            aria-current="page"
-            hx-get="{%url 'about'%}"
-            hx-target="#main-content"
-            hx-select="#page-content"
-            hx-swap="morphdom"
-            hx-push-url="true">
-            Acerca de</button>
+            <a class="nav-link active" href="{%url 'about' %}"> Acerca de</a>
           </li>
   
           <!-- DROPDOWN - SELECCIONAR TEMA-->

@@ -48,12 +48,17 @@ Piwit - Eliminación de Usuario
             <br>
             <br>
             <br>
-            <button type="submit">Si, eliminar mi cuenta</button>
-            <div class="buttons">
-                <br>
-                <a href ="{%url 'profile'%}" class="button">No, regresar a Perfil</a>
-                <br>
-            </div>
+            <button class="st-deleteacc-button-delete" type="submit">Si, eliminar mi cuenta</button><br>
+            <br>
+            <button class="st-deleteacc-button-goback"
+                aria-current="page"
+                hx-get="{%url 'profile'%}"
+                hx-target="#main-content"
+                hx-select="#page-content"
+                hx-swap="morphdom"
+                hx-push-url="true">
+                No, regresar a Perfil
+            </button>
         </form>
     </div>
 </div>
