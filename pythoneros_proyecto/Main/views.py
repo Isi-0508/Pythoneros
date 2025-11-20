@@ -134,4 +134,28 @@ def cuadrantes_view(request):
     return render(request, 'home.html')
 
 
+from google.oauth2.credentials import Credentials
+from googleapiclient.discovery import build
+from django.http import JsonResponse
 
+def upload_to_drive(request):
+    if request.method == "POST":
+        uploaded_file = request.FILES["file"]
+
+        creds = Credentials.from_authorized_user_file(
+            "token.json", 
+            ["https://www.googleapis.com/auth/drive.file"]
+        )
+
+        service = build("drive", "v3", credentials=creds)
+
+        file_metadata = {"name": uploaded_file.name}
+        media = MediaIoBaseUpload(uploaded_file, mimetype=uploaded_file.content_type)
+
+        file = service.files().create(
+            body=file_metadata,
+            media_body=media,
+            fields="id"
+        ).execute()
+
+        return JsonResponse({"file_id": file.get("id")})
