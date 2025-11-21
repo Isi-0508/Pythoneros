@@ -36,7 +36,7 @@ function StartDropdown() {
       delete_button.style.top = "5px";
       delete_button.style.right = "5px";
       delete_button.style.cursor = "pointer";
-      delete_button.class = "btn btn-outline-danger";
+      delete_button.classList.add("btn", "btn-outline-danger");
 
       delete_button.addEventListener("click", (e) => {
         e.stopPropagation();
@@ -80,14 +80,16 @@ function StartDropdown() {
         }
       }
 
-      currentQuadrante.innerHTML = "";
+      let q = currentQuadrante;
+
+      q.innerHTML = "";
 
       const iframe = document.createElement("iframe");
       iframe.src = url;
       iframe.style.width = "100%";
       iframe.style.height = "100%";
       iframe.style.border = "none";
-      currentQuadrante.appendChild(iframe);
+      q.appendChild(iframe);
 
       const delete_button = document.createElement("span");
       delete_button.textContent = "X";
@@ -95,13 +97,21 @@ function StartDropdown() {
       delete_button.style.top = "5px";
       delete_button.style.right = "5px";
       delete_button.style.cursor = "pointer";
-      delete_button.class = "btn btn-outline-danger";
+      delete_button.classList.add("btn", "btn-outline-danger");
 
       delete_button.addEventListener("click", (e) => {
-        e.stopPropagation();
-        currentQuadrante.innerHTML = "+";
-        localStorage.setItem(currentQuadrante.id, "closed");
+          e.stopPropagation();
+          q.innerHTML = "+";           // ← YA NO USA currentQuadrante
+          localStorage.setItem(q.id, "closed");
       });
+
+      q.style.position = "relative";
+      q.appendChild(delete_button);
+
+      localStorage.setItem(q.id, url);
+
+
+
 
       currentQuadrante.style.position = "relative";
       currentQuadrante.appendChild(delete_button);
@@ -130,3 +140,5 @@ document.body.addEventListener("htmx:afterSwap", () => {
   if (document.getElementById("app-dropdown"))
       StartDropdown();
 });
+
+

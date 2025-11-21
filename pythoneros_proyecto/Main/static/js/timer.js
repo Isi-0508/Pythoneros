@@ -1,25 +1,16 @@
 document.addEventListener("DOMContentLoaded", () => {
-
-
+  // Estado inicial
+  let sesionesRestantes = [1, 1];
   const btnUp = document.getElementById("btnUp");
   const btnDown = document.getElementById("btnDown");
   const sessionCount = document.getElementById("sessionCount");
-  const timerDisplay = document.getElementById("timerDisplay");
-  const btnStart = document.querySelector(".pomodoro-btn");
 
-  if (!btnUp || !btnDown || !sessionCount || !timerDisplay || !btnStart) {
-    //ágina sin Pomodoro → no hacer nada.
-    return;
-  }
-
-  // Estado inicial
-  let sesionesRestantes = [1, 1];
-
+  // Función para actualizar la vista
   function actualizarVista() {
     sessionCount.textContent = sesionesRestantes.length;
   }
 
-  // Obtener CSRF
+  // Obtener CSRF token de Django
   function getCookie(name) {
     let cookieValue = null;
     if (document.cookie && document.cookie !== "") {
@@ -34,6 +25,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     return cookieValue;
   }
+
+
 
   async function actualizarServidor(url) {
     try {
@@ -53,6 +46,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+
+
   function guardarEstado() {
     const estado = {
       sesionesRestantes,
@@ -64,37 +59,46 @@ document.addEventListener("DOMContentLoaded", () => {
     localStorage.setItem("pomodoroEstado", JSON.stringify(estado));
   }
 
+
+
   function cargarEstado() {
     const estado = localStorage.getItem("pomodoroEstado");
     if (!estado) return null;
     return JSON.parse(estado);
   }
 
-  // Botón subir sesiones
+
   btnUp.addEventListener("click", () => {
     if (sesionesRestantes.length < 4) {
       sesionesRestantes.push(1);
       actualizarVista();
-      actualizarServidor("/aumentar_sesiones/");
+      actualizarServidor("{% url 'aumentar_sesiones' %}");
     } else {
       alert("No es recomendable hacer más de 4 sesiones");
     }
   });
 
-  // Botón bajar sesiones
+
   btnDown.addEventListener("click", () => {
     if (sesionesRestantes.length > 1) {
       sesionesRestantes.pop();
       actualizarVista();
-      actualizarServidor("/disminuir_sesiones/");
+      actualizarServidor("{% url 'disminuir_sesiones' %}");
     } else {
       alert("Debes tener al menos una sesión.");
     }
   });
 
-  // Configurar timer
-  let sesiones = sesionesRestantes.map(s => s);
-  let descanso = 1;
+  document.body.addEventListener("htmx:configRequest", (event) => {
+    const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
+    event.detail.headers["X-CSRFToken"] = csrfToken;
+  });
+
+  actualizarVista();
+
+  //POMODORO
+  let sesiones = sesionesRestantes.map(s => s); // copia de las sesiones
+  let descanso = 1; // minutos
   let indice = 0;
   let remaining = 0;
   let enDescanso = false;
@@ -116,6 +120,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function iniciarPomodoro() {
     if (pausado) {
+      // reanudar
       pausado = false;
       iniciarTemporizador(remaining, enDescanso ? "Descanso" : "Estudio");
       guardarEstado();
@@ -123,7 +128,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     if (indice < sesionesRestantes.length) {
-      let duracion = sesionesRestantes[indice] * 1500;
+      let duracion = sesionesRestantes[indice] * 1500; // convertir a segundos
       iniciarTemporizador(duracion, "Estudio");
     } else {
       alert("¡Ciclo completado!");
@@ -135,11 +140,12 @@ document.addEventListener("DOMContentLoaded", () => {
     clearInterval(interval);
     remaining = segundos;
     enDescanso = tipo === "Descanso";
+    const display = document.getElementById("timerDisplay");
 
     interval = setInterval(() => {
       let min = Math.floor(remaining / 60);
       let sec = remaining % 60;
-      timerDisplay.textContent = `${tipo}: ${min}:${sec.toString().padStart(2, "0")}`;
+      display.textContent = `${tipo}: ${min}:${sec.toString().padStart(2, "0")}`;
 
       remaining--;
       guardarEstado();
@@ -147,8 +153,10 @@ document.addEventListener("DOMContentLoaded", () => {
       if (remaining < 0) {
         clearInterval(interval);
         if (!enDescanso) {
+          // iniciar descanso
           iniciarTemporizador(descanso * 900, "Descanso");
         } else {
+          // siguiente sesión
           indice++;
           iniciarPomodoro();
         }
@@ -156,10 +164,24 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 1000);
   }
 
-  // Botón de iniciar
+  const btnStart = document.querySelector(".pomodoro-btn");
   btnStart.addEventListener("click", () => {
     iniciarPomodoro();
   });
+});
 
-  actualizarVista();
-}); 
+  // Botón iniciar/pausar
+  //const btnStart = document.querySelector(".pomodoro-btn");
+  //btnStart.addEventListener("click", () => {
+  //  if (pausado) {
+  //    pausado = false;
+  //    iniciarTemporizador(remaining, enDescanso ? "Descanso" : "Estudio");
+  //  } else if (interval) {
+  //    clearInterval(interval);
+  //    pausado = true;
+  //    guardarEstado();
+  //  } else {
+  //    iniciarPomodoro();
+  //  }
+  //});
+  //});

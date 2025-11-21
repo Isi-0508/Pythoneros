@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    image = models.CharField(max_length=255, default="images/default.png")
+    image = models.CharField(max_length=255, default="images/Pythoneros_pfp1_proj_final.png")
 
     def __str__(self):
         return f"Perfil de {self.user.username}"

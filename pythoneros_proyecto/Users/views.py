@@ -254,11 +254,12 @@ def change_profile_image(request):
 @login_required
 def choose_avatar(request):
     avatars = [
-        "images/Pythoneros_pfp2_proj_final.png",
         "images/Pythoneros_pfp1_proj_final.png",
+        "images/Pythoneros_pfp2_proj_final.png",
+        "images/Pythoneros_pfp3_proj_final.png",
+        "images/Pythoneros_pfp4_proj_final.png",
     ]
     return render(request, "partials/avatar_modal.html", {"avatars": avatars})
-
 
 @login_required
 def set_avatar(request):
@@ -273,9 +274,3 @@ def set_avatar(request):
     return render(request, "partials/avatar_image.html", {
         "image": profile.image
     })
-
-
-
-
-#CONTRASEÑA FUNCIONAL 100%
-# efgh34%$
