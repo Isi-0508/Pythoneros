@@ -34,6 +34,21 @@ Piwit - Home
         <div id="cuadrante4" class="st-home-cuadrante cuadrante4">+
         </div>
       </div>
+      
+      <div style="text-align:center; margin-top:0px;">
+        <button onclick=window.location.href="{% url 'gdrive_view' %}"
+                style="
+                    padding:12px 22px; 
+                    border:none;
+                    border-radius:12px;
+                    background:#d5cefa;
+                    color:#412964;
+                    cursor:pointer;
+                    font-size:16px;
+                ">
+          Abrir mi Google Drive
+        </button>
+      </div>
 
       <!-- Dropdown-->
       <div id="app-dropdown" class="dropdown-menu">
@@ -49,7 +64,7 @@ Piwit - Home
         
         <div
           class="dropdown-item"
-          data-url="{% url 'drive' %}">Drive
+          data-url="{% url 'gdrive_view' %}">Drive
         </div> 
 
         <div

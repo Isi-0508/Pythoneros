@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.models import User
 from django.contrib import messages
@@ -15,6 +15,16 @@ from .models import schedule
 from .models import user_notes
 from django.http import JsonResponse
 from django.views.decorators.clickjacking import xframe_options_exempt
+import os
+from io import BytesIO
+from django.urls import reverse
+from django.views.decorators.http import require_POST
+# librerias de google:
+from google_auth_oauthlib.flow import Flow
+import google.oauth2.credentials
+from googleapiclient.discovery import build
+from googleapiclient.http import MediaIoBaseUpload
+
 
 @login_required(login_url='login')
 @csrf_exempt
@@ -133,29 +143,111 @@ def drive(request):
 def cuadrantes_view(request):
     return render(request, 'home.html')
 
+#FUNCIONES DRIVE:
+# Para desarrollo local
+os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1"
 
-from google.oauth2.credentials import Credentials
-from googleapiclient.discovery import build
-from django.http import JsonResponse
+SCOPES = ['https://www.googleapis.com/auth/drive.file']
+REDIRECT_URI = 'http://127.0.0.1:8000/gdrive/auth/callback/'
 
-def upload_to_drive(request):
-    if request.method == "POST":
-        uploaded_file = request.FILES["file"]
+def launcher(request):
+    return render(request, "launcher.html")
 
-        creds = Credentials.from_authorized_user_file(
-            "token.json", 
-            ["https://www.googleapis.com/auth/drive.file"]
-        )
+def credentials_to_dict(credentials):
+    return {
+        'token': credentials.token,
+        'refresh_token': credentials.refresh_token,
+        'token_uri': credentials.token_uri,
+        'client_id': credentials.client_id,
+        'client_secret': credentials.client_secret,
+        'scopes': credentials.scopes
+    }
 
-        service = build("drive", "v3", credentials=creds)
+def drive_login(request):
+    flow = Flow.from_client_secrets_file(
+        'credentials.json',
+        scopes=SCOPES,
+        redirect_uri=REDIRECT_URI
+    )
+    authorization_url, state = flow.authorization_url(
+        access_type='offline',
+        include_granted_scopes='true',
+        prompt='consent'
+    )
+    request.session['state'] = state
+    return redirect(authorization_url)
 
-        file_metadata = {"name": uploaded_file.name}
-        media = MediaIoBaseUpload(uploaded_file, mimetype=uploaded_file.content_type)
+def drive_callback(request):
+    state = request.session.get("state")
 
-        file = service.files().create(
-            body=file_metadata,
-            media_body=media,
-            fields="id"
-        ).execute()
+    flow = Flow.from_client_secrets_file(
+        "credentials.json",
+        scopes=SCOPES,
+        state=state,
+        redirect_uri=REDIRECT_URI
+    )
 
-        return JsonResponse({"file_id": file.get("id")})
+    # Obtener token
+    flow.fetch_token(authorization_response=request.build_absolute_uri())
+    credentials = flow.credentials
+
+    #refresh_token
+    stored = request.session.get("credentials")
+
+    # Si NO hay refresh_token en sesión pero Google entrega uno: se guarda
+    if credentials.refresh_token:
+        request.session["credentials"] = credentials_to_dict(credentials)
+
+    # Si Google NO dio refresh_token (normal después del primer login),
+    # conserva el antiguo para evitar el RefreshError.
+    else:
+        if stored and stored.get("refresh_token"):
+            creds_dict = credentials_to_dict(credentials)
+            creds_dict["refresh_token"] = stored["refresh_token"]
+            request.session["credentials"] = creds_dict
+        else:
+            # Caso raro
+            request.session["credentials"] = credentials_to_dict(credentials)
+
+    return redirect("gdrive_view")
+
+def drive_view(request):
+    # Si no hay credenciales, pedir login
+    if 'credentials' not in request.session:
+        return redirect('gdrive_login')
+
+    creds_dict = request.session['credentials']
+    creds = google.oauth2.credentials.Credentials(**creds_dict)
+
+    service = build('drive', 'v3', credentials=creds)
+    results = service.files().list(
+        pageSize=50,
+        fields="files(id, name, mimeType, webViewLink, webContentLink)"
+    ).execute()
+
+    files = results.get('files', [])
+    return render(request, "drive.html", {"files": files})
+
+@require_POST
+def upload_file_to_drive(request):
+    if 'credentials' not in request.session:
+        return redirect('gdrive_login')
+
+    uploaded_file = request.FILES.get('file')
+    if not uploaded_file:
+        return redirect('gdrive_view')
+
+    creds_dict = request.session['credentials']
+    creds = google.oauth2.credentials.Credentials(**creds_dict)
+    service = build('drive', 'v3', credentials=creds)
+
+    file_metadata = {'name': uploaded_file.name}
+    file_stream = BytesIO()
+    for chunk in uploaded_file.chunks():
+        file_stream.write(chunk)
+    file_stream.seek(0)
+
+    media = MediaIoBaseUpload(file_stream, mimetype=uploaded_file.content_type)
+    service.files().create(body=file_metadata, media_body=media, fields='id').execute()
+
+    return redirect('gdrive_view')

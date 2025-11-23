@@ -1,15 +1,122 @@
-/* botón dirve tema 1 */
-.btn-tema1 {
-    /* color fondo */
-    background-color: #FCFECF;
-    /* color texto */
-    color: #412964; 
-    /* al pasar el mouse (hover) */
-    border-color: #412964;
+/* ============================================================
+   PALETA DE COLORES — CAMBIA ESTOS VALORES PARA TU MARCA
+   ============================================================ */
+
+/* 
+   --primary: color principal (botones, título, encabezados)
+   --primary-dark: color en hover
+   --accent: color secundario (si lo necesitas)
+   --bg: fondo general del sitio
+   --text: color del texto
+*/
+:root {
+    --violeta: #d5cefa;
+    --naranjo: #ffce8d;
+    --azul: #b5d9fd;
+    --amarillo: #fcfecf;
+    --text: #412964;
+    --white: #fff;
+    --border: #412964;
 }
 
-/* al pasar el mouse (opcional) */
-.btn-tema1:hover {
-    background-color: #7B1FA2;
-    border-color: #7B1FA2;
+/* ============================================================
+   ESTILO GENERAL
+   ============================================================ */
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: var(--violeta);
+    color: var(--text);
+    margin: 0;
+    padding: 40px;
+    text-align: center;
+}
+
+/* ============================================================
+   TÍTULO
+   ============================================================ */
+
+h1 {
+    font-size: 28px;
+    color: var(--text); /* ← Cambia color del título */
+    margin-bottom: 25px;
+}
+
+/* ============================================================
+   FORMULARIO DE SUBIDA
+   ============================================================ */
+
+form {
+    margin-bottom: 20px;
+}
+
+/* Input del archivo */
+input[type="file"] {
+    padding: 6px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: var(--amarillo);
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+/* Botón principal */
+button {
+    padding: 10px 18px;
+    border: 1px solid var(--border);
+    border-radius: 12px; 
+    background-color: var(--azul);
+    color: var(--text);
+}
+
+/* Botón hover */
+button:hover {
+    background-color: var(--violeta2);
+}
+
+/* ============================================================
+   TABLA DE ARCHIVOS
+   ============================================================ */
+
+table {
+    margin: 0 auto;
+    width: 50%;
+    border-collapse: 1px solid var(--border);
+    background: var(--amarillo);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-top: 25px;
+}
+
+th {
+    background: var(--azul);
+    color: var(--text);
+    padding: 12px;
+    text-align: center;
+}
+
+td {
+    padding: 12px;
+    border-bottom: 1px solid var(--border);
+    text-align: center;
+}
+
+/* Hover de las filas */
+tr:hover {
+    background: var(--naranjo);
+}
+
+/* ============================================================
+   LINKS
+   ============================================================ */
+
+a {
+    color: var(--text); /* ← Color de los links */
+    font-weight: 600;
+    text-decoration: none;
+    text-decoration: underline;
+}
+
+a:hover {
+    text-decoration: underline;
 }

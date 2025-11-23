@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+  <head>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/drive_index.css' %}">
+
+    <meta charset="utf-8">
+    <title>Mi Google Drive</title>
+  </head>
+  <body>
+
+    <a href="{% url 'home' %}">
+      <img 
+        src="{% static 'images/logos/piwit_logo_v1_50px.png' %}" 
+        alt="Piwit Home"
+        style="cursor:pointer; display:block; margin: 0 auto; padding-bottom: 20px;">
+    </a>
+
+    <h1>Archivos de Google Drive</h1>
+
+    <form action="{% url 'gdrive_upload' %}" method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <input type="file" name="file" required>
+      <button type="submit">Subir a Drive</button>
+    </form>
+
+    <hr>
+
+    <table border="1" cellpadding="6" cellspacing="0">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Tipo</th>
+          <th>Ver</th>
+          <th>Descargar</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for f in files %}
+        <tr>
+          <td>{{ f.name }}</td>
+          <td>{{ f.mimeType }}</td>
+          <td>
+            {% if f.webViewLink %}
+              <a href="{{ f.webViewLink }}" target="_blank">Abrir</a>
+            {% else %}
+              -
+            {% endif %}
+          </td>
+          <td>
+            {% if f.webContentLink %}
+              <a href="{{ f.webContentLink }}">Descargar</a>
+            {% else %}
+              -
+            {% endif %}
+          </td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="4">No hay archivos</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </body>
+</html>
