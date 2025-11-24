@@ -48,10 +48,11 @@ urlpatterns = [
 
     # GOOGLE DRIVE API
     path('gdrive/login/', Main_views.drive_login, name='gdrive_login'),
+    path('gdrive/logout/', Main_views.drive_logout, name="gdrive_logout"),
     path('gdrive/auth/callback/', Main_views.drive_callback, name='gdrive_callback'),
     path('gdrive/', Main_views.drive_view, name='gdrive_view'),
     path('gdrive/upload/', Main_views.upload_file_to_drive, name='gdrive_upload'),
-
+    path('accessdrive/', Main_views.accessdrive, name='accessdrive'),
     path("choose-avatar/", views.choose_avatar, name="choose_avatar"),
     path("set-avatar/", views.set_avatar, name="set_avatar"),
 

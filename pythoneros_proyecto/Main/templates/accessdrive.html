@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/accessdrive.css' %}">
+    <!--TITULO-->
+    <title>{% block title %} Horario {% endblock title %}</title>
+</head>
+<style>
+    body {
+        background-color: transparent !important;
+    }
+</style>
+<body>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div style="text-align:center; margin-top:0px;">
+        <img
+            src="{% static 'images/logos/google_drive_logo2_200px.png'%}"><br>
+        </img>
+
+        <button class="st-accessdrive-accessbutton" onclick=parent.location.href="{% url 'gdrive_view' %}">
+          Abrir mi Google Drive
+        </button>
+    </div>
+</body>
+</html>

@@ -177,6 +177,24 @@ def drive_login(request):
     request.session['state'] = state
     return redirect(authorization_url)
 
+import requests
+from django.shortcuts import redirect
+
+def drive_logout(request):
+    creds = request.session.get("credentials")
+
+    if creds:
+        token = creds.get("token")
+        requests.post(
+            'https://oauth2.googleapis.com/revoke',
+            params={'token': token},
+            headers={'content-type': 'application/x-www-form-urlencoded'}
+        )
+
+    request.session.pop("credentials", None)
+    
+    return redirect("home")  # o donde quieras
+
 def drive_callback(request):
     state = request.session.get("state")
 
@@ -211,6 +229,7 @@ def drive_callback(request):
 
     return redirect("gdrive_view")
 
+@xframe_options_exempt
 def drive_view(request):
     # Si no hay credenciales, pedir login
     if 'credentials' not in request.session:
@@ -251,3 +270,7 @@ def upload_file_to_drive(request):
     service.files().create(body=file_metadata, media_body=media, fields='id').execute()
 
     return redirect('gdrive_view')
+
+@xframe_options_exempt
+def accessdrive(request):
+    return render(request, "accessdrive.html")

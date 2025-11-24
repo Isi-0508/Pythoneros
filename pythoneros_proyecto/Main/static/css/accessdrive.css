@@ -1,4 +1,3 @@
-/* Fondo */
 @font-face {
 	font-family: 'Sansita';
 	src: url('/static/fonts/Sansita/Sansita-Light.eot');
@@ -120,141 +119,18 @@
 	font-weight: 900;
 }
 
-/* ============================================================
-   PALETA DE COLORES — CAMBIA ESTOS VALORES PARA TU MARCA
-   ============================================================ */
-
-/* 
-   --primary: color principal (botones, título, encabezados)
-   --primary-dark: color en hover
-   --accent: color secundario (si lo necesitas)
-   --bg: fondo general del sitio
-   --text: color del texto
-*/
-:root {
-    --violeta: #d5cefa;
-    --naranjo: #ffce8d;
-    --azul: #b5d9fd;
-    --amarillo: #fcfecf;
-    --text: #412964;
-    --white: #fff;
-    --border: #412964;
-}
-
-/* ============================================================
-   ESTILO GENERAL
-   ============================================================ */
-
-body {
+.st-accessdrive-accessbutton{
     font-family: 'Sansita';
-    background: var(--violeta);
-    color: var(--text);
-    margin: 0;
-    padding: 40px;
-    text-align: center;
-}
-
-/* ============================================================
-   TÍTULO
-   ============================================================ */
-
-h1 {
-    font-size: 28px;
-    color: var(--text); /* ← Cambia color del título */
-    margin-bottom: 25px;
-}
-
-/* ============================================================
-   FORMULARIO DE SUBIDA
-   ============================================================ */
-
-form {
-    margin-bottom: 20px;
-}
-
-/* Input del archivo */
-input[type="file"] {
-    font-family: 'Sansita';
-    padding: 6px;
-    border-radius: 10px;
-    border: 1px solid var(--border);
-    background: var(--amarillo);
+    width: 30%;
+    padding: 10px;
+    background-color: #c7a8ff; /* Morado pastel */
+    border: none;
+    border-radius: 20px;
+    font-size: 18px;
     cursor: pointer;
-    margin-right: 10px;
+    font-weight: bold;
 }
 
-/* Botón principal */
-button {
-    font-family: 'Sansita';
-    padding: 10px 18px;
-    border: 1px solid var(--border);
-    border-radius: 12px; 
-    background-color: var(--azul);
-    color: var(--text);
-}
-
-/* Botón hover */
-button:hover {
-    background-color: var(--violeta2);
-}
-
-/* ============================================================
-   TABLA DE ARCHIVOS
-   ============================================================ */
-
-table {
-    font-family: 'Sansita';
-    margin: 0 auto;
-    width: 50%;
-    border-collapse: 1px solid var(--border);
-    background: var(--amarillo);
-    border-radius: 10px;
-    overflow: hidden;
-    margin-top: 25px;
-}
-
-th {
-    background: var(--azul);
-    color: var(--text);
-    padding: 12px;
-    text-align: center;
-}
-
-td {
-    padding: 12px;
-    border-bottom: 1px solid var(--border);
-    text-align: center;
-}
-
-/* Hover de las filas */
-tr:hover {
-    background: var(--naranjo);
-}
-
-/* ============================================================
-   LINKS
-   ============================================================ */
-
-a {
-    color: var(--text); /* ← Color de los links */
-    font-weight: 600;
-    text-decoration: none;
-    text-decoration: underline;
-}
-
-a:hover {
-    text-decoration: underline;
-}
-
-.st-driveindex-button-logout{
-    font-family: 'Sansita';
-    padding: 10px 18px;
-    border: 1px solid var(--border);
-    border-radius: 12px; 
-    background-color: var(--azul);
-    color: var(--text);
-}
-
-.st-driveindex-button-logout:hover{
-    background-color: var(--violeta2);
+.st-accessdrive-accessbutton:hover {
+    background-color: #b18aff;
 }

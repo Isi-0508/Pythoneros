@@ -23,7 +23,8 @@
       <input type="file" name="file" required>
       <button type="submit">Subir a Drive</button>
     </form>
-
+    <br>
+    <br>
     <hr>
 
     <table border="1" cellpadding="6" cellspacing="0">
@@ -60,5 +61,8 @@
         {% endfor %}
       </tbody>
     </table>
+    <br>
+    <br>
+    <a href="{% url 'gdrive_logout' %}" class="st-driveindex-button-logout">Cerrar sesión de Google</a>
   </body>
 </html>
