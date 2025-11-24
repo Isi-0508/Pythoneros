@@ -1,0 +1,7 @@
+Antes de correr el programa se debe hacer una descarga de los programas especificados en el archivo requirements.txt
+
+Para usar la funcionalidad de Google Drive seguir los siguientes pasos:
+1-. Facilitar su dirección de correo (Gmail) para ser agregado a la lista de usuarios de testing.
+2-. Descargar el archivo credentials.json y ubicarlo en la carpeta del proyecto a la altura del archivo manage.py.
+
+El archivo credentials.json y el acceso a la función de Drive pueden solicitarse al contacto del equipo Pythoneros:pythoneros8@gmail.com
