@@ -150,9 +150,6 @@ os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1"
 SCOPES = ['https://www.googleapis.com/auth/drive.file']
 REDIRECT_URI = 'http://127.0.0.1:8000/gdrive/auth/callback/'
 
-def launcher(request):
-    return render(request, "launcher.html")
-
 def credentials_to_dict(credentials):
     return {
         'token': credentials.token,
@@ -193,7 +190,7 @@ def drive_logout(request):
 
     request.session.pop("credentials", None)
     
-    return redirect("home")  # o donde quieras
+    return redirect("home")
 
 def drive_callback(request):
     state = request.session.get("state")
@@ -216,7 +213,7 @@ def drive_callback(request):
     if credentials.refresh_token:
         request.session["credentials"] = credentials_to_dict(credentials)
 
-    # Si Google NO dio refresh_token (normal después del primer login),
+    # Si Google NO dio refresh_token,
     # conserva el antiguo para evitar el RefreshError.
     else:
         if stored and stored.get("refresh_token"):

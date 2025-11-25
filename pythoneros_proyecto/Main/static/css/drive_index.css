@@ -120,17 +120,6 @@
 	font-weight: 900;
 }
 
-/* ============================================================
-   PALETA DE COLORES — CAMBIA ESTOS VALORES PARA TU MARCA
-   ============================================================ */
-
-/* 
-   --primary: color principal (botones, título, encabezados)
-   --primary-dark: color en hover
-   --accent: color secundario (si lo necesitas)
-   --bg: fondo general del sitio
-   --text: color del texto
-*/
 :root {
     --violeta: #d5cefa;
     --naranjo: #ffce8d;
@@ -141,9 +130,7 @@
     --border: #412964;
 }
 
-/* ============================================================
-   ESTILO GENERAL
-   ============================================================ */
+/* ESTILO PÁGINA*/
 
 body {
     font-family: 'Sansita';
@@ -154,9 +141,7 @@ body {
     text-align: center;
 }
 
-/* ============================================================
-   TÍTULO
-   ============================================================ */
+/* TÍTULO*/
 
 h1 {
     font-size: 28px;
@@ -164,9 +149,7 @@ h1 {
     margin-bottom: 25px;
 }
 
-/* ============================================================
-   FORMULARIO DE SUBIDA
-   ============================================================ */
+/* FORMULARIO DE SUBID*/
 
 form {
     margin-bottom: 20px;
@@ -198,9 +181,7 @@ button:hover {
     background-color: var(--violeta2);
 }
 
-/* ============================================================
-   TABLA DE ARCHIVOS
-   ============================================================ */
+/* TABLA*/
 
 table {
     font-family: 'Sansita';
@@ -231,9 +212,7 @@ tr:hover {
     background: var(--naranjo);
 }
 
-/* ============================================================
-   LINKS
-   ============================================================ */
+/* LINKS*/
 
 a {
     color: var(--text); /* ← Color de los links */
