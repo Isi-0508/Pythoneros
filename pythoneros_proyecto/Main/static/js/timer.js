@@ -128,7 +128,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     if (indice < sesionesRestantes.length) {
-      let duracion = sesionesRestantes[indice] * 1800; // convertir a segundos
+      let duracion = sesionesRestantes[indice] * 1500; // convertir a segundos
       iniciarTemporizador(duracion, "Estudio");
     } else {
       alert("¡Ciclo completado!");
@@ -154,7 +154,7 @@ document.addEventListener("DOMContentLoaded", () => {
         clearInterval(interval);
         if (!enDescanso) {
           // iniciar descanso
-          iniciarTemporizador(descanso * 900, "Descanso");
+          iniciarTemporizador(descanso * 300, "Descanso");
         } else {
           // siguiente sesión
           indice++;
